@@ -9,6 +9,7 @@
 ##
 
 SRC=	main.c \
+  	op.c \
 
 NAME=	corewar
 
