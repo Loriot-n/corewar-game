@@ -13,7 +13,12 @@
 
 # include "op.h"
 # include <stdlib.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
+
+int	my_strlen(char *str);
+int	whereis(char *to_find, int fd);
 
 #endif /* GAB_H_ */
