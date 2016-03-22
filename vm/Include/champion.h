@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Tue Mar 22 10:30:24 2016 CUENAT
-** Last update Tue Mar 22 11:52:05 2016 CUENAT
+** Last update Tue Mar 22 18:59:08 2016 CUENAT
 */
 
 #ifndef CHAMPION_H_
@@ -18,6 +18,7 @@ typedef struct 		s_champion
 {
   header_t		*header;
   t_action		*action;
+  char			*file_name;
   int			cycle_attente;
   int			registre[16];
   int			carry;
