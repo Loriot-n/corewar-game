@@ -12,6 +12,12 @@
 # define INCLUDE_H_
 
 # include "op.h"
+# include "action.h"
+# include "champion.h"
+# include "corewar.h"
 # include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+
 
 #endif /* INCLUDE_H_ */
