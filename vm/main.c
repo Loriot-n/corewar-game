@@ -5,13 +5,15 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update %udate maire_q
+** Last update Tue Mar 22 15:39:51 2016 CUENAT
 */
 
 #include "include.h"
 
-int	main(int ac, char **argv)
+int		main(int ac, char **argv)
 {
-  // prog_tab(&(argv[1]));
-  get_header("dadv.cor");
+  t_champion	*racine;
+
+  racine = ft_init_champ(argv);
+  return (0);
 }

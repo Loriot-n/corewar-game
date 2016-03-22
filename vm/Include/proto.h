@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Tue Mar 22 13:48:01 2016 CUENAT
+** Last update Tue Mar 22 15:41:29 2016 CUENAT
 */
 
 #ifndef PROTO_H_
@@ -19,8 +19,8 @@ void	my_putchar(char c);
 void	my_putstr(char *str);
 
 /* read_header */
-char	*corename(char *dir);
-char	**prog_tab(char	**argv);
+char		*corename(char *dir);
+char		**prog_tab(char	**argv);
 header_t	*get_header(char *file_name);
 
 /* Tools */
@@ -28,8 +28,9 @@ int	my_getnbr(char *str);
 
 /* init_champ.c */
 void		ft_init_registre_(int registre[16], int ac);
-t_champion	*ft_add_end(t_champion *cur_champ, int ac, char **av);
+void		ft_add_end(t_champion *cur_champ, int ac, char *file_name);
 t_champion	*ft_create_list_(void);
+t_champion	*ft_init_champ(char **argv);
 
 /* init_vm.c */
 void		ft_init_memory(char memory[MEM_SIZE]);

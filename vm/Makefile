@@ -5,14 +5,16 @@
 ## Login   <maire_q@epitech.eu>
 ##
 ## Started on  %cdate maire_q
-## Last update %udate maire_q
+## Last update Tue Mar 22 15:37:29 2016 CUENAT
 ##
 
 SRC=	main.c \
-  	op.c \
+	op.c \
 	utils.c \
 	read_header.c \
 	tools.c \
+	init_vm.c \
+	init_champ.c \
 
 NAME=	corewar
 
