@@ -11,6 +11,8 @@
 SRC=	main.c \
   	op.c \
 	utils.c \
+	read_header.c \
+	tools.c \
 
 NAME=	corewar
 

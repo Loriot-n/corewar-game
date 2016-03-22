@@ -22,7 +22,8 @@
 # include <sys/types.h>
 # include <dirent.h>
 # include <string.h>
-
-typedef struct dirent t_dirent;
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 #endif /* INCLUDE_H_ */

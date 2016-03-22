@@ -18,4 +18,12 @@ char	*my_strdup(char *src);
 void	my_putchar(char c);
 void	my_putstr(char *str);
 
+/* read_header */
+char	*corename(char *dir);
+char	**prog_tab(char	**argv);
+header_t	*get_header(char *file_name);
+
+/* Tools */
+int	my_getnbr(char *str);
+
 #endif /* PROTO_H_ */
