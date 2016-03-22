@@ -16,5 +16,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <stdio.h>
 
+int	my_strlen(char *str);
 #endif /* GAB_H_ */

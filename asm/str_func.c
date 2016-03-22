@@ -1,12 +1,14 @@
 /*
 ** str_func.c for corewar_asm in /home/nico/rendu/S02/ProgElem/CPE_2015_corewar/asm
-** 
+**
 ** Made by Nicolas Loriot
 ** Login   <loriot_n@epitech.net>
-** 
+**
 ** Started on  Tue Mar 22 10:56:01 2016 Nicolas Loriot
 ** Last update Tue Mar 22 11:05:51 2016 Nicolas Loriot
 */
+
+#include "../gab.h"
 
 int	my_strlen(char *str)
 {
