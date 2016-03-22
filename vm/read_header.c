@@ -19,7 +19,8 @@ char	*corename(char *dir)
     i++;
   if (!(dir[i]) || my_strcmp(&(dir[i]), my_strdup(".cor")) != 0)
     {
-      my_putstr("file_name is not a corewar executable\n");
+      my_putstr(dir);
+      my_putstr(" is not a corewar executable\n");
       exit(EXIT_FAILURE);
     }
   return (dir);
@@ -32,21 +33,21 @@ char	**prog_tab(char	**argv)
 
   size = 0;
   tab = NULL;
+  if (*argv == NULL)
+    return (tab);
   while (*argv != NULL)
        {
       if (corename(*argv) != NULL)
 	{
-	  if ((tab = realloc(tab, size++)) == NULL)
+	  if ((tab = realloc(tab, (sizeof(char*) * ++size))) == NULL)
 	    exit(EXIT_FAILURE);
 	  tab[size - 1] = corename(*argv);
 	}
       argv++;
     }
-  if (*argv)
-    {
-      if ((tab = realloc(tab, size++)) == NULL)
-	exit(EXIT_FAILURE);  tab[size - 1] = NULL;
-    }
+  if ((tab = realloc(tab, (sizeof(char *) *++size))) == NULL)
+    exit(EXIT_FAILURE);
+  tab[size - 1] = NULL;
   return (tab);
 }
 
