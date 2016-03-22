@@ -60,6 +60,7 @@ struct header_s		*fill_header(struct header_s *header, char *file)
 
   fd = open(file, O_RDONLY);
   header->magic = COREWAR_EXEC_MAGIC;
+  header->prog_size = 0;
   header = name(header, fd);
   header = comment(header, fd);
   return (header);
@@ -71,5 +72,13 @@ int			header_main(char *file)
 
   ((header = malloc(sizeof(struct header_s))) == NULL) ? exit(EXIT_FAILURE) : 0;
   header = fill_header(header, file);
+  // write_header(header, file);
+  return (0);
+}
+
+int	main(int argc, char **argv)
+{
+  // header_main(argv[1]);
+  printf("%s\n", get_new_name(argv[1]));
   return (0);
 }
