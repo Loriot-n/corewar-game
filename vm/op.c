@@ -4,8 +4,8 @@
 ** Made by maire_q
 ** Login   <maire_q@epitech.eu>
 **
-** Started on  %cdate maire_q
-** Last update %udate maire_q
+** Started on  date maire_q
+** Last update date maire_q
 */
 
 #include "op.h"

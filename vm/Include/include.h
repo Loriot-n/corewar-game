@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update %udate maire_q
+** Last update Tue Mar 22 11:12:35 2016 CUENAT
 */
 
 #ifndef INCLUDE_H_
@@ -15,9 +15,14 @@
 # include "action.h"
 # include "champion.h"
 # include "corewar.h"
+# include "proto.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/types.h>
+# include <dirent.h>
+# include <string.h>
 
+typedef struct dirent t_dirent;
 
 #endif /* INCLUDE_H_ */
