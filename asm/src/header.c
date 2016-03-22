@@ -73,9 +73,3 @@ int			header_main(char *file)
   header = fill_header(header, file);
   return (0);
 }
-
-int	main(int argc, char **argv)
-{
-  header_main(argv[1]);
-  return (0);
-}

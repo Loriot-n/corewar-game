@@ -20,5 +20,6 @@
 
 int	my_strlen(char *str);
 int	whereis(char *to_find, int fd);
+void	raise_err(char *err, char *name, char *err2);
 
 #endif /* GAB_H_ */

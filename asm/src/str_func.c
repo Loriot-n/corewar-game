@@ -18,7 +18,7 @@ int	whereis(char *to_find, int fd)
 
   ishere = 0;
   if ((lseek(fd, 0, SEEK_SET)) < 0)
-    raise_err("File file_name not accessible\n")
+    raise_err("File", "file_name not", "accessible\n");
   while ((read(fd, buff, 1) > 0 && ++ishere))
     {
       if (buff[0] == to_find[0])
@@ -34,7 +34,7 @@ int	whereis(char *to_find, int fd)
 	    }
 	}
       if ((lseek(fd, ishere, SEEK_SET)) < 0)
-       raise_err("File ", file_name, " not accessible\n");
+       raise_err("File ", "file_name", " not accessible\n");
     }
   return (-1);
 }
@@ -65,7 +65,7 @@ void	raise_err(char *err, char *name, char *err2)
 {
   my_putstr(err, STDERR_FILENO);
   my_putstr(name, STDERR_FILENO);
-  my_putstr(err, STDERR_FILENO);
+  my_putstr(err2, STDERR_FILENO);
   exit(1);
 }
 
