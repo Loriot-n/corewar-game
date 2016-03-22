@@ -53,26 +53,14 @@ char	**prog_tab(char	**argv)
 header_t	*get_header(char *file_name)
 {
   int		fd;
-  char		*read_buff;
   header_t	*cor_header;
-  char		*temp;
 
   if ((fd = open(file_name, O_RDONLY)) == -1)
     exit(EXIT_FAILURE);
-  if ((read_buff = malloc(sizeof(char) * sizeof(header_t))) == NULL)
-    exit(EXIT_FAILURE);
-  if (read(fd, read_buff, sizeof(header_t)) < (unsigned)sizeof(header_t))
-    exit(EXIT_FAILURE);
   if ((cor_header = malloc(sizeof(header_t))) == NULL)
     exit(EXIT_FAILURE);
-  temp = read_buff;
-  temp[1] = 0;
-  cor_header->magic = my_getnbr(temp);
-  printf("magic: %d\n", cor_header->magic);
-  read_buff = &read_buff[1];
-  temp = read_buff;
-  temp[3] = 0;
-  if (my_getnbr(&(read_buff[2])) == 0xea83f3)
-    printf("%s\n", "good");
-  printf("%x\n", my_getnbr(&(read_buff[2])));
+  if (read(fd, cor_header, sizeof(header_t)) < (unsigned)sizeof(header_t))
+    exit(EXIT_FAILURE);
+  cor_header->magic = 0x0 + cor_header->magic;
+  return (cor_header);
 }
