@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Tue Mar 22 15:39:51 2016 CUENAT
+** Last update Tue Mar 22 19:02:57 2016 CUENAT
 */
 
 #include "include.h"
@@ -13,7 +13,10 @@
 int		main(int ac, char **argv)
 {
   t_champion	*racine;
+  t_corewar	*vm;
 
+  vm = ft_init_vm(argv);
   racine = ft_init_champ(argv);
+  ft_init_memory(racine, vm);
   return (0);
 }
