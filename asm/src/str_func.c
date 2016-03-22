@@ -10,7 +10,7 @@
 
 #include "gab.h"
 
-int	whereis(char *to_find, int fd)
+int	whereis(char *to_find, int fd, char *file_name)
 {
   int	i;
   int	ishere;
@@ -18,7 +18,7 @@ int	whereis(char *to_find, int fd)
 
   ishere = 0;
   if ((lseek(fd, 0, SEEK_SET)) < 0)
-    raise_err("File file_name not accessible\n")
+    raise_err("File ", file_name, " not accessible\n");
   while ((read(fd, buff, 1) > 0 && ++ishere))
     {
       if (buff[0] == to_find[0])
@@ -59,11 +59,11 @@ void	my_putstr(char *str, int out)
   while (str[i])
     {
       if (out == STDERR_FILENO)
-	write(STDERR_FILENO, &str[i], my_strlen(str));
+	write(STDERR_FILENO, &str[i], 1);
       else if (out == STDOUT_FILENO)
-	write(STDOUT_FILENO, &str[i], my_strlen(str));
+	write(STDOUT_FILENO, &str[i], 1);
       else
-	write(out, &str[i], my_strlen(str));
+	write(out, &str[i], 1);
       i++;
     }
 }

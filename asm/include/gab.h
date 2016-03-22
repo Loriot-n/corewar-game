@@ -18,8 +18,14 @@
 # include <unistd.h>
 # include <stdio.h>
 
+/* str_func */
+
 int	my_strlen(char *str);
-int	whereis(char *to_find, int fd);
+int	whereis(char *to_find, int fd, char *file_name);
 void	raise_err(char *err, char *name, char *err2);
+
+/* header */
+
+char	*get_new_name(char *file);
 
 #endif /* GAB_H_ */

@@ -10,13 +10,13 @@
 
 #include "gab.h"
 
-struct header_s		*name(struct header_s *header, int fd)
+struct header_s		*name(struct header_s *header, int fd, char *file)
 {
   int	i;
   char	buff[1];
 
   i = 0;
-  ((lseek(fd, whereis(NAME_CMD_STRING, fd), SEEK_SET)) < 0) ?
+  ((lseek(fd, whereis(NAME_CMD_STRING, fd, file), SEEK_SET)) < 0) ?
   exit(EXIT_FAILURE) : 0;
   while (read(fd, buff, 1) > 0)
     {
@@ -32,13 +32,13 @@ struct header_s		*name(struct header_s *header, int fd)
   return (header);
 }
 
-struct header_s		*comment(struct header_s *header, int fd)
+struct header_s		*comment(struct header_s *header, int fd, char *file)
 {
   int	i;
   char	buff[1];
 
   i = 0;
-  ((lseek(fd, whereis(COMMENT_CMD_STRING, fd), SEEK_SET)) < 0) ?
+  ((lseek(fd, whereis(COMMENT_CMD_STRING, fd, file), SEEK_SET)) < 0) ?
   exit(EXIT_FAILURE) : 0;
   while (read(fd, buff, 1) > 0)
     {
@@ -60,10 +60,23 @@ struct header_s		*fill_header(struct header_s *header, char *file)
 
   fd = open(file, O_RDONLY);
   header->magic = COREWAR_EXEC_MAGIC;
+  header = name(header, fd, file);
   header->prog_size = 0;
-  header = name(header, fd);
-  header = comment(header, fd);
+  header = comment(header, fd, file);
   return (header);
+}
+
+void		write_header(struct header_s *header, char *file)
+{
+  int		fd;
+  char		*new_file;
+
+  new_file = get_new_name(file);
+  if ((fd = open(new_file, O_CREAT | O_WRONLY,
+		 S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
+    raise_err("File ", new_file, " not accessible\n");
+  write(fd, header, sizeof(struct header_s));
+  free(new_file);
 }
 
 int			header_main(char *file)
@@ -72,13 +85,11 @@ int			header_main(char *file)
 
   ((header = malloc(sizeof(struct header_s))) == NULL) ? exit(EXIT_FAILURE) : 0;
   header = fill_header(header, file);
-  // write_header(header, file);
+  write_header(header, file);
   return (0);
 }
 
 int	main(int argc, char **argv)
 {
-  // header_main(argv[1]);
-  printf("%s\n", get_new_name(argv[1]));
-  return (0);
+  header_main(argv[1]);
 }
