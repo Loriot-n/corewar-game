@@ -5,7 +5,7 @@
 ** Login   <loriot_n@epitech.net>
 **
 ** Started on  Tue Mar 22 10:56:01 2016 Nicolas Loriot
-** Last update Tue Mar 22 15:32:43 2016 Nicolas Loriot
+** Last update Tue Mar 22 15:44:25 2016 Nicolas Loriot
 */
 
 #include "gab.h"
@@ -59,11 +59,11 @@ void	my_putstr(char *str, int out)
   while (str[i])
     {
       if (out == STDERR_FILENO)
-	write(STDERR_FILENO, &str, my_strlen(str));
+	write(STDERR_FILENO, &str[i], my_strlen(str));
       else if (out == STDOUT_FILENO)
-	write(STDOUT_FILENO, &str, my_strlen(str));
+	write(STDOUT_FILENO, &str[i], my_strlen(str));
       else
-	write(out, &str, my_strlen(str));
+	write(out, &str[i], my_strlen(str));
       i++;
     }
 }
@@ -72,7 +72,7 @@ void	raise_err(char *err, char *name, char *err2)
 {
   my_putstr(err, STDERR_FILENO);
   my_putstr(name, STDERR_FILENO);
-  my_putstr(err, STDERR_FILENO);
+  my_putstr(err2, STDERR_FILENO);
   exit(1);
 }
 
