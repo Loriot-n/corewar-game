@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Tue Mar 22 19:02:57 2016 CUENAT
+** Last update Tue Mar 22 19:06:08 2016 CUENAT
 */
 
 #include "include.h"
@@ -17,6 +17,6 @@ int		main(int ac, char **argv)
 
   vm = ft_init_vm(argv);
   racine = ft_init_champ(argv);
-  ft_init_memory(racine, vm);
+  ft_load_player(racine, vm);
   return (0);
 }
