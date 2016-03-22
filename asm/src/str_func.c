@@ -5,7 +5,7 @@
 ** Login   <loriot_n@epitech.net>
 **
 ** Started on  Tue Mar 22 10:56:01 2016 Nicolas Loriot
-** Last update Tue Mar 22 13:33:14 2016 Nicolas Loriot
+** Last update Tue Mar 22 15:44:25 2016 Nicolas Loriot
 */
 
 #include "gab.h"
@@ -18,7 +18,7 @@ int	whereis(char *to_find, int fd)
 
   ishere = 0;
   if ((lseek(fd, 0, SEEK_SET)) < 0)
-    raise_err("File", "file_name not", "accessible\n");
+    raise_err("File file_name not accessible\n")
   while ((read(fd, buff, 1) > 0 && ++ishere))
     {
       if (buff[0] == to_find[0])
@@ -34,7 +34,7 @@ int	whereis(char *to_find, int fd)
 	    }
 	}
       if ((lseek(fd, ishere, SEEK_SET)) < 0)
-       raise_err("File ", "file_name", " not accessible\n");
+       raise_err("File ", file_name, " not accessible\n");
     }
   return (-1);
 }
@@ -51,14 +51,21 @@ int	my_strlen(char *str)
 
 void	my_putstr(char *str, int out)
 {
+  int	i;
+
+  i = 0;
   if (!str)
     return ;
-  if (out == STDERR_FILENO)
-    write(STDERR_FILENO, &str, my_strlen(str));
-  else if (out == STDOUT_FILENO)
-    write(STDOUT_FILENO, &str, my_strlen(str));
-  else
-    write(out, &str, my_strlen(str));
+  while (str[i])
+    {
+      if (out == STDERR_FILENO)
+	write(STDERR_FILENO, &str[i], my_strlen(str));
+      else if (out == STDOUT_FILENO)
+	write(STDOUT_FILENO, &str[i], my_strlen(str));
+      else
+	write(out, &str[i], my_strlen(str));
+      i++;
+    }
 }
 
 void	raise_err(char *err, char *name, char *err2)

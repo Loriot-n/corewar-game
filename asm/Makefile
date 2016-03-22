@@ -16,6 +16,7 @@ NAME	= asm
 
 SRCS	= src/header.c \
 				src/str_func.c \
+				src/new_cor.c
 
 OBJS	= $(SRCS:.c=.o)
 
