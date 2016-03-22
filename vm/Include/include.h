@@ -15,9 +15,14 @@
 # include "action.h"
 # include "champion.h"
 # include "corewar.h"
+# include "proto.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/types.h>
+# include <dirent.h>
+# include <string.h>
 
+typedef struct dirent t_dirent;
 
 #endif /* INCLUDE_H_ */

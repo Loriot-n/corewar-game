@@ -10,12 +10,13 @@
 
 SRC=	main.c \
   	op.c \
+	utils.c \
 
 NAME=	corewar
 
 OBJ=	$(SRC:.c=.o)
 
-CFLAGS=	-Wall -I./Include -Wextra -Wno-unused-parameter
+CFLAGS=	-Wall -I./Include -Wextra -Wno-unused-parameter -g3
 
 RM= rm -f
 
