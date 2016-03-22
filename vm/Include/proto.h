@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Tue Mar 22 12:55:58 2016 CUENAT
+** Last update Tue Mar 22 13:48:01 2016 CUENAT
 */
 
 #ifndef PROTO_H_
@@ -22,5 +22,9 @@ void	my_putstr(char *str);
 void		ft_init_registre_(int registre[16], int ac);
 t_champion	*ft_add_end(t_champion *cur_champ, int ac, char **av);
 t_champion	*ft_create_list_(void);
+
+/* init_vm.c */
+void		ft_init_memory(char memory[MEM_SIZE]);
+t_corewar	*ft_init_vm(void);
 
 #endif /* PROTO_H_ */
