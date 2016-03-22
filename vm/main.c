@@ -22,9 +22,8 @@ void	print_asm(char	*file_name)
       if (s > 0 && s < 16)
 	{
 	  printf("\n%s(%d arguments)  ", op_tab[s - 1].mnemonique, op_tab[s - 1].nbr_args);
-	  read(fd, &i, sizeof(i));
 	}
-      printf("%d ", i);
+      printf(" %d", s);
     }
 }
 
@@ -34,6 +33,7 @@ int		main(int ac, char **argv)
   t_champion	*racine;
   t_corewar	*vm;
 
+  print_asm("ex.cor");
   vm = ft_init_vm(argv);
   racine = ft_init_champ(argv);
   ft_load_player(racine, vm);
