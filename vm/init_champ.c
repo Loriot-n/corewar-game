@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Tue Mar 22 11:03:51 2016 CUENAT
-** Last update Tue Mar 22 15:43:25 2016 CUENAT
+** Last update Tue Mar 22 19:02:15 2016 CUENAT
 */
 
 #include "include.h"
@@ -17,7 +17,7 @@ void	ft_init_registre_(int registre[16], int nb_prog)
   i = 0;
   registre[0] = nb_prog;
   i++;
-  while (i < 16)
+  while (i < REG_NUMBER)
     {
       registre[i] = 0;
       i++;
@@ -32,6 +32,7 @@ void		ft_add_end(t_champion *cur_champ, int i, char *file_name)
     exit(EXIT_FAILURE);
   new_champ->header = get_header(file_name);
   new_champ->action = NULL;
+  new_champ->file_name = my_strdup(file_name);
   new_champ->cycle_attente = 0;
   ft_init_registre_(new_champ->registre, i);
   new_champ->carry = 0;

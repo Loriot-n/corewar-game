@@ -5,10 +5,26 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Tue Mar 22 13:32:55 2016 CUENAT
-** Last update Tue Mar 22 13:44:45 2016 CUENAT
+** Last update Tue Mar 22 18:51:02 2016 CUENAT
 */
 
 #include "include.h"
+
+int	ft_get_nb_player(char **av)
+{
+  int	i;
+  int	j;
+
+  i = 1;
+  j = 0;
+  while (av[i])
+    {
+      if (corename(av[i]) != NULL)
+	j++;
+      i++;
+    }
+  return (j);
+}
 
 void	ft_init_memory(char memory[MEM_SIZE])
 {
@@ -22,7 +38,7 @@ void	ft_init_memory(char memory[MEM_SIZE])
     }
 }
 
-t_corewar	*ft_init_vm(void)
+t_corewar	*ft_init_vm(char **argv)
 {
   t_corewar	*vm;
 
@@ -33,5 +49,6 @@ t_corewar	*ft_init_vm(void)
   vm->nb_live = 0;
   vm->cycle_cpt = 0;
   vm->cycle_die = CYCLE_TO_DIE - (CYCLE_DELTA * vm->nb_cycle);
+  vm->nb_player = ft_get_nb_player(argv);
   return (vm);
 }
