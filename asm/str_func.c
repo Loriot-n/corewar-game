@@ -5,10 +5,11 @@
 ** Login   <loriot_n@epitech.net>
 **
 ** Started on  Tue Mar 22 10:56:01 2016 Nicolas Loriot
-** Last update Tue Mar 22 11:05:51 2016 Nicolas Loriot
+** Last update Tue Mar 22 12:55:09 2016 Nicolas Loriot
 */
 
-#include "../gab.h"
+
+#include "gab.h"
 
 int	my_strlen(char *str)
 {
@@ -21,10 +22,26 @@ int	my_strlen(char *str)
 }
 
 void	my_putstr(char *str, int out);
+{
+  if (out == STDERR_FILENO)
+    write(STDERR_FILENO, &str, my_strlen(str));
+  else if (out == STDOUT_FILENO)
+    write(STDOUT_FILENO, &str, my_strlen(str));
+  else
+    write(out, &str, my_strlen(str));
+}
 
 void	raise_err(char *err)
 {
-  
+  int	i;
+
+  i = 0;
+  while (str[i])
+    {
+      my_putstr(err, STDERR_FILENO);
+      i++;
+    }
+  exit(1);
 }
 
 char	*my_calloc(int size)
