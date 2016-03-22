@@ -1,15 +1,15 @@
 /*
-** op.h
+** op.h for corewar in /home/qwebify/rendu/CPE/CPE_2015_corewar/
 **
-** Nicolas Sadirac
-** Tue Jul 13 18:53:48 1993
+** Made by maire_q
+** Login   <maire_q@epitech.eu>
+**
+** Started on  %cdate maire_q
+** Last update %udate maire_q
 */
-
 
 #ifndef _OP_H_
 # define _OP_H_
-
-
 
 #define MEM_SIZE                (6*1024)
 #define IDX_MOD                 512   /* modulo de l'index < */
@@ -32,7 +32,7 @@
 #define REG_NUMBER      16              /* r1 <--> rx */
 
 /*
- ** 
+ **
  */
 
 typedef char    args_type_t;
@@ -44,7 +44,7 @@ typedef char    args_type_t;
                                    dans r1 (4 octecs )) */
 #define T_LAB           8       /* LABEL */
 
-struct  op_s    
+struct  op_s
 {
    char         *mnemonique;
    char         nbr_args;
@@ -68,9 +68,7 @@ typedef struct op_s     op_t;
  ** op_tab
  */
 
-
 extern  op_t    op_tab[];
-
 
 /*
  ** header
@@ -82,19 +80,19 @@ struct header_s
 {
    int  magic;
 #define COREWAR_EXEC_MAGIC      0xea83f3        /* why not */
-   char prog_name[PROG_NAME_LENGTH+1];
+   char prog_name[PROG_NAME_LENGTH + 1];
    int  prog_size;
-   char comment[COMMENT_LENGTH+1];
+   char comment[COMMENT_LENGTH + 1];
 };
 
 typedef struct header_s header_t;
 
 /*
- ** live 
+ ** live
  */
 
 #define CYCLE_TO_DIE    1536    /* nombre de cycle pour etre d\'eclarer mort */
-#define CYCLE_DELTA     5
-#define NBR_LIVE        40
+#define CYCLE_DELTA     4
+#define NBR_LIVE        2048
 
 #endif
