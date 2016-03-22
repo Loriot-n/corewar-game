@@ -5,7 +5,7 @@
 ** Login   <loriot_n@epitech.net>
 **
 ** Started on  Tue Mar 22 10:56:01 2016 Nicolas Loriot
-** Last update Tue Mar 22 12:55:09 2016 Nicolas Loriot
+** Last update Tue Mar 22 13:33:14 2016 Nicolas Loriot
 */
 
 #include "gab.h"
@@ -17,8 +17,9 @@ int	whereis(char *to_find, int fd)
   char	buff[my_strlen(to_find)];
 
   ishere = 0;
-  ((lseek(fd, 0, SEEK_SET)) < 0) ? exit(EXIT_FAILURE) : 0;
-  while (read(fd, buff, 1) > 0)
+  if ((lseek(fd, 0, SEEK_SET)) < 0)
+    raise_err("File file_name not accessible\n")
+  while ((read(fd, buff, 1) > 0 && ++ishere))
     {
       if (buff[0] == to_find[0])
 	{
@@ -29,11 +30,11 @@ int	whereis(char *to_find, int fd)
 	      if (buff[0] != to_find[i])
 		break ;
 	      else if (i == my_strlen(to_find) - 1)
-		return (ishere);
+		return (ishere - 1);
 	    }
 	}
-      ((lseek(fd, ishere + 1, SEEK_SET)) < 0) ? exit(EXIT_FAILURE) : 0;
-      ishere++;
+      if ((lseek(fd, ishere, SEEK_SET)) < 0)
+       raise_err("File ", file_name, " not accessible\n");
     }
   return (-1);
 }
@@ -50,6 +51,8 @@ int	my_strlen(char *str)
 
 void	my_putstr(char *str, int out)
 {
+  if (!str)
+    return ;
   if (out == STDERR_FILENO)
     write(STDERR_FILENO, &str, my_strlen(str));
   else if (out == STDOUT_FILENO)
@@ -58,16 +61,11 @@ void	my_putstr(char *str, int out)
     write(out, &str, my_strlen(str));
 }
 
-void	raise_err(char *err)
+void	raise_err(char *err, char *name, char *err2)
 {
-  int	i;
-
-  i = 0;
-  while (err[i])
-    {
-      my_putstr(err, STDERR_FILENO);
-      i++;
-    }
+  my_putstr(err, STDERR_FILENO);
+  my_putstr(name, STDERR_FILENO);
+  my_putstr(err, STDERR_FILENO);
   exit(1);
 }
 
@@ -78,7 +76,7 @@ char	*my_calloc(int size)
 
   i = 0;
   if (!(str = malloc(sizeof(char) * size)))
-    raise_err("Can't perform malloc\n");
+    raise_err("Can't perform malloc\n", NULL, NULL);
   while (str[i])
     str[i++] = 0;
   return (str);
