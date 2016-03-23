@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Tue Mar 22 10:33:42 2016 CUENAT
-** Last update Tue Mar 22 11:10:49 2016 CUENAT
+** Last update Wed Mar 23 20:46:09 2016 CUENAT
 */
 
 #ifndef ACTION_H_
@@ -14,10 +14,11 @@
 typedef struct	s_action
 {
   char		*action;
-  int		reg_load;
+  int		reg_addr;
   int		reg_write;
-  int		mem_load;
-  int		mem_write;
+  int		mem_addr;
+  int		mem_size;
+  char		*mem_write;
 
 }		t_action;
 

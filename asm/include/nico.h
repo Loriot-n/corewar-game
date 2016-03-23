@@ -9,8 +9,40 @@
 */
 
 #ifndef NICO_H_
-#define NICO_H_
+# define NICO_H_
 
 # include <stdint.h>
+
+typedef struct		s_label
+{
+  int			id;
+  char			name;
+  unsigned int		pos_lbl;
+  struct s_pieces	*next;
+  struct s_pieces	*prev;
+}			t_label;
+
+typedef struct		s_ope
+{
+  char			ins;
+  char			nb;
+  char			*adr;
+  struct s_ope		*next;
+}			t_ope;
+
+typedef struct		s_buff
+{
+  char			ins;
+  char			nb;
+  char			*adr;
+}			t_buff;
+
+int		my_strcmp(char *s1, char *s2);
+char		*my_strcpy(char *dest, char *src);
+void		free_label(t_label **head);
+void		insert_label(char *name, unsigned int pos_lbl, int id,
+			    t_label **head);
+void		insert_ope(char ins, char nb, char *adr, t_ope **head);
+void		free_ope(t_ope **head);
 
 #endif /* !NICO_H_ */

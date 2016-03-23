@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Tue Mar 22 19:26:05 2016 CUENAT
+** Last update Wed Mar 23 21:07:35 2016 CUENAT
 */
 
 #ifndef PROTO_H_
@@ -38,5 +38,9 @@ t_corewar	*ft_init_vm(char **argv);
 int		ft_get_nb_player(char **av);
 void		ft_load_player(t_champion *racine, t_corewar *vm);
 void		ft_load_bitecode(int fd, t_champion *tmp, t_corewar *vm, int pos_start);
+
+/* memcpy.c */
+int	ft_mem_reg(int start int end, t_corewar *vm);
+char	*ft_memcpy(int start, int end, t_corewar *vm, t_champion *champion);
 
 #endif /* PROTO_H_ */
