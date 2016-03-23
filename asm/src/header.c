@@ -5,10 +5,11 @@
 ** Login   <cabane_g@epitech.eu>
 **
 ** Started on  Tue Mar 22 09:15:19 2016 Gabriel Cabanes
-** Last update Tue Mar 22 09:15:19 2016 Gabriel Cabanes
+** Last update Tue Mar 22 22:05:00 2016 Nicolas Loriot
 */
 
 #include "gab.h"
+#include "nico.h"
 
 struct header_s		*name(struct header_s *header, int fd, char *file)
 {
@@ -56,10 +57,14 @@ struct header_s		*comment(struct header_s *header, int fd, char *file)
 
 struct header_s		*fill_header(struct header_s *header, char *file)
 {
-  int	fd;
+  int			fd;
+  uint32_t		i;
 
   fd = open(file, O_RDONLY);
-  header->magic = COREWAR_EXEC_MAGIC;
+  i = COREWAR_EXEC_MAGIC;
+  i = ((i >> 24) & 0xff) | ((i << 8) & 0xff0000) | ((i >> 8) & 0xff00) |
+    ((i << 24) & 0xff000000);
+  header->magic = i;
   header = name(header, fd, file);
   header->prog_size = 0;
   header = comment(header, fd, file);
