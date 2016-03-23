@@ -68,6 +68,7 @@ struct header_s		*fill_header(struct header_s *header, char *file)
   header = name(header, fd, file);
   header->prog_size = 0;
   header = comment(header, fd, file);
+  close(fd);
   return (header);
 }
 
@@ -92,9 +93,4 @@ int			header_main(char *file)
   header = fill_header(header, file);
   write_header(header, file);
   return (0);
-}
-
-int	main(int argc, char **argv)
-{
-  header_main(argv[1]);
 }

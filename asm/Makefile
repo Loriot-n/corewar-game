@@ -16,7 +16,13 @@ NAME	= asm
 
 SRCS	= src/header.c \
 				src/str_func.c \
-				src/new_cor.c
+				src/new_cor.c \
+				src/get_next_line.c \
+				src/parse_label_declaration.c \
+				src/str_compare.c \
+				src/basic_str.c \
+				src/op.c \
+				src/my_str_to_wordtab.c
 
 OBJS	= $(SRCS:.c=.o)
 
