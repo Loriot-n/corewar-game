@@ -25,6 +25,7 @@ header_t	*get_header(char *file_name);
 
 /* Tools */
 int	my_getnbr(char *str);
+int	*calloc_int_tab(int *tab, int size);
 
 /* init_champ.c */
 void		ft_init_registre_(int registre[16], int ac);
@@ -37,6 +38,12 @@ void		ft_init_memory(char memory[MEM_SIZE]);
 t_corewar	*ft_init_vm(char **argv);
 int		ft_get_nb_player(char **av);
 void		ft_load_player(t_champion *racine, t_corewar *vm);
-void		ft_load_bitecode(int fd, t_champion *tmp, t_corewar *vm, int pos_start);
+void		ft_load_bitecode(int fd, t_champion *tmp, t_corewar *vm,
+				int pos_start);
+
+/* fill_action */
+char	*cut_args(char args);
+t_champion	*ft_load_action(t_champion *champion, t_corewar *corewar);
+char	*do_readable(int *args);
 
 #endif /* PROTO_H_ */

@@ -13,7 +13,7 @@
 
 typedef struct	s_action
 {
-  char		*action;
+  int		action_nb;
   int		reg_load;
   int		reg_write;
   int		mem_load;

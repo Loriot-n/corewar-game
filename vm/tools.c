@@ -20,3 +20,16 @@ int	my_getnbr(char *str)
     rneg[0] = rneg[0] * 10 + ((*str == '-') ? *(str++) * 0 : *(str++) - 48);
   return (rneg[0] * rneg[1]);
 }
+
+int	*calloc_int_tab(int *tab, int size)
+{
+  int	i;
+
+  i = 0;
+  while (i < size)
+    {
+      tab[i] = 0;
+      i++;
+    }
+  return (tab);
+}
