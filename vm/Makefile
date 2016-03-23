@@ -16,7 +16,7 @@ SRC=	main.c \
 	init_vm.c \
 	init_champ.c \
 
-NAME=	corewar
+NAME=	vm
 
 OBJ=	$(SRC:.c=.o)
 

@@ -10,11 +10,30 @@
 
 #include "include.h"
 
+void	print_asm(char	*file_name)
+{
+  char	s;
+  int	i;
+
+  int fd = open(file_name, O_RDONLY);
+  lseek(fd, sizeof(header_t), SEEK_SET);
+  while (read(fd, &s, sizeof(s)) > 0)
+    {
+      if (s > 0 && s < 16)
+	{
+	  printf("\n%s(%d arguments)  ", op_tab[s - 1].mnemonique, op_tab[s - 1].nbr_args);
+	}
+      printf(" %d", s);
+    }
+}
+
+
 int		main(int ac, char **argv)
 {
   t_champion	*racine;
   t_corewar	*vm;
 
+  print_asm("ex.cor");
   vm = ft_init_vm(argv);
   racine = ft_init_champ(argv);
   ft_load_player(racine, vm);
