@@ -5,10 +5,23 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Tue Mar 22 11:03:51 2016 CUENAT
-** Last update Thu Mar 24 00:26:36 2016 CUENAT
+** Last update Thu Mar 24 18:21:11 2016 CUENAT
 */
 
 #include "include.h"
+
+t_action	*ft_init_action()
+{
+  t_action	*tmp;
+
+  if ((tmp = malloc(sizeof(t_action) * 1)) == NULL)
+    exit(EXIT_FAILURE);
+  tmp->reg_addr = -1;
+  tmp->reg_write = -1;
+  tmp->mem_addr = -1;
+  tmp->mem_write = NULL;
+  return(tmp);
+}
 
 void	ft_init_registre_(int registre[16], int nb_prog)
 {
@@ -31,6 +44,7 @@ void		ft_add_end(t_champion *cur_champ, int i, char *file_name)
   if ((new_champ = malloc(sizeof(t_champion) * 1)) == NULL)
     exit(EXIT_FAILURE);
   new_champ->header = get_header(file_name);
+  new_champ->action = ft_init_action();
   new_champ->file_name = my_strdup(file_name);
   new_champ->cycle_attente = 0;
   ft_init_registre_(new_champ->registre, i);

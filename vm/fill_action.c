@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update %udate maire_q
+** Last update Thu Mar 24 18:13:30 2016 CUENAT
 */
 
 #include "include.h"
@@ -74,7 +74,7 @@ t_champion	*ft_load_action(t_champion *champion, t_corewar *corewar)
   int		args[MAX_ARGS_NUMBER];
   char		*info;
 
-  printf("a pc:%d", champion->pc);
+   printf("a pc:%d", champion->pc);
   info = get_info(corewar->memory, champion->pc); /*Recupere l'octet de description des params */
   if (info != NULL)
     {
@@ -86,6 +86,7 @@ t_champion	*ft_load_action(t_champion *champion, t_corewar *corewar)
   champion->pc = get_args(corewar->memory, info, champion->pc, args) + 1; /* recupere les params*/
   printf(" %d, ", args[0]);
   printf("bpc:%d", champion->pc);
+  champion = ft_exec_function(champion, info, args, corewar);
   return (champion);
 }
 
@@ -113,7 +114,7 @@ int	get_args(char	*memory, char *readable, int pc, int *args)
   i = 0;
   instruction = memory[pc] - 1;
   printf("%d\n", instruction);
-  printf("\n%s(%d arguments)  ", op_tab[instruction].mnemonique, op_tab[instruction].nbr_args);
+  //printf("\n%s(%d arguments)  ", op_tab[instruction].mnemonique, op_tab[instruction].nbr_args);
   if (GOT_PARAMS_CHAR(instruction))
     return (args_if_info(readable, memory, pc, args));
   else if (instruction == 0)

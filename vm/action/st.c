@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Wed Mar 23 21:07:02 2016 CUENAT
-** Last update Wed Mar 23 23:25:55 2016 CUENAT
+** Last update Thu Mar 24 14:57:08 2016 CUENAT
 */
 
 #include "include.h"
@@ -23,7 +23,7 @@ t_champion	*ft_st(t_champion *ch,
   else
     {
       if (info[1] == 'I')
-	ch->action->mem_addr = vm->pc + (args[1] % IDX_MOD);
+	ch->action->mem_addr = ch->pc + (args[1] % IDX_MOD);
       else
 	ch->action->mem_addr = args[1];
       ch->action->mem_write = ft_reg_to_mem(ch->registre[args[0] - 1], vm, ch);

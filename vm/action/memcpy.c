@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Wed Mar 23 20:39:55 2016 CUENAT
-** Last update Wed Mar 23 22:32:35 2016 CUENAT
+** Last update Thu Mar 24 14:56:47 2016 CUENAT
 */
 
 #include "include.h"
@@ -16,7 +16,7 @@ char	*ft_reg_to_mem(int reg_val, t_corewar *vm, t_champion *ch)
 
   if ((tmp = malloc(sizeof(char) * 1)) == NULL)
     exit(EXIT_FAILURE);
-  ch->mem_size = 1;
+  ch->action->mem_size = 1;
   tmp[0] = reg_val;
   return (tmp);
 }
@@ -43,10 +43,10 @@ char	*ft_memcpy(int start, int end, t_corewar *vm, t_champion *ch)
     exit(EXIT_FAILURE);
   while (start != end)
     {
-      tmp[i] = memory[start];
+      tmp[i] = vm->memory[start];
       i++;
       start++;
     }
-  ch->mem_size = i - 1;
+  ch->action->mem_size = i - 1;
   return (tmp);
 }
