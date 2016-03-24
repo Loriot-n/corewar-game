@@ -9,7 +9,9 @@
 */
 
 #ifndef PROTO_H_
-#define PROTO_H_
+# define PROTO_H_
+# define IS_INSTRUC(nb) (nb > 0 && nb <= 16)
+# define GOT_PARAMS_CHAR(nb) (nb != 0 && nb != 11 && nb != 14 && nb != 8) /* Seuls live, fork, lfork et zjump n'ont pas d'octet de description des params */
 
 /* utils */
 int	my_strlen(char *str);
@@ -47,6 +49,9 @@ t_champion	*ft_load_action(t_champion *champion, t_corewar *corewar);
 char	*do_readable(int *args);
 short	extract_short_from_mem(char *str, int len);
 int	extract_from_mem(char *str, int len);
+char	*get_info(char *memory, int pc);
+int	get_args(char	*memory, char *readable, int pc, int *args);
+int	args_if_info(char *readable, char *memory, int pc, int *args);
 
 /* memcpy.c */
 int	ft_mem_reg(int start, int end, t_corewar *vm);

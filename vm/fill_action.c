@@ -31,7 +31,7 @@ char	*cut_args(char args)
 	}
       bit++;
     }
-  bit = 0;
+  // bit = 0;
   // while (bit < MAX_ARGS_NUMBER)
   //   {
   //     if (info[bit] == 0)
@@ -71,20 +71,60 @@ char	*do_readable(int *args)
 
 t_champion	*ft_load_action(t_champion *champion, t_corewar *corewar)
 {
-  int		pc;
-  int		action;
   int		args[MAX_ARGS_NUMBER];
+  char		*info;
 
-  pc = champion->pc;
-  if (corewar->memory[pc] > 0 && corewar->memory[pc] <= 16)
-    action = corewar->memory[pc] - 1;
-  else
-    return (champion);
-  if (action == 0 || action == 8 || action == 11 || action == 14)
+  printf("a pc:%d", champion->pc);
+  info = get_info(corewar->memory, champion->pc); /*Recupere l'octet de description des params */
+  if (info != NULL)
     {
-      //call_function;
-      return (champion);
+      champion->pc++;
+      printf("%s\n", info);
     }
+  // else
+    // printf("beuh");
+  champion->pc = get_args(corewar->memory, info, champion->pc, args) + 1; /* recupere les params*/
+  printf(" %d, ", args[0]);
+  printf("bpc:%d", champion->pc);
   return (champion);
+}
 
+char	*get_info(char *memory, int pc)
+{
+  char	s;
+
+  s = memory[pc++];
+  s--;
+  if (IS_INSTRUC(s))
+    {
+      if (GOT_PARAMS_CHAR(s))
+	  return (cut_args(memory[pc + 1]));
+    }
+  return (NULL);
+}
+
+int	get_args(char	*memory, char *readable, int pc, int *args)
+{
+  int	i = 0;
+  int 	tmp;
+  int	u;
+  char instruction;
+
+  i = 0;
+  instruction = memory[pc] - 1;
+  printf("%d\n", instruction);
+  printf("\n%s(%d arguments)  ", op_tab[instruction].mnemonique, op_tab[instruction].nbr_args);
+  if (GOT_PARAMS_CHAR(instruction))
+    return (args_if_info(readable, memory, pc, args));
+  else if (instruction == 0)
+    {
+      args[i] = extract_from_mem(&memory[pc + 1], 4); /* == read(memory, args[i], 4) fait un read mais dans la mémoire quoi */
+      pc += 4;
+    }
+  else if (instruction == 8 || instruction == 11 || instruction == 14)
+    {
+      args[i] = extract_from_mem(&memory[pc + 1], IND_SIZE);
+      pc += IND_SIZE;
+    }
+  return (pc);
 }

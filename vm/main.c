@@ -19,7 +19,7 @@ int		ft_end_game(t_champion *racine, t_corewar *vm)
   nb_die = 0;
   tmp = racine->next;
   if (vm->cycle_die == 0)
-    return (1);
+    return (NOLIVE);
   if (vm->cycle_cpt == vm->cycle_die)
     {
       while (tmp != racine)
@@ -33,7 +33,7 @@ int		ft_end_game(t_champion *racine, t_corewar *vm)
       vm->nb_cycle++;
       vm->cycle_die =  CYCLE_TO_DIE - (CYCLE_DELTA * vm->nb_cycle);
     }
-  return (0);
+  return (LIVE);
 }
 
 void		ft_run_game(t_champion *racine, t_corewar *vm)
@@ -58,17 +58,19 @@ void	print_asm(char	*memory)
   int	pc;
   char	*readable;
   int 	tmp;
-  short	u;
+  int	u;
+  int	args[MAX_ARGS_NUMBER];
 
   pc = 0;
   while (pc < 200)
     {
+      printf("1st pc:%d", pc);
       s = memory[pc++];
-      if (s > 0 && s <= 16)
+      if (IS_INSTRUC(s))
 	{
 	  printf("\n%s(%d arguments)  ", op_tab[s - 1].mnemonique, op_tab[s - 1].nbr_args);
 	  s = s - 1;
-	  if (!(s == 0 || s== 8 || s == 11 || s == 14))
+	  if (GOT_PARAMS_CHAR(s))
 	    {
 	      readable = cut_args(memory[pc++]);
 	      i = 0;
@@ -85,14 +87,14 @@ void	print_asm(char	*memory)
 		    }
 		  else if (readable[i] == 'i')
 		    {
-		      u = extract_short_from_mem(&memory[pc], IND_SIZE);
+		      tmp = extract_from_mem(&memory[pc], IND_SIZE);
 		      pc += IND_SIZE;
-		      printf("%d, ", u);
+		      printf("%d, ", tmp);
 		    }
 		  i++;
 		}
-	}
-	else if (s == 0)
+	    }
+	  else if (s == 0)
 	    {
 	      tmp = extract_from_mem(&memory[pc], 4);
 	      pc += 4;
@@ -100,13 +102,17 @@ void	print_asm(char	*memory)
 	    }
 	  else if (s == 8 || s == 11 || s == 14)
 	    {
-	      u = extract_short_from_mem(&memory[pc], IND_SIZE);
+	      tmp = extract_from_mem(&memory[pc], IND_SIZE);
 	      pc += IND_SIZE;
-	      printf("%d, ", u);
-          }
-      }
+	      printf("%d, ", tmp);
+	    }
+
+	}
       else
 	printf("boo :%d:", s);
+      printf("lst pc:%d:", pc);
+      if (pc >= 10)
+	break;
     }
 }
 
@@ -147,12 +153,13 @@ int		main(int ac, char **argv)
   t_champion	*racine;
   t_corewar	*vm;
 
-  char s[] = {1, 2, 3, 4};
-  printf("%d\n", extract_short_from_mem(s, IND_SIZE));
+  // printf("%d\n", IS_INSTRUC(0));
   vm = ft_init_vm(argv);
   racine = ft_init_champ(argv);
   ft_load_player(racine, vm);
   print_asm(vm->memory);
+  // exit(0);
+  printf("############################\n");
   ft_run_game(racine, vm);
   return (0);
 }

@@ -16,6 +16,7 @@ SRC=	main.c \
 	init_vm.c \
 	init_champ.c \
 	fill_action.c \
+	fill_actions2.c \
 
 NAME=	vm
 
