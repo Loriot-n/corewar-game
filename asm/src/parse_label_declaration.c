@@ -9,6 +9,7 @@
 */
 
 #include "gab.h"
+#include "nico.h"
 
 char	*label_name(char *line, char *name)
 {
@@ -29,16 +30,17 @@ char	*label_name(char *line, char *name)
   return (name);
 }
 
-int	return_octet(char *line, int i)
+int	return_octet(char *line)
 {
+  int	i;
   int	octet;
   char	**parse;
 
-  octet = 1;
   i = 1;
+  octet = 2;
   parse = my_str_to_wordtab(line);
-  if (cmp_instruction(parse[0]))
-    return (cmp_instruction(parse[0]) + 1);
+  if (cmp_instruction(parse[0], 0))
+    return (cmp_instruction(parse[0], 0));
   while (parse[i])
     {
       if (parse[i][0] == 'r')
@@ -52,39 +54,40 @@ int	return_octet(char *line, int i)
   return (octet);
 }
 
-int	parse_label(int fd)
+t_label	*parse_label(int fd, t_label *label)
 {
-  int	i;
   int	octet;
   char	*name;
   char	*line;
 
   octet = 0;
+  if ((name = malloc(sizeof(char) * T_LAB + 1)) == NULL)
+  raise_err("Can't", " perform", " malloc\n");
   while ((line = get_next_line(fd)) != NULL)
     {
-      i = 0;
       if (line[0] != '.')
 	{
 	  if (!label_here(line))
 	    {
-	      if ((name = malloc(sizeof(char) * T_LAB + 1)) == NULL)
-		raise_err("Can't", " perform", " malloc\n");
 	      name = label_name(line, name);
+	      label = insert_label(name, octet, &label);
 	      line = delete_label(line);
-	      i = my_strlen(name) + 1;
 	    }
 	  if (!is_empty(line))
-	    octet += return_octet(line, i);
+	    octet += return_octet(line);
 	}
     }
-  return (0);
+  return (label);
 }
 
-int	main(int argc, char **argv)
+t_label		*fill_label_declaration(char *file)
 {
-  int	fd;
+  int		fd;
+  t_label	*label;
 
-  fd = open(argv[1], O_RDONLY);
-  parse_label(fd);
-  return (0);
+  label = NULL;
+  fd = open(file, O_RDONLY);
+  label = parse_label(fd, label);
+  close(fd);
+  return (label);
 }

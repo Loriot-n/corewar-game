@@ -3,7 +3,7 @@
 **
 ** Made by Nicolas Loriot
 ** Login   <loriot_n@epitech.net>
-** 
+**
 ** Started on  Tue Mar 22 20:28:55 2016 Nicolas Loriot
 **  Last update Tue Mar 22 20:28:55 2016 Nicolas Loriot
 */
@@ -15,11 +15,10 @@
 
 typedef struct		s_label
 {
-  int			id;
-  char			name;
+  char			*name;
   unsigned int		pos_lbl;
-  struct s_pieces	*next;
-  struct s_pieces	*prev;
+  struct s_label	*next;
+  struct s_label	*prev;
 }			t_label;
 
 typedef struct		s_ope
@@ -40,7 +39,7 @@ typedef struct		s_buff
 int		my_strcmp(char *s1, char *s2);
 char		*my_strcpy(char *dest, char *src);
 void		free_label(t_label **head);
-void		insert_label(char *name, unsigned int pos_lbl, int id,
+t_label		*insert_label(char *name, unsigned int pos_lbl,
 			    t_label **head);
 void		insert_ope(char ins, char nb, char *adr, t_ope **head);
 void		free_ope(t_ope **head);
