@@ -5,13 +5,15 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Wed Mar 23 19:48:01 2016 CUENAT
-** Last update Wed Mar 23 21:04:17 2016 CUENAT
+** Last update Wed Mar 23 22:53:31 2016 CUENAT
 */
 
-t_champion	ft_ld(t_champion *ch,
-		      char *info,
-		      int args[MAX_ARGS_NUMBER],
-		      t_corewar *vm)
+#include "include.h"
+
+t_champion	*ft_ld(t_champion *ch,
+		       char *info,
+		       int args[MAX_ARGS_NUMBER],
+		       t_corewar *vm)
 {
   int	i;
   int	j;
@@ -27,5 +29,6 @@ t_champion	ft_ld(t_champion *ch,
     ch->action->reg_write = mem_reg(i, j, vm);
   else
     ch->action->reg_write = arg[0];
+  ch->cycle_attente = op_tab[1].nbr_cycles;
   return (ch);
 }
