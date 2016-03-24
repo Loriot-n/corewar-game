@@ -8,6 +8,7 @@
 ** Last update Thu Mar 24 00:13:44 2016 Nicolas Loriot
 */
 
+#include "gab.h"
 #include "nico.h"
 
 t_ope		*get_newope(char ins, char nb, char *adr)
@@ -38,12 +39,11 @@ void		insert_ope(char ins, char nb, char *adr, t_ope **head)
   while (tmp->next != NULL)
     tmp = tmp->next;
   tmp->next = newnode;
-  newnode->prev = tmp;
 }
 
 void		free_ope(t_ope **head)
 {
-  t_label	*tmp;
+  t_ope		*tmp;
 
   tmp = *head;
   if (tmp == NULL)
@@ -54,4 +54,3 @@ void		free_ope(t_ope **head)
       free(tmp);
     }
 }
-

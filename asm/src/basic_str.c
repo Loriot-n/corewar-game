@@ -67,3 +67,24 @@ int	is_empty(char *str)
     }
   return (1);
 }
+
+int	how_many_octet(int yolo)
+{
+  int	octet;
+
+  octet = 1;
+  while (yolo /= 255)
+    octet++;
+  return (octet);
+}
+
+int	putin_int(char *str)
+{
+  if (str[0] == 'r')
+    return (my_getnbr(str, 1));
+  else if (str[0] == DIRECT_CHAR && str[1] != LABEL_CHAR)
+    return (my_getnbr(str, 1));
+  else if (!sub_cmp(str[0], LABEL_CHARS))
+    return (my_getnbr(str, 0));
+  return (0);
+}
