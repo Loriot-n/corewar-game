@@ -11,10 +11,26 @@
 #include "gab.h"
 #include "nico.h"
 
-int	cmp_instruction(char *str)
+int	cmp_instruction(char *str, int yolo)
 {
-  if (!my_strcmp(str, "sti"))
-    return (5);
+  if (!yolo)
+    {
+      if (!my_strcmp(str, "sti") || !my_strcmp(str, "ldi") ||
+	  !my_strcmp(str, "lldi"))
+	return (7);
+      if (!my_strcmp(str, "lfork") || !my_strcmp(str, "zjmp") ||
+	  !my_strcmp(str, "fork"))
+	return (3);
+    }
+  if (yolo)
+    {
+      if (!my_strcmp(str, "sti") || !my_strcmp(str, "ldi") ||
+	  !my_strcmp(str, "lldi"))
+	return (5);
+      if (!my_strcmp(str, "lfork") || !my_strcmp(str, "zjmp") ||
+	  !my_strcmp(str, "fork"))
+	return (2);
+    }
   return (0);
 }
 

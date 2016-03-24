@@ -22,7 +22,11 @@ SRCS	= src/header.c \
 				src/str_compare.c \
 				src/basic_str.c \
 				src/op.c \
-				src/my_str_to_wordtab.c
+				src/my_str_to_wordtab.c \
+				src/linked_label.c \
+				src/linked_op.c \
+				src/encode.c \
+				src/my_getnbr.c
 
 OBJS	= $(SRCS:.c=.o)
 

@@ -17,7 +17,7 @@ void	ft_load_bitecode(int fd, t_champion *tmp, t_corewar *vm, int pos_start)
   int	cpt_read;
 
   lseek(fd, sizeof(header_t), SEEK_SET);
-  while ((oct = read(fd, buf, 100)) > 0)
+  while ((oct = read(fd, &buf, 100)) > 0)
     {
       cpt_read = 0;
       while (cpt_read < oct)
