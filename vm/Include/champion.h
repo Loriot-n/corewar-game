@@ -11,8 +11,8 @@
 #ifndef CHAMPION_H_
 # define CHAMPION_H_
 
-# define	LIVE 0;
-# define	NOLIVE 1;
+# define	LIVE 0
+# define	NOLIVE 1
 
 typedef struct 		s_champion
 {

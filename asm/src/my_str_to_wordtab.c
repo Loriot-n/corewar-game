@@ -8,17 +8,19 @@
 ** Last update Sat Jan 23 14:38:51 2016 Nicolas Loriot
 */
 
-#include "../include/my_shell.h"
+#include "gab.h"
 
 int	my_char_isalphanum(char c)
 {
-  if ((c >= 'a') && (c <= 'z'))
+  if (c == ',')
+    return (-1);
+  else if ((c >= 'a') && (c <= 'z'))
     return (1);
   else if ((c >= 'A') && (c <= 'Z'))
     return (1);
   else if ((c >= '0') && (c <= '9'))
     return (1);
-  else if ((c >= '#') && (c <= '/'))
+  else if ((c == ':') || ((c >= '#') && (c <= '/')))
     return (1);
   else if ((c == 92) || (c == 95))
     return (1);
@@ -36,13 +38,9 @@ int	word_counter(char *str)
     {
       cnt = cnt + 1;
       if (my_char_isalphanum(str[i]) == 1)
-	{
-	  i = i + 1;
-	}
+	i = i + 1;
       else
-	{
 	  i = i + 1;
-	}
     }
   return (cnt);
 }

@@ -15,12 +15,15 @@ SRC=	main.c \
 	tools.c \
 	init_vm.c \
 	init_champ.c \
+	fill_action.c \
+	fill_actions2.c \
 
 NAME=	vm
 
 OBJ=	$(SRC:.c=.o)
 
-CFLAGS=	-Wall -I./Include -Wextra -Wno-unused-parameter -g3
+CFLAGS=	-Wall -I./Include -Wextra -Wno-unused-parameter -g3 \
+  -Wno-unused-variable
 
 RM= rm -f
 
