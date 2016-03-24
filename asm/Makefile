@@ -26,7 +26,8 @@ SRCS	= src/header.c \
 				src/linked_label.c \
 				src/linked_op.c \
 				src/encode.c \
-				src/my_getnbr.c
+				src/my_getnbr.c \
+				src/my_getnbr_base.c \
 
 OBJS	= $(SRCS:.c=.o)
 

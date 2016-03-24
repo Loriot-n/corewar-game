@@ -28,6 +28,10 @@ int	cmp_instruction(char *str, int yolo);
 char	**my_str_to_wordtab(char *str);
 char	*delete_label(char *line);
 int	is_empty(char *str);
+char	*my_calloc(int size);
+int	my_getnbr_base(char *str, char *base, int i);
+int	putin_int(char *str);
+int	how_many_octet(int yolo);
 
 /* header */
 
