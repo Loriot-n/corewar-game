@@ -45,5 +45,7 @@ void		ft_load_bitecode(int fd, t_champion *tmp, t_corewar *vm,
 char	*cut_args(char args);
 t_champion	*ft_load_action(t_champion *champion, t_corewar *corewar);
 char	*do_readable(int *args);
+short	extract_short_from_mem(char *str, int len);
+int	extract_from_mem(char *str, int len);
 
 #endif /* PROTO_H_ */

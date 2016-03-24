@@ -32,8 +32,6 @@ char	*cut_args(char args)
       bit++;
     }
   bit = 0;
-  return (do_readable(info));
-}
   // while (bit < MAX_ARGS_NUMBER)
   //   {
   //     if (info[bit] == 0)
@@ -45,6 +43,8 @@ char	*cut_args(char args)
   //     bit++;
   //   }
   // printf("\n");
+  return (do_readable(info));
+}
 
 char	*do_readable(int *args)
 {

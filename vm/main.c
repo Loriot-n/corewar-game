@@ -11,68 +11,107 @@
 
 #include "include.h"
 
-void	print_asm(char	*file_name)
+void	print_asm(char	*memory)
 {
   char	s;
   int	i = 0;
-  int fd = open(file_name, O_RDONLY);
-  char args;
+  int	pc;
   char	*readable;
   int 	tmp;
-  char c;
+  short	u;
 
-  lseek(fd, sizeof(header_t), SEEK_SET);
-  while (read(fd, &s, 1) > 0)
+  pc = 0;
+  while (pc < 200)
     {
+      s = memory[pc++];
       if (s > 0 && s <= 16)
 	{
 	  printf("\n%s(%d arguments)  ", op_tab[s - 1].mnemonique, op_tab[s - 1].nbr_args);
-	  read(fd, &args, 1);
-	  readable = cut_args(args);
-	  i = 0;
-	  while (readable[i])
+	  s = s - 1;
+	  if (!(s == 0 || s== 8 || s == 11 || s == 14))
 	    {
-	      printf("%c", readable[i]);
-	      if (readable[i] == 'r')
+	      readable = cut_args(memory[pc++]);
+	      i = 0;
+	      while (readable[i])
 		{
-		  read(fd, &c, 1);
-		  printf("%d, ", c);
+		  printf("%c", readable[i]);
+		  if (readable[i] == 'r')
+		      printf("%d, ", memory[pc++]);
+		  else if (readable[i] == 'd')
+		    {
+		      tmp = extract_from_mem(&(memory[pc]), DIR_SIZE);
+		      pc += DIR_SIZE;
+		      printf("%d, ", tmp);
+		    }
+		  else if (readable[i] == 'i')
+		    {
+		      u = extract_short_from_mem(&memory[pc], IND_SIZE);
+		      pc += IND_SIZE;
+		      printf("%d, ", u);
+		    }
+		  i++;
 		}
-	      else if (readable[i] == 'd')
-		{
-		  read(fd, &tmp, DIR_SIZE);
-                  printf("%d, ", tmp);
-		}
-	      else if (readable[i] == 'i')
-  		{
-		  read(fd, &tmp, IND_SIZE);
-		  printf("%d, ", tmp);
-  		}
-	      i++;
-	    }
 	}
+	else if (s == 0)
+	    {
+	      tmp = extract_from_mem(&memory[pc], 4);
+	      pc += 4;
+	      printf("%d, ", tmp);
+	    }
+	  else if (s == 8 || s == 11 || s == 14)
+	    {
+	      u = extract_short_from_mem(&memory[pc], IND_SIZE);
+	      pc += IND_SIZE;
+	      printf("%d, ", u);
+          }
+      }
       else
-	printf("booo :%d:", s);
+	printf("boo :%d:", s);
     }
 }
 
-	//   i = 0;
-	//   while (i < op_tab[s - 1].nbr_args)
-	//     {
-	//       if (i < op_tab[s - 1].nbr_args)
-	// 	read(fd, &p, sizeof(s));
-	//       i++;
-	//       printf(" %d", p);
-	//     }
+short	extract_short_from_mem(char *str, int len)
+{
+  int	i;
+  short	result;
+
+  i = 0;
+  result = 0;
+  while (i < len)
+    {
+      result *= 10;
+      result += str[i];
+      i++;
+    }
+  return (result);
+}
+
+int	extract_from_mem(char *str, int len)
+{
+  int	i;
+  int	result;
+
+  i = 0;
+  result = 0;
+  while (i < len)
+    {
+      result *= 10;
+      result += str[i];
+      i++;
+    }
+  return (result);
+}
 
 int		main(int ac, char **argv)
 {
   t_champion	*racine;
   t_corewar	*vm;
 
-  print_asm("ex.cor");
+  char s[] = {1, 2, 3, 4};
+  printf("%d\n", extract_short_from_mem(s, IND_SIZE));
   vm = ft_init_vm(argv);
   racine = ft_init_champ(argv);
   ft_load_player(racine, vm);
+  print_asm(vm->memory);
   return (0);
 }
