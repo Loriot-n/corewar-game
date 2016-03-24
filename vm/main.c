@@ -5,11 +5,51 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Tue Mar 22 19:06:08 2016 CUENAT
+** Last update Wed Mar 23 18:22:19 2016 CUENAT
 */
 
 
 #include "include.h"
+
+int		ft_end_game(t_champion *racine, t_corewar *vm)
+{
+  t_champion 	*tmp;
+  int		nb_die;
+
+  nb_die = 0;
+  tmp = racine->next;
+  if (vm->cycle_die == 0)
+    return (1);
+  if (vm->cycle_cpt == vm->cycle_die)
+    {
+      while (tmp != racine)
+	{
+	  if (tmp->bool_live == NOLIVE)
+	    nb_die++;
+	  tmp = tmp->next;
+	}
+      if (nb_die >= vm->nb_player - 1)
+	return (1);
+      vm->nb_cycle++;
+      vm->cycle_die =  CYCLE_TO_DIE - (CYCLE_DELTA * vm->nb_cycle);
+    }
+  return (0);
+}
+
+void		ft_run_game(t_champion *racine, t_corewar *vm)
+{
+  t_champion	*tmp;
+
+  tmp = racine->next;
+  while (ft_end_game(tmp, vm) == LIVE)
+    {
+      while (tmp != racine)
+	{
+	  tmp = ft_load_action(tmp, vm);
+	}
+      tmp = racine->next;
+    }
+}
 
 void	print_asm(char	*memory)
 {
@@ -113,5 +153,6 @@ int		main(int ac, char **argv)
   racine = ft_init_champ(argv);
   ft_load_player(racine, vm);
   print_asm(vm->memory);
+  ft_run_game(racine, vm);
   return (0);
 }

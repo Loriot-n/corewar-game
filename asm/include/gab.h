@@ -23,9 +23,21 @@
 int	my_strlen(char *str);
 int	whereis(char *to_find, int fd, char *file_name);
 void	raise_err(char *err, char *name, char *err2);
+int	my_strcmp(char *s1, char *s2);
+int	cmp_instruction(char *str);
+char	**my_str_to_wordtab(char *str);
+char	*delete_label(char *line);
+int	is_empty(char *str);
 
 /* header */
 
 char	*get_new_name(char *file);
+
+/* Parsing */
+
+char	*get_next_line(const int fd);
+int	label_here(char *line);
+int	sub_cmp(char c, char *str);
+char	*get_str(char *line, int i);
 
 #endif /* GAB_H_ */

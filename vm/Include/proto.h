@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Tue Mar 22 19:26:05 2016 CUENAT
+** Last update Wed Mar 23 21:07:35 2016 CUENAT
 */
 
 #ifndef PROTO_H_
@@ -47,5 +47,9 @@ t_champion	*ft_load_action(t_champion *champion, t_corewar *corewar);
 char	*do_readable(int *args);
 short	extract_short_from_mem(char *str, int len);
 int	extract_from_mem(char *str, int len);
+
+/* memcpy.c */
+int	ft_mem_reg(int start, int end, t_corewar *vm);
+char	*ft_memcpy(int start, int end, t_corewar *vm, t_champion *champion);
 
 #endif /* PROTO_H_ */

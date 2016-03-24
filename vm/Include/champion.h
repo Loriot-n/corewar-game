@@ -5,14 +5,14 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Tue Mar 22 10:30:24 2016 CUENAT
-** Last update Tue Mar 22 18:59:08 2016 CUENAT
+** Last update Tue Mar 22 22:17:04 2016 CUENAT
 */
 
 #ifndef CHAMPION_H_
 # define CHAMPION_H_
 
-# define	LIVE 0;
-# define	NOLIVE 1;
+# define	LIVE 0
+# define	NOLIVE 1
 
 typedef struct 		s_champion
 {
@@ -20,7 +20,7 @@ typedef struct 		s_champion
   t_action		*action;
   char			*file_name;
   int			cycle_attente;
-  int			registre[16];
+  int			registre[REG_NUMBER];
   int			carry;
   int			pc;
   int			bool_live;
