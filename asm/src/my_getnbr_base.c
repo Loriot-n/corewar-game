@@ -1,14 +1,14 @@
 /*
 ** my_getnbr_base.c for Piscine_C_J06 in /home/bazin_q/rendu/Piscine_C_J06
-** 
+**
 ** Made by Quentin Bazin
 ** Login   <bazin_q@epitech.net>
-** 
+**
 ** Started on  Mon Oct  5 21:56:09 2015 Quentin Bazin
 ** Last update Fri Oct  9 14:40:12 2015 Quentin Bazin
 */
 
-int	my_strlen(char *str);
+#include "gab.h"
 
 int	my_char_pos_in_str(char *str, char c)
 {
@@ -50,14 +50,12 @@ int		my_atoi_base(char *str, int num[2], int sign, char *base)
   return (sign * n);
 }
 
-int	my_getnbr_base(char *str, char *base)
+int	my_getnbr_base(char *str, char *base, int i)
 {
-  int	i;
   int	num[2];
   int	sign;
 
   sign = 1;
-  i = 0;
   if (!str || !base || !my_strlen(str) || !my_strlen(base))
     return (0);
   while (my_char_pos_in_str(base, str[i]) < 0)

@@ -82,8 +82,16 @@ int	putin_int(char *str)
 {
   if (str[0] == 'r')
     return (my_getnbr(str, 1));
+  else if (str[0] == DIRECT_CHAR && str[1] != LABEL_CHAR && str[2] == 'x')
+    return (my_getnbr_base(str, "0123456789abcdef", 3));
+  else if (str[0] == DIRECT_CHAR && str[1] != LABEL_CHAR && str[2] == 'X')
+    return (my_getnbr_base(str, "0123456789ABCDEF", 3));
   else if (str[0] == DIRECT_CHAR && str[1] != LABEL_CHAR)
     return (my_getnbr(str, 1));
+  else if (!sub_cmp(str[0], LABEL_CHARS) && str[2] == 'x')
+    return (my_getnbr_base(str, "0123456789abcdef", 2));
+  else if (!sub_cmp(str[0], LABEL_CHARS) && str[2] == 'X')
+    return (my_getnbr_base(str, "0123456789ABCDEF", 2));
   else if (!sub_cmp(str[0], LABEL_CHARS))
     return (my_getnbr(str, 0));
   return (0);
