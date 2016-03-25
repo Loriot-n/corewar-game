@@ -1,31 +1,36 @@
 /*
-** or.c for  in /home/stanislas/CPE_2015_corewar/vm/action
-**
+** and.c for  in /home/stanislas/CPE_2015_corewar/vm/action
+1;4205;0c**
 ** Made by CUENAT
 ** Login   <stanislas@epitech.net>
 **
-** Started on  Fri Mar 25 10:59:22 2016 CUENAT
-** Last update Fri Mar 25 11:00:24 2016 CUENAT
+** Started on  Wed Mar 23 22:49:57 2016 CUENAT
+** Last update Fri Mar 25 19:10:09 2016 CUENAT
 */
 
 # include "include.h"
 
 t_champion	*ft_or(t_champion *ch,
-			char *info,
-			int args[MAX_ARGS_NUMBER],
-			t_corewar *vm)
+		       char *info,
+		       int args[MAX_ARGS_NUMBER],
+		       t_corewar *vm)
 {
-  (ch->carry == 1) ? (ch->carry = 0) : (ch->carry = 1);
-  ch->action->reg_addr = args[2] - 1;
-  if (info[0] == 'I')
-    ch->action->reg_write = vm->memory[ch->pc + (args[0] % IDX_MOD)];
+  char	a;
+  char	b;
+
+  ch->action->reg_addr = args[2];
+  if (info[0] == 'i')
+    a = vm->memory[ch->pc + (args[0] % IDX_MOD)];
+  else if (info[0] == 'd')
+    a = args[0];
   else
-    ch->action->reg_write = args[0];
-  if (info[1] == 'I')
-    ch->action->reg_write =  ch->action->reg_write +
-      vm->memory[ch->pc + (args[1] % IDX_MOD)];
+    a = ch->registre[args[0] - 1];
+  if (info[1] == 'i')
+    b = vm->memory[ch->pc + (args[1] % IDX_MOD)];
+  else if (info[1] == 'd')
+    b = args[1];
   else
-    ch->action->reg_write =  ch->action->reg_write + args[1];
-  ch->cycle_attente = op_tab[6].nbr_cycles;
+    a = ch->registre[args[1] - 1];
+  ch->action->reg_write = a | b;
   return (ch);
 }
