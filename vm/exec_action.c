@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Thu Mar 24 15:45:02 2016 CUENAT
-** Last update Thu Mar 24 18:33:00 2016 CUENAT
+** Last update Fri Mar 25 10:54:28 2016 CUENAT
 */
 
 #include "include.h"
@@ -29,6 +29,8 @@ t_champion	*ft_launch_action(t_champion *ch, t_corewar *vm)
     }
   free(ch->action);
   ch->action = ft_init_action();
+  (ch->pc < MEM_SIZE) ? (ch->pc++) : (ch->pc = 0);
+  printf("!! ok !!\n");
   return (ch);
 }
 
