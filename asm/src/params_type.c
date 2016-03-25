@@ -30,8 +30,3 @@ unsigned char	set_param_byte(int det)
       (c == 3) ? (BIT_SET(n, 3), BIT_SET(n, 2)) : (0);
   return (n);
 }
-
-int		main()
-{
-  set_param_byte(100);
-}
