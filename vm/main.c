@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Wed Mar 23 18:22:19 2016 CUENAT
+** Last update Thu Mar 24 18:09:15 2016 CUENAT
 */
 
 
@@ -39,15 +39,23 @@ int		ft_end_game(t_champion *racine, t_corewar *vm)
 void		ft_run_game(t_champion *racine, t_corewar *vm)
 {
   t_champion	*tmp;
+  int		start;
 
+  start = 0;
   tmp = racine->next;
   while (ft_end_game(tmp, vm) == LIVE)
     {
-      while (tmp != racine)
+      if (start == 0)
+	tmp = ft_load_action(tmp, vm);
+      if (tmp->cycle_attente == 0)
 	{
+	  tmp = ft_launch_action(tmp, vm);
 	  tmp = ft_load_action(tmp, vm);
 	}
+      tmp->cycle_attente--;
       tmp = racine->next;
+      start = 1;
+      (tmp == racine) ? (tmp = tmp->next) : 0;
     }
 }
 
@@ -157,7 +165,7 @@ int		main(int ac, char **argv)
   vm = ft_init_vm(argv);
   racine = ft_init_champ(argv);
   ft_load_player(racine, vm);
-  // print_asm(vm->memory);
+  //print_asm(vm->memory);
   // exit(0);
   // printf("############################\n");
   ft_run_game(racine, vm);

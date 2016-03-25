@@ -28,6 +28,10 @@ int	cmp_instruction(char *str, int yolo);
 char	**my_str_to_wordtab(char *str);
 char	*delete_label(char *line);
 int	is_empty(char *str);
+char	*my_calloc(int size);
+int	my_getnbr_base(char *str, char *base, int i);
+int	putin_int(char *str);
+int	how_many_octet(int yolo);
 
 /* header */
 
@@ -35,10 +39,14 @@ char	*get_new_name(char *file);
 
 /* Parsing */
 
+char	*main_adr(char *file, char **parse);
 char	*get_next_line(const int fd);
 int	my_getnbr(char *str, int i);
 int	label_here(char *line);
 int	sub_cmp(char c, char *str);
 char	*get_str(char *line, int i);
+int	get_det(char	**parse);
+unsigned char	set_param_byte(int det);
+int	size_to_malloc(char *line);
 
 #endif /* GAB_H_ */

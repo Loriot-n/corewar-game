@@ -35,41 +35,68 @@ int	size_to_malloc(char *line)
   return (octet);
 }
 
-char	*get_adr(char *line)
+int	size_octet(char *yolo, char **parse)
 {
-  int	i;
-  int	to_putin;
   int	octet;
-  char	*adr;
-  char	**to_parse;
 
-  i = 1;
-  if ((adr = malloc(sizeof(char) * size_to_malloc(line) + 1)) == NULL)
-    raise_err("Can't ", "perform ", "malloc");
-  to_parse = my_str_to_wordtab(line);
-  while (to_parse[i])
+  octet = 0;
+  if (yolo[0] == 'r')
+    octet = 1;
+  else if (yolo[0] == '%' && (!my_strcmp(parse[0], "sti") ||
+			      !my_strcmp(parse[0], "ldi") ||
+			      !my_strcmp(parse[0], "lldi") ||
+			      !my_strcmp(parse[0], "lfork") ||
+			      !my_strcmp(parse[0], "zjmp") ||
+			      !my_strcmp(parse[0], "fork")))
+    octet = 2;
+  else if (yolo[0] == '%')
+    octet = 4;
+  else if (!sub_cmp(yolo[0], LABEL_CHARS))
+    octet = 2;
+  return (octet);
+}
+
+char	*fil_octet(int i, int needed, int value, char *adr)
+{
+  if (needed > 1)
     {
-      to_putin = putin_int(to_parse[i]);
-      octet = how_many_octet(to_putin);
+      adr[i - needed + 1] = value - 255 * (needed - 1);
+      while (--needed)
+	adr[--i] = 255;
+      return (adr);
+    }
+  adr[i] = value;
+  return (adr);
+}
+
+char	*get_adr(char *line, char **parse, int i, int y)
+{
+  int	size;
+  int	size_total;
+  int	needed;
+  int	value;
+  int	i_tmp;
+  char	*adr;
+
+  size_total = size_to_malloc(line);
+  if ((adr = my_calloc(size_total)) == NULL)
+    raise_err("Can't ", "perform ", "malloc");
+  while (parse[y])
+    {
+      (size = size_octet(parse[y], parse)) ? (value = putin_int(parse[y])) : 0;
+      (i_tmp = 1) ? needed = how_many_octet(value) : 0;
+      while (i_tmp++ != size)
+	i++;
+      adr = fil_octet(i, needed, value, adr);
       i++;
+      y++;
     }
   return (adr);
 }
 
-int	main(int argc, char **argv)
+char	*main_adr(char *line, char **parse)
 {
-  int	fd;
-  char	*line;
-
-  fd = open(argv[1], O_RDONLY);
-  while ((line = get_next_line(fd)) != NULL)
-    {
-      if (!is_empty(line) && line[0] != '.')
-	{
-	  if (!label_here(line))
-	    line = delete_label(line);
-	  get_adr(line);
-	}
-    }
-  return (0);
+  char	*adr;
+  adr = get_adr(line, parse, 0, 1);
+  return (adr);
 }

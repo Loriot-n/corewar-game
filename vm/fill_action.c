@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update %udate maire_q
+** Last update Thu Mar 24 18:13:30 2016 CUENAT
 */
 
 #include "include.h"
@@ -62,15 +62,17 @@ char	*do_readable(int *args)
 
 t_champion	*ft_load_action(t_champion *champion, t_corewar *corewar)
 {
-  int		args[MAX_ARGS_NUMBER];
+  int		args[MAX_ARGS_NUMBER + 1];
   char		*info;
 
-  args[0] = 0;
-  args[1] = 0;
-  args[2] = 0;
+  calloc_int_tab(args, MAX_ARGS_NUMBER + 1);
   info = get_info(corewar->memory, champion->pc);
+  printf("pc:%d\n", champion->pc);
   champion->pc = get_args(corewar->memory, info, champion->pc, args); /* recupere les params*/
-  // printf(" %d, %d, %d", args[0], args[1], args[2]);
+  // if (info != NULL)
+  //     printf("%s\n", info);
+  printf("args:%d, %d ,%d\n", args[0], args[1], args[2]);
+  champion = ft_exec_function(champion, info, args, corewar);
   return (champion);
 }
 
@@ -96,7 +98,8 @@ int	get_args(char	*memory, char *readable, int pc, int *args)
 
   i = 0;
   instruction = memory[pc++] - 1;
-  // printf("\n%s(%d arguments)  ", op_tab[instruction].mnemonique, op_tab[instruction].nbr_args);
+  args[4] = instruction;
+  printf("\n%s(%d arguments)  ", op_tab[instruction].mnemonique, op_tab[instruction].nbr_args);
   if (GOT_PARAMS_CHAR(instruction))
     return (args_if_info(readable, memory, pc, args));
   else if (instruction == 0)

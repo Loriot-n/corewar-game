@@ -5,7 +5,7 @@
 ## Login   <maire_q@epitech.eu>
 ##
 ## Started on  %cdate maire_q
-## Last update Tue Mar 22 15:37:29 2016 CUENAT
+## Last update Thu Mar 24 17:52:35 2016 CUENAT
 ##
 
 SRC=	main.c \
@@ -17,6 +17,24 @@ SRC=	main.c \
 	init_champ.c \
 	fill_action.c \
 	fill_actions2.c \
+	exec_action.c \
+	action/add.c \
+	action/aff.c \
+	action/and.c \
+	action/ld.c \
+	action/live.c \
+	action/memcpy.c \
+	action/st.c \
+	action/sub.c \
+	action/zjmp.c \
+	action/or.c \
+	action/xor.c \
+	action/fork.c \
+	action/ldi.c \
+	action/sti.c \
+	action/lld.c \
+	action/lldi.c \
+	action/lfork.c \
 
 NAME=	vm
 
