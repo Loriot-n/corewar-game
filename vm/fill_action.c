@@ -31,18 +31,6 @@ char	*cut_args(char args)
 	}
       bit++;
     }
-  // bit = 0;
-  // while (bit < MAX_ARGS_NUMBER)
-  //   {
-  //     if (info[bit] == 0)
-  // printf("00");
-  //     else if (info[bit] == 1)
-  // printf("01");
-  //     else
-  // printf("%d", info[bit]);
-  //     bit++;
-  //   }
-  // printf("\n");
   return (do_readable(info));
 }
 
@@ -50,22 +38,25 @@ char	*do_readable(int *args)
 {
   char	*tab;
   int	i;
+  int	j;
 
   i = 0;
-  if ((tab = malloc(sizeof(char) * MAX_ARGS_NUMBER)) == NULL)
+  j = 0;
+  if ((tab = malloc(sizeof(char) * (MAX_ARGS_NUMBER + 1))) == NULL)
     exit(EXIT_FAILURE);
+  tab[0] = '\0';
   while (i < MAX_ARGS_NUMBER)
     {
       if (args[i] == 1)
-	tab[i] = 'r';
+	tab[j] = 'r';
       else if (args[i] == 10)
-	tab[i] = 'd';
+	tab[j] = 'd';
       else if (args[i] == 11)
-	tab[i] = 'i';
-      else
-	tab[i] = 0;
+	tab[j] = 'i';
+      j = (args[i] == 1 || args[i] == 10 || args[i] == 11) ? j + 1 : j;
       i++;
     }
+  tab[j] = '\0';
   return (tab);
 }
 
@@ -74,18 +65,12 @@ t_champion	*ft_load_action(t_champion *champion, t_corewar *corewar)
   int		args[MAX_ARGS_NUMBER];
   char		*info;
 
-  printf("a pc:%d", champion->pc);
-  info = get_info(corewar->memory, champion->pc); /*Recupere l'octet de description des params */
-  if (info != NULL)
-    {
-      champion->pc++;
-      printf("%s\n", info);
-    }
-  // else
-    // printf("beuh");
-  champion->pc = get_args(corewar->memory, info, champion->pc, args) + 1; /* recupere les params*/
-  printf(" %d, ", args[0]);
-  printf("bpc:%d", champion->pc);
+  args[0] = 0;
+  args[1] = 0;
+  args[2] = 0;
+  info = get_info(corewar->memory, champion->pc);
+  champion->pc = get_args(corewar->memory, info, champion->pc, args); /* recupere les params*/
+  // printf(" %d, %d, %d", args[0], args[1], args[2]);
   return (champion);
 }
 
@@ -94,11 +79,10 @@ char	*get_info(char *memory, int pc)
   char	s;
 
   s = memory[pc++];
-  s--;
   if (IS_INSTRUC(s))
     {
-      if (GOT_PARAMS_CHAR(s))
-	  return (cut_args(memory[pc + 1]));
+      if (GOT_PARAMS_CHAR(s - 1))
+	  return (cut_args(memory[pc]));
     }
   return (NULL);
 }
@@ -108,22 +92,21 @@ int	get_args(char	*memory, char *readable, int pc, int *args)
   int	i = 0;
   int 	tmp;
   int	u;
-  char instruction;
+  int instruction;
 
   i = 0;
-  instruction = memory[pc] - 1;
-  printf("%d\n", instruction);
-  printf("\n%s(%d arguments)  ", op_tab[instruction].mnemonique, op_tab[instruction].nbr_args);
+  instruction = memory[pc++] - 1;
+  // printf("\n%s(%d arguments)  ", op_tab[instruction].mnemonique, op_tab[instruction].nbr_args);
   if (GOT_PARAMS_CHAR(instruction))
     return (args_if_info(readable, memory, pc, args));
   else if (instruction == 0)
     {
-      args[i] = extract_from_mem(&memory[pc + 1], 4); /* == read(memory, args[i], 4) fait un read mais dans la mémoire quoi */
+      args[i] = extract_from_mem(&memory[pc], 4);
       pc += 4;
     }
   else if (instruction == 8 || instruction == 11 || instruction == 14)
     {
-      args[i] = extract_from_mem(&memory[pc + 1], IND_SIZE);
+      args[i] = extract_from_mem(&memory[pc], IND_SIZE);
       pc += IND_SIZE;
     }
   return (pc);

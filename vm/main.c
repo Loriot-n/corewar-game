@@ -64,7 +64,7 @@ void	print_asm(char	*memory)
   pc = 0;
   while (pc < 200)
     {
-      printf("1st pc:%d", pc);
+      // printf("1st pc:%d", pc);
       s = memory[pc++];
       if (IS_INSTRUC(s))
 	{
@@ -110,9 +110,9 @@ void	print_asm(char	*memory)
 	}
       else
 	printf("boo :%d:", s);
-      printf("lst pc:%d:", pc);
-      if (pc >= 10)
-	break;
+      // printf("lst pc:%d:", pc);
+      // if (pc >= 20)
+	// break;
     }
 }
 
@@ -157,9 +157,9 @@ int		main(int ac, char **argv)
   vm = ft_init_vm(argv);
   racine = ft_init_champ(argv);
   ft_load_player(racine, vm);
-  print_asm(vm->memory);
+  // print_asm(vm->memory);
   // exit(0);
-  printf("############################\n");
+  // printf("############################\n");
   ft_run_game(racine, vm);
   return (0);
 }
