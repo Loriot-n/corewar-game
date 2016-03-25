@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Thu Mar 24 16:58:03 2016 CUENAT
-** Last update Fri Mar 25 17:14:25 2016 CUENAT
+** Last update Fri Mar 25 19:02:21 2016 CUENAT
 */
 
 #include "include.h"
@@ -25,7 +25,7 @@ t_champion	*ft_lldi(t_champion *ch,
   ch->cycle_attente = op_tab[9].nbr_cycles;
   while (i < 2)
     {
-      if (info[i] == 'I')
+      if (info[i] == 'i')
 	{
 	  start = ch->pc + args[i];
 	  end = start + IND_SIZE;

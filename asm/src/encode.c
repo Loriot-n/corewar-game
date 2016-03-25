@@ -22,7 +22,7 @@ int	size_to_malloc(char *line)
   parse = my_str_to_wordtab(line);
   if (cmp_instruction(parse[0], 1))
     return (cmp_instruction(parse[0], 1));
-  while (parse[i])
+  while (parse[i] && parse[i][0] != COMMENT_CHAR && parse[i][0] != ';')
     {
       if (parse[i][0] == 'r')
 	octet += 1;
@@ -47,7 +47,8 @@ int	size_octet(char *yolo, char **parse)
 			      !my_strcmp(parse[0], "lldi") ||
 			      !my_strcmp(parse[0], "lfork") ||
 			      !my_strcmp(parse[0], "zjmp") ||
-			      !my_strcmp(parse[0], "fork")))
+			      !my_strcmp(parse[0], "fork") ||
+			      yolo[1] == ':'))
     octet = 2;
   else if (yolo[0] == '%')
     octet = 4;
@@ -85,7 +86,7 @@ char	*get_adr(char *line, char **parse, int i, int y)
     {
       (size = size_octet(parse[y], parse)) ? (value = putin_int(parse[y])) : 0;
       (i_tmp = 1) ? needed = how_many_octet(value) : 0;
-      while (i_tmp++ != size)
+      while (i_tmp++ < size)
 	i++;
       adr = fil_octet(i, needed, value, adr);
       i++;

@@ -55,12 +55,10 @@ struct header_s		*comment(struct header_s *header, int fd, char *file)
   return (header);
 }
 
-struct header_s		*fill_header(struct header_s *header, char *file)
+struct header_s		*fill_header(struct header_s *header, char *file, int fd)
 {
-  int			fd;
   uint32_t		i;
 
-  fd = open(file, O_RDONLY);
   i = COREWAR_EXEC_MAGIC;
   i = ((i >> 24) & 0xff) | ((i << 8) & 0xff0000) | ((i >> 8) & 0xff00) |
     ((i << 24) & 0xff000000);
@@ -68,29 +66,20 @@ struct header_s		*fill_header(struct header_s *header, char *file)
   header = name(header, fd, file);
   header->prog_size = 0;
   header = comment(header, fd, file);
-  close(fd);
   return (header);
 }
 
-void		write_header(struct header_s *header, char *file)
+void		write_header(struct header_s *header, int fd)
 {
-  int		fd;
-  char		*new_file;
-
-  new_file = get_new_name(file);
-  if ((fd = open(new_file, O_CREAT | O_WRONLY,
-		 S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
-    raise_err("File ", new_file, " not accessible\n");
   write(fd, header, sizeof(struct header_s));
-  free(new_file);
 }
 
-int			header_main(char *file)
+int			header_main(char *file, int fd, int new_fd)
 {
   struct header_s	*header;
 
   ((header = malloc(sizeof(struct header_s))) == NULL) ? exit(EXIT_FAILURE) : 0;
-  header = fill_header(header, file);
-  write_header(header, file);
+  header = fill_header(header, file, fd);
+  write_header(header, new_fd);
   return (0);
 }
