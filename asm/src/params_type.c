@@ -8,7 +8,6 @@
 ** Last update Fri Mar 25 13:01:31 2016 Nicolas Loriot
 */
 
-
 #include "nico.h"
 #include "gab.h"
 
@@ -21,7 +20,12 @@ int	get_det(char **parse)
   i = 1;
   while (parse[i])
     {
-      if (parse[i][0] == '%')
+      if ((!my_strcmp(parse[0], "live") ||
+	   !my_strcmp(parse[0], "lfork") ||
+	   !my_strcmp(parse[0], "zjmp") ||
+	   !my_strcmp(parse[0], "fork")))
+	return (-1);
+      else if (parse[i][0] == '%')
 	(i == 1) ? (det += 200) : (i == 2) ? (det += 20) : (i == 3) ? (det += 2) : 0;
       else if (parse[i][0] == 'r')
 	(i == 1) ? (det += 100) : (i == 2) ? (det += 10) : (i == 3) ? (det += 1) : 0;
@@ -39,6 +43,8 @@ unsigned char	set_param_byte(int det)
   int		b;
   int		c;
 
+  if (det == -1)
+    return (-1);
   n = 0;
   a = det / 100;
   b = (det % 100) / 10;
