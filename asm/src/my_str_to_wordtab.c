@@ -20,7 +20,7 @@ int	my_char_isalphanum(char c)
     return (1);
   else if ((c >= '0') && (c <= '9'))
     return (1);
-  else if ((c == ':') || ((c >= '#') && (c <= '/')))
+  else if ((c == ':') || (c == ';') || ((c >= '#') && (c <= '/')))
     return (1);
   else if ((c == 92) || (c == 95))
     return (1);
