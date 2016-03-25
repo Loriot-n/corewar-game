@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Tue Mar 22 10:30:24 2016 CUENAT
-** Last update Thu Mar 24 17:42:10 2016 CUENAT
+** Last update Fri Mar 25 13:26:08 2016 CUENAT
 */
 
 #ifndef CHAMPION_H_
@@ -24,6 +24,7 @@ typedef struct 		s_champion
   int			carry;
   int			pc;
   int			bool_live;
+  int			number;
   struct s_champion	*next;
   struct s_champion	*prev;
 }			t_champion;

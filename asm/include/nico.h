@@ -13,16 +13,16 @@
 
 # include <stdint.h>
 /*  a=target variable, b=bit number to act upon 0-n */
-# define BIT_SET(a,b) ((a) |= (1<<(b)))
-# define BIT_CLEAR(a,b) ((a) &= ~(1<<(b)))
-# define BIT_FLIP(a,b) ((a) ^= (1<<(b)))
-# define BIT_CHECK(a,b) ((a) & (1<<(b)))
+# define BIT_SET(a, b) ((a) |= (1 << (b)))
+# define BIT_CLEAR(a, b) ((a) &= ~(1 << (b)))
+# define BIT_FLIP(a, b) ((a) ^= (1 << (b)))
+# define BIT_CHECK(a, b) ((a) & (1 << (b)))
 
 /*  x=target variable, y=mask */
-# define BITMASK_SET(x,y) ((x) |= (y))
-# define BITMASK_CLEAR(x,y) ((x) &= (~(y)))
-# define BITMASK_FLIP(x,y) ((x) ^= (y))
-# define BITMASK_CHECK(x,y) ((x) & (y))
+# define BITMASK_SET(x, y) ((x) |= (y))
+# define BITMASK_CLEAR(x, y) ((x) &= (~(y)))
+# define BITMASK_FLIP(x, y) ((x) ^= (y))
+# define BITMASK_CHECK(x, y) ((x) & (y))
 
 typedef struct		s_label
 {
@@ -52,7 +52,7 @@ char		*my_strcpy(char *dest, char *src);
 void		free_label(t_label **head);
 t_label		*insert_label(char *name, unsigned int pos_lbl,
 			    t_label **head);
-void		insert_ope(char ins, char nb, char *adr, t_ope **head);
+t_ope		*insert_ope(char ins, char nb, char *adr, t_ope **head);
 void		free_ope(t_ope **head);
 
 #endif /* !NICO_H_ */

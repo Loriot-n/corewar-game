@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Thu Mar 24 16:03:59 2016 CUENAT
-** Last update Fri Mar 25 11:53:40 2016 CUENAT
+** Last update Fri Mar 25 13:29:02 2016 CUENAT
 */
 
 #include "include.h"
@@ -21,7 +21,7 @@ t_champion	*ft_lld(t_champion *ch,
 
   (ch->carry == 1) ? (ch->carry = 0) : (ch->carry = 1);
    ch->action->reg_addr = args[1] - 1;
-   i = (ch->pc + args[0];
+   i = (ch->pc + args[0]);
    j = i + REG_SIZE;
    if (info[0] == 'I')
      ch->action->reg_write = ft_mem_reg(i, j, vm);
