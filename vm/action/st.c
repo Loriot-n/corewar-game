@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Wed Mar 23 21:07:02 2016 CUENAT
-** Last update Thu Mar 24 14:57:08 2016 CUENAT
+** Last update Fri Mar 25 19:02:37 2016 CUENAT
 */
 
 #include "include.h"
@@ -15,14 +15,14 @@ t_champion	*ft_st(t_champion *ch,
 		       int args[MAX_ARGS_NUMBER],
 		       t_corewar *vm)
 {
-  if (info[1] == 'R')
+  if (info[1] == 'r')
     {
       ch->action->reg_addr = args[0] - 1;
       ch->action->reg_write = ch->registre[args[0] - 1];
     }
   else
     {
-      if (info[1] == 'I')
+      if (info[1] == 'i')
 	ch->action->mem_addr = ch->pc + (args[1] % IDX_MOD);
       else
 	ch->action->mem_addr = args[1];

@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Wed Mar 23 19:48:01 2016 CUENAT
-** Last update Thu Mar 24 15:10:35 2016 CUENAT
+** Last update Fri Mar 25 19:01:26 2016 CUENAT
 */
 
 #include "include.h"
@@ -23,7 +23,7 @@ t_champion	*ft_ld(t_champion *ch,
   ch->action->reg_addr = args[1] - 1;
   i = (ch->pc + (args[0] % IDX_MOD));
   j = i + REG_SIZE;
-  if (info[0] == 'I')
+  if (info[0] == 'i')
     ch->action->reg_write = ft_mem_reg(i, j, vm);
   else
     ch->action->reg_write = args[0];

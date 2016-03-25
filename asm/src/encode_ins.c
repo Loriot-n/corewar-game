@@ -14,26 +14,25 @@
 char	encode_ins(char **parse)
 {
   int	y;
-  char	ins;
 
-  while (op_tab[y].mnemonique)
+  while (y < 16)
     {
       if (!my_strcmp(parse[0], op_tab[y].mnemonique))
-	return ((ins = op_tab[y].code));
+	return (op_tab[y].code);
       y++;
     }
   return (0);
 }
 
-void	write_core(t_ope *ope, int size)
+void	write_core(t_ope *ope, int size, int fd)
 {
-  write(1, &ope->ins, 1);
-  if (ope->nb != 0)
-    write(1, &ope->nb, 1);
-  write(1, ope->adr, size);
+  write(fd, &ope->ins, 1);
+  if (ope->nb != -1)
+    write(fd, &ope->nb, 1);
+  write(fd, ope->adr, size);
 }
 
-t_ope	*fill_op(int fd)
+void	write_octets(int fd, int new_fd, int line_cmp)
 {
   char	*line;
   char	**parse;
@@ -44,7 +43,7 @@ t_ope	*fill_op(int fd)
 
   if ((ope = malloc(sizeof(t_ope))) == NULL)
     raise_err("Can't ", "perform ", "malloc");
-  while ((line = get_next_line(fd)) != NULL)
+  while ((line = get_next_line(fd)) != NULL && (line_cmp++ || line_cmp == 0))
     {
       if (!is_empty(line) && line[0] != '.')
 	{
@@ -54,17 +53,8 @@ t_ope	*fill_op(int fd)
 	  ins = encode_ins(parse);
           nb = set_param_byte(get_det(parse));
 	  ope = insert_ope(ins, nb, adr, &ope);
-	  write_core(ope, size_to_malloc(line));
+	  write_core(ope, size_to_malloc(line), new_fd);
 	}
     }
-  return (ope);
-}
-
-int	main(int argc, char **argv)
-{
-  int	fd;
-
-  fd = open(argv[1], O_RDONLY);
-  fill_op(fd);
-  close(fd);
+  free(line);
 }

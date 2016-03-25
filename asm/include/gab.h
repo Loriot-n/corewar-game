@@ -39,14 +39,15 @@ char	*get_new_name(char *file);
 
 /* Parsing */
 
-char	*main_adr(char *file, char **parse);
-char	*get_next_line(const int fd);
-int	my_getnbr(char *str, int i);
-int	label_here(char *line);
-int	sub_cmp(char c, char *str);
-char	*get_str(char *line, int i);
-int	get_det(char	**parse);
+char		*main_adr(char *file, char **parse);
+char		*get_next_line(const int fd);
+int		my_getnbr(char *str, int i);
+int		label_here(char *line);
+int		sub_cmp(char c, char *str);
+char		*get_str(char *line, int i);
+int		get_det(char	**parse);
 unsigned char	set_param_byte(int det);
-int	size_to_malloc(char *line);
-
+int		size_to_malloc(char *line);
+void		write_octets(int fd, int new_fd, int line_cmp);
+int		header_main(char *file, int fd, int new_fd);
 #endif /* GAB_H_ */

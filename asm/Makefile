@@ -31,6 +31,7 @@ SRCS	= src/header.c \
 				src/my_getnbr_base.c \
 				src/encode_ins.c \
 				src/params_type.c \
+				src/main.c \
 
 OBJS	= $(SRCS:.c=.o)
 
