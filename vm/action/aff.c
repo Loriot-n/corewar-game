@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Thu Mar 24 14:19:20 2016 CUENAT
-** Last update Thu Mar 24 15:11:43 2016 CUENAT
+** Last update Fri Mar 25 17:13:18 2016 CUENAT
 */
 
 #include "include.h"
@@ -17,7 +17,7 @@ t_champion	*ft_aff(t_champion *ch,
 {
   char	a;
 
-  a = ch->registre[args[0] -1];
+  a = ch->registre[args[0] -1] % 256;
   write(1, &a, 1);
   ch->cycle_attente = op_tab[15].nbr_cycles;
   return (ch);
