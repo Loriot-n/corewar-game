@@ -15,8 +15,7 @@ int	args_if_info(char *readable, char *memory, int pc, int *args)
   int	i;
 
   i = 0;
-  printf("I got a param byte \\o/ !\n");
-  printf("pc->%d\n", pc);
+  pc++;
   while (readable && readable[i])
   {
     if (readable[i] == 'r')
@@ -26,17 +25,15 @@ int	args_if_info(char *readable, char *memory, int pc, int *args)
 	}
     else if (readable[i] == 'd')
       {
-        args[i] = extract_from_mem(&(memory[pc + 1]), DIR_SIZE);
+        args[i] = extract_from_mem(&(memory[pc]), DIR_SIZE);
         pc += DIR_SIZE;
       }
     else if (readable[i] == 'i')
       {
-        args[i] = extract_from_mem(&memory[pc + 1], IND_SIZE);
+        args[i] = extract_from_mem(&memory[pc], IND_SIZE);
         pc += IND_SIZE;
       }
     i++;
   }
-  printf("%d %d %d\n", args[0], args[1], args[2]);
-  exit(0);
   return (pc);
 }

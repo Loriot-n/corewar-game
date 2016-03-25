@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Wed Mar 23 20:39:55 2016 CUENAT
-** Last update Fri Mar 25 11:38:24 2016 CUENAT
+** Last update Fri Mar 25 17:34:39 2016 CUENAT
 */
 
 #include "include.h"
@@ -14,10 +14,10 @@ char	*ft_reg_to_mem(int reg_val, t_corewar *vm, t_champion *ch)
 {
   char	*tmp;
 
-  if ((tmp = malloc(sizeof(char) * 1)) == NULL)
+  if ((tmp = malloc(sizeof(char) * REG_SIZE)) == NULL)
     exit(EXIT_FAILURE);
   ch->action->mem_size = 1;
-  tmp[0] = reg_val;
+  tmp = (char)reg_val;
   return (tmp);
 }
 

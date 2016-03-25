@@ -36,12 +36,12 @@ t_champion	*ft_launch_action(t_champion *ch, t_corewar *vm)
 
 t_champion	*ft_exec_function(t_champion *ch,
 				  char *info,
-				  int args[MAX_ARGS_NUMBER],
+				  int *args,
 				  t_corewar *vm)
 {
   t_champion	*(*instr[16])(t_champion *ch,
 			     char *info,
-			     int args[MAX_ARGS_NUMBER],
+			     int *args,
 			     t_corewar *vm);
   instr[0] = &ft_live;
   instr[1] = &ft_ld;
@@ -59,6 +59,7 @@ t_champion	*ft_exec_function(t_champion *ch,
   instr[13] = &ft_lldi;
   instr[14] = &ft_lfork;
   instr[15] = &ft_aff;
-  (instr[args[0]])(ch, info, args, vm);
+  ch->pc--;
+  (instr[args[4]])(ch, info, args, vm);
   return (ch);
 }
