@@ -11,9 +11,28 @@
 #include "nico.h"
 #include "gab.h"
 
+int	bad_adr(char *adr)
+{
+  int	i;
+
+  i = 0;
+
+}
+
 int	bad_param(char **params)
 {
-  
+  int	i;
+  int	j;
+
+  i = 0;
+  j = 0;
+  while (params[i])
+    {
+      while (params[i][j])
+	{
+	  
+	}
+    }
 }
 
 int	bad_ins(char *line)
