@@ -8,7 +8,8 @@
 ## Last update Wed Feb 17 16:01:21 2016 Gabriel Cabanes
 ##
 
-CC	= gcc -Iinclude -g3 -Wall -W
+CC	= gcc -Iinclude -g3 -Wall -W -Wno-unused-parameter \
+					-Wno-maybe-uninitialized
 
 RM	= rm -f
 
@@ -28,9 +29,10 @@ SRCS	= src/header.c \
 				src/encode.c \
 				src/my_getnbr.c \
 				src/my_getnbr_base.c \
+				src/encode_ins.c \
+				src/params_type.c \
 
 OBJS	= $(SRCS:.c=.o)
-
 
 all: $(NAME)
 
