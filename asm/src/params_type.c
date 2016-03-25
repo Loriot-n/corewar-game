@@ -12,6 +12,26 @@
 #include "nico.h"
 #include "gab.h"
 
+int	get_det(char **parse)
+{
+  int	det;
+  int	i;
+
+  det = 0;
+  i = 1;
+  while (parse[i])
+    {
+      if (parse[i][0] == '%')
+	(i == 1) ? (det += 200) : (i == 2) ? (det += 20) : (i == 3) ? (det += 2) : 0;
+      else if (parse[i][0] == 'r')
+	(i == 1) ? (det += 100) : (i == 2) ? (det += 10) : (i == 3) ? (det += 1) : 0;
+      else if (!sub_cmp(parse[i][0], LABEL_CHARS))
+	(i == 1) ? (det += 300) : (i == 2) ? (det += 30) : (i == 3) ? (det += 3) : 0;
+      i++;
+    }
+  return (det);
+}
+
 unsigned char	set_param_byte(int det)
 {
   unsigned char	n;
