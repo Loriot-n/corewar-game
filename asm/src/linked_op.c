@@ -24,7 +24,7 @@ t_ope		*get_newope(char ins, char nb, char *adr)
   return (elem);
 }
 
-void		insert_ope(char ins, char nb, char *adr, t_ope **head)
+t_ope		*insert_ope(char ins, char nb, char *adr, t_ope **head)
 {
   t_ope		*newnode;
   t_ope		*tmp;
@@ -34,11 +34,12 @@ void		insert_ope(char ins, char nb, char *adr, t_ope **head)
   if (!(*head))
     {
       *head = newnode;
-      return ;
+      return (*head);
     }
   while (tmp->next != NULL)
     tmp = tmp->next;
   tmp->next = newnode;
+  return (newnode);
 }
 
 void		free_ope(t_ope **head)

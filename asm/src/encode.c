@@ -91,34 +91,12 @@ char	*get_adr(char *line, char **parse, int i, int y)
       i++;
       y++;
     }
-  write(1, adr, size_total);
   return (adr);
 }
 
-char	*main_adr(char *file)
+char	*main_adr(char *line, char **parse)
 {
-  int	fd;
-  char	*line;
   char	*adr;
-  char	**parse;
-
-  fd = open(file, O_RDONLY);
-  while ((line = get_next_line(fd)) != NULL)
-    {
-      if (!is_empty(line) && line[0] != '.')
-	{
-	  if (!label_here(line))
-	    line = delete_label(line);
-	  parse = my_str_to_wordtab(line);
-	  adr = get_adr(line, parse, 0, 1);
-	}
-    }
-  close(fd);
+  adr = get_adr(line, parse, 0, 1);
   return (adr);
-}
-
-int	main(int argc, char **argv)
-{
-  main_adr(argv[1]);
-  return (0);
 }

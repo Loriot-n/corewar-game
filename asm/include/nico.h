@@ -52,7 +52,7 @@ char		*my_strcpy(char *dest, char *src);
 void		free_label(t_label **head);
 t_label		*insert_label(char *name, unsigned int pos_lbl,
 			    t_label **head);
-void		insert_ope(char ins, char nb, char *adr, t_ope **head);
+t_ope		*insert_ope(char ins, char nb, char *adr, t_ope **head);
 void		free_ope(t_ope **head);
 
 #endif /* !NICO_H_ */
