@@ -15,14 +15,19 @@ t_champion	*ft_live(t_champion *ch,
 			int args[MAX_ARGS_NUMBER],
 			t_corewar *vm)
 {
+  t_champion *tmp;
+
   if (vm->memory[args[0]] == ch->number)
     ch->bool_live = LIVE;
   else
-    while (ch->next != ch)
-      {
-	if (ch->number == vm->memory[args[0]])
-	  ch->bool_live = LIVE;
-	ch = ch->next;
-      }
+    {
+      tmp = ch->next;
+      while (tmp != ch)
+	{
+	  if (tmp->number == vm->memory[args[0]])
+	    tmp->bool_live = LIVE;
+	  tmp = tmp->next;
+	}
+    }
   return (ch);
 }

@@ -52,7 +52,8 @@ void		ft_run_game(t_champion *racine, t_corewar *vm)
 	  tmp = ft_launch_action(tmp, vm);
 	  tmp = ft_load_action(tmp, vm);
 	}
-      tmp->cycle_attente--;
+      if (tmp->cycle_attente > 0)
+	tmp->cycle_attente--;
       tmp = racine->next;
       start = 1;
       (tmp == racine) ? (tmp = tmp->next) : 0;
