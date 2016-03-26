@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Tue Mar 22 11:03:51 2016 CUENAT
-** Last update Sat Mar 26 14:46:57 2016 CUENAT
+** Last update Sat Mar 26 15:15:20 2016 CUENAT
 */
 
 #include "include.h"
@@ -53,6 +53,7 @@ void		ft_add_end(t_champion *cur_champ, int i, char *file_name)
   new_champ->bool_live = NOLIVE;
   new_champ->prev = cur_champ;
   new_champ->number = i + 1;
+  new_champ->bool_fork = 0;
   new_champ->next = cur_champ->next;
   cur_champ->next->prev = new_champ;
   cur_champ->next = new_champ;
