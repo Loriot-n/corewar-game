@@ -19,7 +19,6 @@ typedef struct	s_action
   int		mem_addr;
   int		mem_size;
   char		*mem_write;
-
 }		t_action;
 
 #endif	/* ACTION_H_ */

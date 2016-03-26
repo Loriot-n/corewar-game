@@ -5,16 +5,54 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Thu Mar 24 15:45:02 2016 CUENAT
-** Last update Fri Mar 25 10:54:28 2016 CUENAT
+** Last update Sat Mar 26 17:02:29 2016 CUENAT
 */
 
 #include "include.h"
+
+void	ft_new_fork_registre(int registre[REG_NUMBER], t_champion *ch)
+{
+  int	i;
+
+  i = 0;
+  while (i < REG_NUMBER)
+    {
+      registre[i] = ch->registre[i];
+      i++;
+    }
+}
+
+void	ft_get_forked(t_champion *ch)
+{
+  t_champion	*fork;
+
+  ch->bool_fork = 0;
+  if ((fork = malloc(sizeof(t_champion))) ==  NULL)
+    exit(EXIT_FAILURE);
+  fork->action = ft_init_action();
+  fork->pc = ch->action->mem_addr;
+  fork->bool_fork = 0;
+  fork->file_name = my_strdup(ch->file_name);
+  fork->cycle_attente = 0;
+  ft_new_fork_registre(fork->registre, ch);
+  fork->carry = ch->carry;
+  fork->bool_live = ch->bool_live;
+  fork->number = ch->number;
+  fork->header = ch->header;
+  fork->action = ft_init_action();
+  fork->prev = ch->prev;
+  fork->next = ch;
+  ch->prev->next =fork;
+  ch->prev = fork;
+}
 
 t_champion	*ft_launch_action(t_champion *ch, t_corewar *vm)
 {
   int	i;
 
   i = 0;
+  if (ch->bool_fork == 1)
+    ft_get_forked(ch);
   if (ch->action->reg_addr != -1)
     ch->registre[ch->action->reg_addr] = ch->action->reg_write;
   if (ch->action->mem_addr != -1)
@@ -29,8 +67,7 @@ t_champion	*ft_launch_action(t_champion *ch, t_corewar *vm)
     }
   free(ch->action);
   ch->action = ft_init_action();
-  (ch->pc < MEM_SIZE) ? (ch->pc++) : (ch->pc = 0);
-  printf("!! ok !!\n");
+  (ch->pc < MEM_SIZE) ? (ch->pc) : (ch->pc = 0);
   return (ch);
 }
 
@@ -59,7 +96,7 @@ t_champion	*ft_exec_function(t_champion *ch,
   instr[13] = &ft_lldi;
   instr[14] = &ft_lfork;
   instr[15] = &ft_aff;
-  ch->pc--;
-  (instr[args[4]])(ch, info, args, vm);
+  if (IS_INSTRUC(args[4] + 1))
+    (instr[args[4]])(ch, info, args, vm);
   return (ch);
 }

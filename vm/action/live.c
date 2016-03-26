@@ -5,24 +5,30 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Wed Mar 23 18:25:41 2016 CUENAT
-** Last update Fri Mar 25 13:28:25 2016 CUENAT
+** Last update Sat Mar 26 14:57:26 2016 CUENAT
 */
 
 #include "include.h"
 
 t_champion	*ft_live(t_champion *ch,
 			char *info,
-			int args[MAX_ARGS_NUMBER],
+			int *args,
 			t_corewar *vm)
 {
+  t_champion *tmp;
+
   if (vm->memory[args[0]] == ch->number)
     ch->bool_live = LIVE;
   else
-    while (ch->next != ch)
-      {
-	if (ch->number == vm->memory[args[0]])
-	  ch->bool_live = LIVE;
-	ch = ch->next;
-      }
+    {
+      tmp = ch->next;
+      while (tmp != ch)
+	{
+	  if (tmp->number == vm->memory[args[0]])
+	    tmp->bool_live = LIVE;
+	  tmp = tmp->next;
+	}
+    }
+  ch->cycle_attente = op_tab[0].nbr_cycles;
   return (ch);
 }

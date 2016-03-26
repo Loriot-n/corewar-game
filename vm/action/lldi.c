@@ -30,7 +30,7 @@ t_champion	*ft_lldi(t_champion *ch,
 	  start = ch->pc + args[i];
 	  end = start + IND_SIZE;
 	  ch->action->reg_write = ch->action->reg_write +
-	    ft_mem_reg(start, end, vm);
+	      ft_mem_reg(start, end, vm);
 	}
       else
 	{
