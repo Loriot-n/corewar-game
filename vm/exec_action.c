@@ -14,6 +14,7 @@ void	ft_new_fork_registre(int registre[REG_NUMBER], t_champion *ch)
 {
   int	i;
 
+  i = 0;
   while (i < REG_NUMBER)
     {
       registre[i] = ch->registre[i];
