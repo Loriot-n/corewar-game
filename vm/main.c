@@ -172,7 +172,7 @@ int		main(int ac, char **argv)
   vm = ft_init_vm(argv);
   racine = ft_init_champ(argv);
   ft_load_player(racine, vm);
-  //print_asm(vm->memory);
+  // print_asm(vm->memory);
   // exit(0);
   // printf("############################\n");
   ft_run_game(racine, vm);
