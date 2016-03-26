@@ -12,7 +12,7 @@
 
 t_champion	*ft_live(t_champion *ch,
 			char *info,
-			int args[MAX_ARGS_NUMBER],
+			int *args,
 			t_corewar *vm)
 {
   t_champion *tmp;
@@ -29,5 +29,6 @@ t_champion	*ft_live(t_champion *ch,
 	  tmp = tmp->next;
 	}
     }
+  ch->cycle_attente = op_tab[0].nbr_cycles;
   return (ch);
 }

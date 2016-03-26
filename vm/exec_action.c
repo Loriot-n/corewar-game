@@ -30,7 +30,7 @@ t_champion	*ft_launch_action(t_champion *ch, t_corewar *vm)
   free(ch->action);
   ch->action = ft_init_action();
   (ch->pc < MEM_SIZE) ? (ch->pc) : (ch->pc = 0);
-  printf("!! ok !!\n");
+  // printf("!! ok !!\n");
   return (ch);
 }
 
