@@ -5,7 +5,7 @@
 ** Login   <loriot_n@epitech.net>
 **
 ** Started on  Fri Mar 25 17:19:31 2016 Nicolas Loriot
-** Last update Fri Mar 25 17:19:31 2016 Nicolas Loriot
+** Last update Sat Mar 26 11:07:39 2016 Nicolas Loriot
 */
 
 #include "nico.h"
@@ -14,8 +14,8 @@
 void	label_exit(char *name, int line)
 {
   my_putstr("label ", STDERR_FILENO);
-  my_putstr(name);
-  my_putstr(" undefine line ");
+  my_putstr(name, STDERR_FILENO);
+  my_putstr(" undefine line ", STDERR_FILENO);
   my_put_nbr(line);
 }
 
