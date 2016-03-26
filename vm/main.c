@@ -1,3 +1,4 @@
+
 /*
 ** main.c for corewar in /home/qwebify/rendu/CPE/CPE_2015_corewar/vm/
 **
@@ -5,7 +6,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Sat Mar 26 18:21:10 2016 CUENAT
+** Last update Sat Mar 26 19:24:42 2016 CUENAT
 */
 
 

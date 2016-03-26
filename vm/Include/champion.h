@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Tue Mar 22 10:30:24 2016 CUENAT
-** Last update Sat Mar 26 15:14:55 2016 CUENAT
+** Last update Sat Mar 26 20:51:15 2016 CUENAT
 */
 
 #ifndef CHAMPION_H_
