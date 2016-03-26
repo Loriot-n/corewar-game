@@ -17,10 +17,7 @@ t_champion	*ft_sti(t_champion *ch,
 {
   if (args[0] < 0 || args[0] > REG_NUMBER || args[1] + args[2] > MEM_SIZE ||
       args[1] + args[2] < 0)
-    {
-      my_putstr_stderr("Evil sti ! \\o/ \n");
       return (ch);
-    }
   ch->action->mem_addr = args[1] + args[2];
   ch->action->mem_size = REG_SIZE;
   ch->action->mem_write = ft_reg_to_mem(ch->registre[args[0] - 1], vm, ch);

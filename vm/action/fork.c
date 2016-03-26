@@ -16,7 +16,7 @@ t_champion	*ft_fork(t_champion *ch,
 			t_corewar *vm)
 {
   ch->bool_fork = 1;
-  if (args[0] == 'i')
+  if (info[0] == 'i')
     ch->action->mem_addr = args[0];
   else
     ch->action->mem_addr = ch->pc + (args[0] % IDX_MOD);

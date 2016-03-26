@@ -17,7 +17,8 @@ char	*ft_reg_to_mem(int reg_val, t_corewar *vm, t_champion *ch)
   if ((tmp = malloc(sizeof(char) * REG_SIZE)) == NULL)
     exit(EXIT_FAILURE);
   ch->action->mem_size = 1;
-  tmp = (char)reg_val;
+  tmp[0] = reg_val;
+  tmp[1] = '\0';
   return (tmp);
 }
 
