@@ -8,6 +8,8 @@
 ** Last update Wed Nov  4 21:37:41 2015 Nicolas Loriot
 */
 #include "nico.h"
+#include "gab.h"
+#include "label.h"
 
 void	my_putchar(char c)
 {
@@ -34,4 +36,27 @@ void	my_put_nbr(int nb)
       my_put_nbr(nb / 10);
     }
   my_putchar(nb % 10 + '0' + neg);
+}
+
+int	is_num(char *str)
+{
+  int	i;
+
+  i = 0;
+  while (str[i])
+    {
+      if (str[i] <= '0' || str[i] >= '9')
+	return (0);
+      else
+	i++;
+    }
+  return (1);
+}
+
+int	is_good_reg(char *str)
+{
+  if (my_getnbrkimarche(str, 0) > REG_NUMBER)
+    return (0);
+  else
+    return (1);
 }
