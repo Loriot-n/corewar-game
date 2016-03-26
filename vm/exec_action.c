@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Thu Mar 24 15:45:02 2016 CUENAT
-** Last update Sat Mar 26 17:02:29 2016 CUENAT
+** Last update Sat Mar 26 18:26:55 2016 CUENAT
 */
 
 #include "include.h"
@@ -96,6 +96,7 @@ t_champion	*ft_exec_function(t_champion *ch,
   instr[13] = &ft_lldi;
   instr[14] = &ft_lfork;
   instr[15] = &ft_aff;
+  write(1, &info[0],1);
   if (IS_INSTRUC(args[4] + 1))
     (instr[args[4]])(ch, info, args, vm);
   return (ch);
