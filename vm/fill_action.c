@@ -56,7 +56,8 @@ char	*do_readable(int *args)
       j = (args[i] == 1 || args[i] == 10 || args[i] == 11) ? j + 1 : j;
       i++;
     }
-  tab[j] = '\0';
+  while (j < i)
+    tab[j++] = '\0';
   return (tab);
 }
 
@@ -68,7 +69,8 @@ t_champion	*ft_load_action(t_champion *champion, t_corewar *corewar)
   calloc_int_tab(args, MAX_ARGS_NUMBER + 1);
   info = get_info(corewar->memory, champion->pc);
   champion->pc = get_args(corewar->memory, info, champion->pc, args);
-  // printf("args:%d, %d ,%d\n", args[0], args[1], args[2]);
+  if (IS_INSTRUC(corewar->memory[champion->pc]))
+    printf("args:%d, %d ,%d\n", args[0], args[1], args[2]);
   champion = ft_exec_function(champion, info, args, corewar);
   return (champion);
 }

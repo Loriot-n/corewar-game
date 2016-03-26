@@ -37,6 +37,7 @@ t_champion	*ft_ldi(t_champion *ch,
 	  ch->action->reg_write = ch->action->reg_write +
 	    args[i];
 	}
+      i++;
     }
   return (ch);
 }

@@ -28,6 +28,8 @@ header_t	*get_header(char *file_name);
 /* Tools */
 int	my_getnbr(char *str);
 int	*calloc_int_tab(int *tab, int size);
+void	my_putstr_stderr(char *str);
+
 /* init_champ.c */
 void		ft_init_registre_(int registre[16], int ac);
 void		ft_add_end(t_champion *cur_champ, int ac, char *file_name);
