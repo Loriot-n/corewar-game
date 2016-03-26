@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Sat Mar 26 14:47:01 2016 CUENAT
+** Last update Sat Mar 26 14:57:59 2016 CUENAT
 */
 
 
@@ -32,6 +32,8 @@ int		ft_end_game(t_champion *racine, t_corewar *vm)
 	return (1);
       vm->nb_cycle++;
       vm->cycle_die =  CYCLE_TO_DIE - (CYCLE_DELTA * vm->nb_cycle);
+      printf("------%d\n----------", vm->cycle_die);
+      exit(0);
       vm->cycle_cpt = 0;
     }
   return (LIVE);
@@ -53,8 +55,10 @@ void		ft_run_game(t_champion *racine, t_corewar *vm)
 	  tmp = ft_launch_action(tmp, vm);
 	  tmp = ft_load_action(tmp, vm);
 	}
-      tmp->cycle_attente--;
+      if (tmp->cycle_attente > 0)
+	tmp->cycle_attente--;
       tmp = racine->next;
+      vm->cycle_cpt++;
       start = 1;
       (tmp == racine) ? (tmp = tmp->next) : 0;
     }

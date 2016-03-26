@@ -29,8 +29,8 @@ t_champion	*ft_launch_action(t_champion *ch, t_corewar *vm)
     }
   free(ch->action);
   ch->action = ft_init_action();
-  (ch->pc < MEM_SIZE) ? (ch->pc++) : (ch->pc = 0);
-  printf("!! ok !!\n");
+  (ch->pc < MEM_SIZE) ? (ch->pc) : (ch->pc = 0);
+  // printf("!! ok !!\n");
   return (ch);
 }
 
@@ -59,7 +59,8 @@ t_champion	*ft_exec_function(t_champion *ch,
   instr[13] = &ft_lldi;
   instr[14] = &ft_lfork;
   instr[15] = &ft_aff;
-  ch->pc--;
-  (instr[args[4]])(ch, info, args, vm);
+  if (IS_INSTRUC(args[4] + 1))
+    (instr[args[4]])(ch, info, args, vm);
+  // ch->pc++;
   return (ch);
 }

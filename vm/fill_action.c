@@ -67,11 +67,8 @@ t_champion	*ft_load_action(t_champion *champion, t_corewar *corewar)
 
   calloc_int_tab(args, MAX_ARGS_NUMBER + 1);
   info = get_info(corewar->memory, champion->pc);
-  printf("pc:%d\n", champion->pc);
-  champion->pc = get_args(corewar->memory, info, champion->pc, args); /* recupere les params*/
-  // if (info != NULL)
-  //     printf("%s\n", info);
-  printf("args:%d, %d ,%d\n", args[0], args[1], args[2]);
+  champion->pc = get_args(corewar->memory, info, champion->pc, args);
+  // printf("args:%d, %d ,%d\n", args[0], args[1], args[2]);
   champion = ft_exec_function(champion, info, args, corewar);
   return (champion);
 }
@@ -81,7 +78,7 @@ char	*get_info(char *memory, int pc)
   char	s;
 
   s = memory[pc++];
-  if (IS_INSTRUC(s))
+  if (IS_INSTRUC(s + 1))
     {
       if (GOT_PARAMS_CHAR(s - 1))
 	  return (cut_args(memory[pc]));
@@ -99,7 +96,12 @@ int	get_args(char	*memory, char *readable, int pc, int *args)
   i = 0;
   instruction = memory[pc++] - 1;
   args[4] = instruction;
-  printf("\n%s(%d arguments)  ", op_tab[instruction].mnemonique, op_tab[instruction].nbr_args);
+  // printf("instruc:%d\n", args[4]);
+  // printf("pc:%d\n", pc);
+  if (IS_INSTRUC(instruction + 1))
+    printf("\n%s(%d arguments)  ", op_tab[instruction].mnemonique, op_tab[instruction].nbr_args);
+  else
+    return (pc + 1);
   if (GOT_PARAMS_CHAR(instruction))
     return (args_if_info(readable, memory, pc, args));
   else if (instruction == 0)
