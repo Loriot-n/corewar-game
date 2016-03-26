@@ -1,3 +1,4 @@
+
 /*
 ** main.c for corewar in /home/qwebify/rendu/CPE/CPE_2015_corewar/vm/
 **
@@ -5,7 +6,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Sat Mar 26 18:21:10 2016 CUENAT
+** Last update Sat Mar 26 19:24:42 2016 CUENAT
 */
 
 
@@ -58,7 +59,7 @@ void		ft_run_game(t_champion *racine, t_corewar *vm)
 	}
       if (tmp->cycle_attente > 0)
 	tmp->cycle_attente--;
-      tmp = racine->next;
+      tmp = tmp->next;
       vm->cycle_cpt++;
       start = 1;
       (tmp == racine) ? (tmp = tmp->next) : 0;
