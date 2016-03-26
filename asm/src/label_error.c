@@ -54,4 +54,24 @@ void		double_label(t_label *label)
     }
 }
 
-void		check_label_chars();
+void		check_label_chars(char *label)
+{
+  int		i;
+  int		j;
+  int		b;
+
+  i = 0;
+  while (label[i])
+    {
+      j = 0;
+      b = 0;
+      while (LABEL_CHARS[j] && b == 0)
+	{
+	  if (label[i] == LABEL_CHARS[j])
+	    b = 1;
+	  else
+	    j++;
+	}
+      i++;
+    }
+}
