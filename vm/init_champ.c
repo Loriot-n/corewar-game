@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Tue Mar 22 11:03:51 2016 CUENAT
-** Last update Sat Mar 26 15:15:20 2016 CUENAT
+** Last update Sat Mar 26 17:13:33 2016 CUENAT
 */
 
 #include "include.h"
@@ -20,6 +20,7 @@ t_action	*ft_init_action()
   tmp->reg_write = -1;
   tmp->mem_addr = -1;
   tmp->mem_write = NULL;
+  tmp->mem_size = 0;
   return(tmp);
 }
 
