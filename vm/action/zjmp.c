@@ -26,8 +26,8 @@ t_champion	*ft_zjmp_2(t_champion *ch)
     }
   if (ch->pc > MEM_SIZE)
     {
-      tmp = MEM_SIZE - ch->pc;
-      ch->pc = MEM_SIZE;
+      tmp = ch->pc - MEM_SIZE;
+      ch->pc = 0;
       while (tmp != 0)
 	{
 	  ch->pc++;
@@ -48,5 +48,7 @@ t_champion	*ft_zjmp(t_champion *ch,
       ch = ft_zjmp_2(ch);
       ch->cycle_attente = op_tab[8].nbr_cycles;
     }
+  else
+    printf("useless\n");
   return (ch);
 }

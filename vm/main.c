@@ -58,7 +58,7 @@ void		ft_run_game(t_champion *racine, t_corewar *vm)
 	}
       if (tmp->cycle_attente > 0)
 	tmp->cycle_attente--;
-      tmp = racine->next;
+      tmp = tmp->next;
       vm->cycle_cpt++;
       start = 1;
       (tmp == racine) ? (tmp = tmp->next) : 0;

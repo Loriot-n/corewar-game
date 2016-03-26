@@ -96,12 +96,7 @@ t_champion	*ft_exec_function(t_champion *ch,
   instr[13] = &ft_lldi;
   instr[14] = &ft_lfork;
   instr[15] = &ft_aff;
-<<<<<<< HEAD
-  if (IS_INSTRUC(args[4] - 1))
-=======
-  write(1, &info[0],1);
-  if (IS_INSTRUC(args[4] + 1))
->>>>>>> 324e0f9e7d2f0f93276f4c09a4232ed9648e9a45
-    (instr[args[4]])(ch, info, args, vm);
+  if (IS_INSTRUC(args[4]))
+    ch = (instr[args[4]])(ch, info, args, vm);
   return (ch);
 }
