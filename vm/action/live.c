@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Wed Mar 23 18:25:41 2016 CUENAT
-** Last update Sat Mar 26 14:57:26 2016 CUENAT
+** Last update Sat Mar 26 21:45:51 2016 CUENAT
 */
 
 #include "include.h"
@@ -18,14 +18,23 @@ t_champion	*ft_live(t_champion *ch,
   t_champion *tmp;
 
   if (vm->memory[args[0]] == ch->number)
-    ch->bool_live = LIVE;
+    {
+      printf("\"Le joueur %d (%s) est en vie\"\n",
+	     ch->number, ch->file_name);
+      ch->bool_live = LIVE;
+    }
   else
     {
       tmp = ch->next;
       while (tmp != ch)
 	{
 	  if (tmp->number == vm->memory[args[0]])
-	    tmp->bool_live = LIVE;
+	    {
+	      printf("\"Le joueur %d (%s) est en vie\"\n",
+		     ch->number, ch->file_name);
+	      tmp->bool_live = LIVE;
+	      break;
+	    }
 	  tmp = tmp->next;
 	}
     }

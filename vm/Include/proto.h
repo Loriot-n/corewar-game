@@ -10,7 +10,7 @@
 
 #ifndef PROTO_H_
 # define PROTO_H_
-# define IS_INSTRUC(nb) (nb > 0 && nb <= 16)
+# define IS_INSTRUC(nb) (nb >= 0 && nb < 16)
 # define GOT_PARAMS_CHAR(nb) (nb != 0 && nb != 11 && nb != 14 && nb != 8)
 
 /*
