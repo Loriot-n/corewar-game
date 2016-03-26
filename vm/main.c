@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Thu Mar 24 18:09:15 2016 CUENAT
+** Last update Sat Mar 26 14:47:01 2016 CUENAT
 */
 
 
@@ -32,6 +32,7 @@ int		ft_end_game(t_champion *racine, t_corewar *vm)
 	return (1);
       vm->nb_cycle++;
       vm->cycle_die =  CYCLE_TO_DIE - (CYCLE_DELTA * vm->nb_cycle);
+      vm->cycle_cpt = 0;
     }
   return (LIVE);
 }

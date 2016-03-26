@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Wed Mar 23 18:25:41 2016 CUENAT
-** Last update Fri Mar 25 13:28:25 2016 CUENAT
+** Last update Sat Mar 26 14:43:34 2016 CUENAT
 */
 
 #include "include.h"
@@ -15,6 +15,7 @@ t_champion	*ft_live(t_champion *ch,
 			int args[MAX_ARGS_NUMBER],
 			t_corewar *vm)
 {
+
   if (vm->memory[args[0]] == ch->number)
     ch->bool_live = LIVE;
   else
@@ -24,5 +25,6 @@ t_champion	*ft_live(t_champion *ch,
 	  ch->bool_live = LIVE;
 	ch = ch->next;
       }
+
   return (ch);
 }
