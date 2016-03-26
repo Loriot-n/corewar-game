@@ -34,3 +34,22 @@ unsigned int	label_exist(char *name, t_label *label, int line)
     }
   return (0);
 }
+
+int		double_label(t_label *label)
+{
+  t_label	*tmp;
+
+  while (label->prev != NULL && label != NULL)
+    {
+      tmp = label;
+      while (tmp->prev != NULL)
+	{
+	  if ((my_strcmp(label->name, label->prev->name)) == 0)
+	    return (1);
+	  else
+	    tmp = tmp->prev;
+	}
+      label = label->prev;
+    }
+  return (0);
+}
