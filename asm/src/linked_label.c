@@ -10,6 +10,7 @@
 
 #include "gab.h"
 #include "nico.h"
+#include "label.h"
 
 t_label		*get_newlabel(char *name, unsigned int pos_lbl)
 {
