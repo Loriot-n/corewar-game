@@ -17,6 +17,7 @@ SRC=	main.c \
 	init_champ.c \
 	fill_action.c \
 	fill_actions2.c \
+	dump.c \
 	exec_action.c \
 	action/add.c \
 	action/aff.c \

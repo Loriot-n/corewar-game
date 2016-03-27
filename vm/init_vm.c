@@ -80,7 +80,9 @@ void	ft_init_memory(char memory[MEM_SIZE])
 t_corewar	*ft_init_vm(char **argv)
 {
   t_corewar	*vm;
+  int		i;
 
+  i = 0;
   if ((vm = malloc(sizeof(t_corewar) * 1)) ==  NULL)
     exit(EXIT_FAILURE);
   ft_init_memory(vm->memory);
@@ -88,6 +90,17 @@ t_corewar	*ft_init_vm(char **argv)
   vm->nb_live = 0;
   vm->cycle_cpt = 0;
   vm->cycle_die = CYCLE_TO_DIE - (CYCLE_DELTA * vm->nb_cycle);
+  while (argv[i])
+    {
+      if (my_strcmp(argv[i], my_strdup("-dump")) == 0)
+	{
+	  if (argv[i + 1])
+	    vm->dump_cycle = my_getnbr(argv[i + 1]);
+	  argv = &argv[2];
+	}
+      i++;
+    }
   vm->nb_player = ft_get_nb_player(argv);
+  vm->dump_cycle = -1;
   return (vm);
 }

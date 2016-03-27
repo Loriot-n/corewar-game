@@ -19,6 +19,7 @@ char	*cut_args(char args)
 
   i = 0;
   calloc_int_tab(info, MAX_ARGS_NUMBER);
+  printf("gogo;%d\n", args);
   while (bit < (signed int)sizeof(args) * 8)
     {
       temp = ((args & (1 << bit)) == 0) ? 0 : 1;
@@ -45,15 +46,16 @@ char	*do_readable(int *args)
   if ((tab = malloc(sizeof(char) * (MAX_ARGS_NUMBER + 1))) == NULL)
     exit(EXIT_FAILURE);
   tab[0] = '\0';
+  // printf("args:%d %d %d %d\n", args[0], args[1], args[2], args[3]);
   while (i < MAX_ARGS_NUMBER)
     {
       if (args[i] == 1)
 	tab[j] = 'r';
       else if (args[i] == 10)
 	tab[j] = 'd';
-      else if (args[i] == 11)
+      else if (args[i] >= 11)
 	tab[j] = 'i';
-      j = (args[i] == 1 || args[i] == 10 || args[i] == 11) ? j + 1 : j;
+      j = (args[i] == 1 || args[i] == 10 || args[i] >= 11) ? j + 1 : j;
       i++;
     }
   while (j < i)
@@ -66,13 +68,18 @@ t_champion	*ft_load_action(t_champion *champion, t_corewar *corewar)
   int		args[MAX_ARGS_NUMBER + 1];
   char		*info;
 
-  printf("carry : %d\n", champion->carry);
+  // printf("pc : %d\n", champion->pc);
+    int	pc = champion->pc;
+  // printf("pc:%d\n", pc);
   calloc_int_tab(args, MAX_ARGS_NUMBER + 1);
   info = get_info(corewar->memory, champion->pc);
   champion->pc = get_args(corewar->memory, info, champion->pc, args);
   // if (IS_INSTRUC(corewar->memory[champion->pc - 1]) - 1)
-    printf("args:%d, %d ,%d\n", args[0], args[1], args[2]);
+  // printf(":%d:%d:%d:\n", corewar->memory[pc], corewar->memory[pc + 1], corewar->memory[pc + 2]);
+  printf("args:%d, %d ,%d\n", args[0], args[1], args[2]);
   champion = ft_exec_function(champion, info, args, corewar);
+  // champion->pc += 2;
+  printf("pc at _end: %d\n", champion->pc);
   return (champion);
 }
 
@@ -108,12 +115,11 @@ int	get_args(char	*memory, char *readable, int pc, int *args)
   else if (instruction == 0)
     {
       args[i] = extract_from_mem(&memory[pc], 4);
-      // printf("doinglive: %d\n", args[i]);
       pc += 4;
     }
   else if (instruction == 8 || instruction == 11 || instruction == 14)
     {
-      args[i] = extract_from_mem(&memory[pc], IND_SIZE);
+      args[i] = extract_short_from_mem(&memory[pc], IND_SIZE);
       pc += IND_SIZE;
     }
   return (pc);

@@ -78,6 +78,15 @@ t_champion      *ft_init_champ(char **argv)
 
   i = 0;
   racine = ft_create_list_();
+  while (argv && argv[i])
+    {
+      if (my_strcmp(argv[i], my_strdup("-dump")) == 0 || my_strcmp(argv[i], my_strdup("-n")) == 0 ||
+	  my_strcmp(argv[i], my_strdup("-a")) == 0)
+	argv = &argv[2];
+      i++;
+    }
+  i = 0;
+  printf("s%s", argv[1]);
   tab_cor = prog_tab(&argv[1]);
   if (tab_cor == NULL)
     exit(EXIT_FAILURE);

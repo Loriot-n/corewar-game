@@ -14,9 +14,9 @@ char	*corename(char *dir)
 {
   int	i;
 
-  i = 0;
-  while (dir[i] && dir[i] != '.')
-    i++;
+  i = my_strlen(dir);
+  while (i != 0 && dir[i] != '.')
+    i--;
   if (!(dir[i]) || my_strcmp(&(dir[i]), my_strdup(".cor")) != 0)
     {
       my_putstr(dir);

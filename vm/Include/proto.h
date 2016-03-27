@@ -76,6 +76,12 @@ char	*ft_memcpy(int start, int end, t_corewar *vm, t_champion *champion);
 char	*ft_reg_to_mem(int reg_val, t_corewar *vm, t_champion *champion);
 
 /*
+**dump.c
+*/
+void	dump_me(char *memory);
+void	my_putnbr_base(int deciaml, char *base);
+
+/*
 **exec_function.c
 */
 t_champion	*ft_exec_function(t_champion *ch,

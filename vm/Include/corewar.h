@@ -19,6 +19,7 @@ typedef struct	s_corewar
   int		cycle_cpt;
   int		cycle_die;
   int		nb_player;
+  int		dump_cycle;
 }		t_corewar;
 
 #endif	/* COREWAR_H_ */

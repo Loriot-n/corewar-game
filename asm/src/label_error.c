@@ -9,6 +9,7 @@
 */
 
 #include "nico.h"
+#include "label.h"
 #include "gab.h"
 
 void	label_exit(char *name, int line)
@@ -19,8 +20,11 @@ void	label_exit(char *name, int line)
   my_put_nbr(line);
 }
 
-unsigned int	label_exist(char *name, t_label *label, int line)
+unsigned int	label_exist(char *name, t_label *lbl, int line)
 {
+  t_label	*label;
+
+  label = lbl;
   if (label->next == NULL)
     {
       if (label->prev == NULL)
@@ -35,7 +39,7 @@ unsigned int	label_exist(char *name, t_label *label, int line)
   return (0);
 }
 
-int		double_label(t_label *label)
+void		double_label(t_label *label)
 {
   t_label	*tmp;
 
@@ -45,11 +49,32 @@ int		double_label(t_label *label)
       while (tmp->prev != NULL)
 	{
 	  if ((my_strcmp(label->name, label->prev->name)) == 0)
-	    return (1);
+	    raise_err("Multiple definition", "of label", label->name);
 	  else
 	    tmp = tmp->prev;
 	}
       label = label->prev;
     }
-  return (0);
+}
+
+void		check_label_chars(char *label)
+{
+  int		i;
+  int		j;
+  int		b;
+
+  i = 0;
+  while (label[i])
+    {
+      j = 0;
+      b = 0;
+      while (LABEL_CHARS[j] && b == 0)
+	{
+	  if (label[i] == LABEL_CHARS[j])
+	    b = 1;
+	  else
+	    j++;
+	}
+      i++;
+    }
 }

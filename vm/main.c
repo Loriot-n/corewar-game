@@ -50,6 +50,8 @@ void		ft_run_game(t_champion *racine, t_corewar *vm)
   tmp = racine->next;
   while (ft_end_game(tmp, vm) == LIVE)
     {
+      if (vm->cycle_cpt >= vm->dump_cycle)
+	dump_me(vm->memory);
       if (start == 0)
 	tmp = ft_load_action(tmp, vm);
       if (tmp->cycle_attente == 0)
@@ -171,11 +173,10 @@ int		main(int ac, char **argv)
   t_champion	*racine;
   t_corewar	*vm;
 
-  // printf("%d\n", IS_INSTRUC(0));
   vm = ft_init_vm(argv);
   racine = ft_init_champ(argv);
   ft_load_player(racine, vm);
-  //print_asm(vm->memory);
+  // print_asm(vm->memory);
   // exit(0);
   // printf("############################\n");
   ft_run_game(racine, vm);
