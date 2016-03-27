@@ -27,5 +27,6 @@ int		check_quotes(int fd, char *to_find, char *file);
 void		check_null(int fd, char *to_find, char *file);
 int		send_arg_check(int code, char **params);
 void		free_tab(char **tab);
+char		*my_strdup(char *src);
 
 #endif /* !LABEL_H_ */

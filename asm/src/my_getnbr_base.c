@@ -72,3 +72,20 @@ int	my_getnbr_base(char *str, char *base, int i)
   num[1] = i - num[0];
   return (my_atoi_base(str, num, sign, base));
 }
+
+char	*my_strdup(char *src)
+{
+  char *str;
+  int	i;
+
+  i = 0;
+  if ((str = malloc(my_strlen(src) + 1)) == NULL)
+    exit(EXIT_FAILURE);
+  while (src[i])
+    {
+      str[i] = src[i];
+      i++;
+    }
+  str[i] = '\0';
+  return (str);
+}
