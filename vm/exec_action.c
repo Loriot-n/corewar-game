@@ -5,10 +5,21 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Thu Mar 24 15:45:02 2016 CUENAT
-** Last update Sun Mar 27 14:34:38 2016 CUENAT
+** Last update Sun Mar 27 16:35:28 2016 CUENAT
 */
 
 #include "include.h"
+
+t_action       	*ft_remove_action(t_action *action)
+{
+  action->action = NULL;
+  action->reg_addr = -1;
+  action->reg_write = -1;
+  action->mem_addr = -1;
+  action->mem_size = 0;
+  action->mem_write = NULL;
+  return (action);
+}
 
 void	ft_new_fork_registre(int registre[REG_NUMBER], t_champion *ch)
 {
@@ -66,8 +77,7 @@ t_champion	*ft_launch_action(t_champion *ch, t_corewar *vm)
 	  i++;
 	}
     }
-  free(ch->action);
-  ch->action = ft_init_action();
+  ch->action = ft_remove_action(ch->action);
   (ch->pc < MEM_SIZE) ? (ch->pc) : (ch->pc = 0);
   return (ch);
 }

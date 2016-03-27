@@ -21,7 +21,7 @@
 /* str_func */
 
 int	my_strlen(char *str);
-int	whereis(char *to_find, int fd, char *file_name);
+int	whereis(char *to_find, int fd, char *file_name, int to_check);
 void	raise_err(char *err, char *name, char *err2);
 int	my_strcmp(char *s1, char *s2);
 int	cmp_instruction(char *str, int yolo);
@@ -47,4 +47,6 @@ int		get_det(char	**parse);
 unsigned char	set_param_byte(int det);
 int		size_to_malloc(char *line);
 int		header_main(char *file, int fd, int new_fd);
+void	check_double_def(int fd, char *to_find, char *file);
+
 #endif /* GAB_H_ */
