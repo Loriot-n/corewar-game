@@ -18,14 +18,13 @@ int		is_num(char *str);
 int		is_good_reg(char *str);
 int		my_getnbrkimarche(char *str, char sepchar);
 int		check_add(char **params);
-int		check_ldi(char **params, t_label *label, int line);
-int		check_sti(char **params, t_label *label, int line);
-int		check_ld(char **params, t_label *label, int line);
-int		check_st(char **params, t_label *label, int line);
+int		check_ldi(char **params);
+int		check_sti(char **params);
+int		check_ld(char **params);
+int		check_st(char **params);
 void		my_putchar(char c);
 int		check_quotes(int fd, char *to_find, char *file);
 void		check_null(int fd, char *to_find, char *file);
-int		send_arg_check(int code, char **params,
-        	t_label *label, int line);
+int		send_arg_check(int code, char **params);
 
 #endif /* !LABEL_H_ */

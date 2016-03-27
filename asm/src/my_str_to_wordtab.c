@@ -64,7 +64,7 @@ char	**tab_creator(char **tab, char *str, int words, int k)
   int	j;
 
   i = 0;
-  while ((str[i] != '\0') && (words > 0))
+  while ((str[i] != '\0' && str[i] != '#') && (words > 0))
     {
       if (my_char_isalphanum(str[i]) == 1)
 	{
