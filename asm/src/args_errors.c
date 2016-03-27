@@ -22,22 +22,13 @@ int	check_aff(char **params)
 
 int	check_live(char **params, t_label *label, int line)
 {
-  int	j;
-
-  j = 0;
-  while (params[j])
-    {
-      if (params[j][0] == DIRECT_CHAR &&
-	  params[j][1] == LABEL_CHAR)
-	label_exist(&params[j][2], label, line);
-      else if (params[j][0] == DIRECT_CHAR &&
-	       (params[j][1] >= '0' || params[j][1] <= '9'))
-	return (1);
-      else
-	return (0);
-      j++;
-    }
-  return (1);
+  if (params[0][0] == DIRECT_CHAR &&
+      params[0][1] == LABEL_CHAR)
+    label_exist(&params[0][2], label, line);
+  else if (params[0][0] == DIRECT_CHAR &&
+	   (is_num(&params[0][1])));
+  else
+    return (1);
 }
 
 int	check_xor(char **params, t_label *label, int line)
@@ -96,5 +87,5 @@ int	check_args(char *name, char **params, t_label *label, int line)
 	send_arg_check(op_tab[i].code, params, label, line);
       i++;
     }
-  return (1);
+  return (0);
 }

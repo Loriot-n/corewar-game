@@ -20,7 +20,7 @@ struct header_s		*name(struct header_s *header, int fd, char *file)
   i = 0;
   check_null(fd, NAME_CMD_STRING, file);
   check_quotes(fd, NAME_CMD_STRING, file);
-  check_double_def(fd, NAME_CMD_STRING, file);
+  // check_double_def(fd, NAME_CMD_STRING, file);
   ((lseek(fd, whereis(NAME_CMD_STRING, fd, file, 1), SEEK_SET)) < 0) ?
   exit(EXIT_FAILURE) : 0;
   while (read(fd, buff, 1) > 0)
@@ -34,6 +34,8 @@ struct header_s		*name(struct header_s *header, int fd, char *file)
 	return (header);
       header->prog_name[i++] = buff[0];
     }
+  (i > PROG_NAME_LENGTH) ? raise_err("Error : ", NAME_CMD_STRING, " too long")
+  : (0);
   return (header);
 }
 
@@ -45,7 +47,7 @@ struct header_s		*comment(struct header_s *header, int fd, char *file)
   i = 0;
   check_null(fd, COMMENT_CMD_STRING, file);
   check_quotes(fd, COMMENT_CMD_STRING, file);
-  check_double_def(fd, COMMENT_CMD_STRING, file);
+  // check_double_def(fd, COMMENT_CMD_STRING, file);
   ((lseek(fd, whereis(COMMENT_CMD_STRING, fd, file, 1), SEEK_SET)) < 0) ?
   exit(EXIT_FAILURE) : 0;
   while (read(fd, buff, 1) > 0)
@@ -59,6 +61,8 @@ struct header_s		*comment(struct header_s *header, int fd, char *file)
 	return (header);
       header->comment[i++] = buff[0];
     }
+  (i > COMMENT_LENGTH) ?
+  raise_err("Error : ", COMMENT_CMD_STRING, " too long") : (0);
   return (header);
 }
 

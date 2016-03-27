@@ -10,15 +10,20 @@
 
 #include "gab.h"
 #include "nico.h"
+#include "label.h"
 
-char	encode_ins(char **parse)
+char	encode_ins(char **parse, t_label *label, int line)
 {
   int	y;
 
   while (y < 16)
     {
       if (!my_strcmp(parse[0], op_tab[y].mnemonique))
-	return (op_tab[y].code);
+	{
+	  if (send_arg_check(op_tab[y].code, &parse[1], label, line) == 0)
+	    printf("error line %d\n", line);
+	  return (op_tab[y].code);
+	}
       y++;
     }
   return (0);
@@ -51,7 +56,9 @@ void	write_octets(int fd, int new_fd, int line_cmp, t_label *label)
 	    line = delete_label(line);
 	  parse = my_str_to_wordtab(line);
 	  adr = main_adr(line, parse, label, line_cmp);
-	  ins = encode_ins(parse);
+	  for (int i = 1 ; parse[i] ; i++)
+	    printf("line = [%i] : %s\n", line_cmp, parse[i]);
+	  ins = encode_ins(parse, label, line_cmp);
           nb = set_param_byte(get_det(parse));
 	  ope = insert_ope(ins, nb, adr, &ope);
 	  write_core(ope, size_to_malloc(line), new_fd);
