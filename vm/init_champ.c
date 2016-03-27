@@ -21,7 +21,7 @@ t_action	*ft_init_action()
   tmp->mem_addr = -1;
   tmp->mem_write = NULL;
   tmp->mem_size = 0;
-  return(tmp);
+  return (tmp);
 }
 
 void	ft_init_registre_(int registre[16], int nb_prog)
@@ -72,6 +72,7 @@ t_champion	*ft_create_list_(void)
   racine->is_root = 1;
   return (racine);
 }
+
 t_champion      *ft_init_champ(char **argv)
 {
   char          **tab_cor;
@@ -82,7 +83,8 @@ t_champion      *ft_init_champ(char **argv)
   racine = ft_create_list_();
   while (argv && argv[i])
     {
-      if (my_strcmp(argv[i], my_strdup("-dump")) == 0 || my_strcmp(argv[i], my_strdup("-n")) == 0 ||
+      if (my_strcmp(argv[i], my_strdup("-dump")) == 0 ||
+	  my_strcmp(argv[i], my_strdup("-n")) == 0 ||
 	  my_strcmp(argv[i], my_strdup("-a")) == 0)
 	argv = &argv[2];
       i++;

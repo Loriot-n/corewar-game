@@ -8,7 +8,6 @@
 ** Last update Sun Mar 27 16:25:46 2016 CUENAT
 */
 
-
 #include "include.h"
 
 void		ft_run_game(t_champion *racine, t_corewar *vm)
@@ -25,8 +24,7 @@ void		ft_run_game(t_champion *racine, t_corewar *vm)
 	  tmp = tmp->next;
 	  vm->cycle_cpt++;
 	}
-      if (vm->cycle_cpt == vm->dump_cycle)
-	dump_me(vm->memory);
+      (vm->cycle_cpt == vm->dump_cycle) ? dump_me(vm->memory): 0;
       if (start == 0)
 	tmp = ft_load_action(tmp, vm);
       if (tmp->cycle_attente == 0)
@@ -38,71 +36,6 @@ void		ft_run_game(t_champion *racine, t_corewar *vm)
 	tmp->cycle_attente--;
       tmp = tmp->next;
       start = 1;
-    }
-}
-
-void	print_asm(char	*memory)
-{
-  char	s;
-  int	i = 0;
-  int	pc;
-  char	*readable;
-  int 	tmp;
-  int	u;
-  int	args[MAX_ARGS_NUMBER];
-
-  pc = 0;
-  while (pc < 200)
-    {
-      // printf("1st pc:%d", pc);
-      s = memory[pc++];
-      if (IS_INSTRUC(s))
-	{
-	  printf("\n%s(%d arguments)  ", op_tab[s - 1].mnemonique, op_tab[s - 1].nbr_args);
-	  s = s - 1;
-	  if (GOT_PARAMS_CHAR(s))
-	    {
-	      readable = cut_args(memory[pc++]);
-	      i = 0;
-	      while (readable[i])
-		{
-		  printf("%c", readable[i]);
-		  if (readable[i] == 'r')
-		      printf("%d, ", memory[pc++]);
-		  else if (readable[i] == 'd')
-		    {
-		      tmp = extract_from_mem(&(memory[pc]), DIR_SIZE);
-		      pc += DIR_SIZE;
-		      printf("%d, ", tmp);
-		    }
-		  else if (readable[i] == 'i')
-		    {
-		      tmp = extract_from_mem(&memory[pc], IND_SIZE);
-		      pc += IND_SIZE;
-		      printf("%d, ", tmp);
-		    }
-		  i++;
-		}
-	    }
-	  else if (s == 0)
-	    {
-	      tmp = extract_from_mem(&memory[pc], 4);
-	      pc += 4;
-	      printf("%d, ", tmp);
-	    }
-	  else if (s == 8 || s == 11 || s == 14)
-	    {
-	      tmp = extract_from_mem(&memory[pc], IND_SIZE);
-	      pc += IND_SIZE;
-	      printf("%d, ", tmp);
-	    }
-
-	}
-      else
-	printf("boo :%d:", s);
-      // printf("lst pc:%d:", pc);
-      // if (pc >= 20)
-	// break;
     }
 }
 
@@ -155,9 +88,6 @@ int		main(int ac, char **argv)
   vm = ft_init_vm(argv);
   racine = ft_init_champ(argv);
   ft_load_player(racine, vm);
-  // print_asm(vm->memory);
-  // exit(0);
-  // printf("############################\n");
   ft_run_game(racine, vm);
   return (0);
 }
