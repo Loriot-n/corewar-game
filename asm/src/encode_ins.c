@@ -64,7 +64,6 @@ void	write_octets(int fd, int new_fd, int line_cmp, t_label *label)
 	  if (!label_here(line))
 	    line = delete_label(line);
 	  parse = my_str_to_wordtab(line);
-	  ommited_cmd(parse);
 	  adr = main_adr(line, parse, label, line_cmp);
 	  ins = encode_ins(parse, line_cmp);
           nb = set_param_byte(get_det(parse));

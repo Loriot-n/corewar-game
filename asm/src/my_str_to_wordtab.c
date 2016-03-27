@@ -20,9 +20,7 @@ int	my_char_isalphanum(char c)
     return (1);
   else if ((c >= '0') && (c <= '9'))
     return (1);
-  else if ((c == ':') || (c == ';') || ((c >= '#') && (c <= '/')))
-    return (1);
-  else if ((c == 92) || (c == 95))
+  else if ((c == ':') || (c == '-') || (c == '%'))
     return (1);
   return (-1);
 }
@@ -52,6 +50,8 @@ int	a_ctr(char *str, int i)
   cnt = 0;
   while (my_char_isalphanum(str[i]) == 1)
     {
+      if (str[i] == ';' || str[i] == '#')
+	return (cnt);
       cnt = cnt + 1;
       i = i + 1;
     }
@@ -74,10 +74,12 @@ char	**tab_creator(char **tab, char *str, int words, int k)
 	  while (my_char_isalphanum(str[i]) == 1)
 	    {
 	      tab[k][j] = str[i];
-	      (j = j + 1) ? (i = i + 1) : 0;
+	      j = j + 1;
+	      i = i + 1;
 	    }
 	  tab[k][j] = '\0';
-	  (k = k + 1) ? (words = words - 1) : 0;
+	  words = words - 1;
+	  k = k + 1;
 	}
       i = i + 1;
     }
