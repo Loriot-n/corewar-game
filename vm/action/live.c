@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Wed Mar 23 18:25:41 2016 CUENAT
-** Last update Sun Mar 27 20:10:08 2016 CUENAT
+** Last update Sun Mar 27 20:14:55 2016 CUENAT
 */
 
 #include "include.h"
@@ -21,11 +21,7 @@ t_champion	*ft_live(t_champion *ch,
   my_printf("\"Le joueur %d (%s) est en vie\"\n",
 	 ch->number, ch->file_name);
   if (args[0] == ch->number && ch->file_name != NULL)
-    {
-      printf("%s\n", ch->file_name);
       ch->bool_live = LIVE;
-      printf("%d\n", ch->bool_live);
-    }
   else
     {
       tmp = ch;
