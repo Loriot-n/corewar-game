@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Tue Mar 22 11:03:51 2016 CUENAT
-** Last update Sat Mar 26 21:03:21 2016 CUENAT
+** Last update Sun Mar 27 14:26:11 2016 CUENAT
 */
 
 #include "include.h"
@@ -14,7 +14,7 @@ t_action	*ft_init_action()
 {
   t_action	*tmp;
 
-  if ((tmp = malloc(sizeof(t_action) * 1)) == NULL)
+  if ((tmp = malloc(sizeof(t_action))) == NULL)
     exit(EXIT_FAILURE);
   tmp->reg_addr = -1;
   tmp->reg_write = -1;
