@@ -20,8 +20,11 @@ void	label_exit(char *name, int line)
   my_put_nbr(line);
 }
 
-unsigned int	label_exist(char *name, t_label *label, int line)
+unsigned int	label_exist(char *name, t_label *lbl, int line)
 {
+  t_label	*label;
+
+  label = lbl;
   if (label->next == NULL)
     {
       if (label->prev == NULL)
