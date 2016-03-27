@@ -5,41 +5,11 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Sun Mar 27 15:31:26 2016 CUENAT
+** Last update Sun Mar 27 16:02:03 2016 CUENAT
 */
 
 
 #include "include.h"
-
-int		ft_end_game(t_champion *racine, t_corewar *vm)
-{
-  t_champion 	*tmp;
-  int		nb_die;
-
-  nb_die = 0;
-  tmp = racine;
-  if (vm->cycle_die == 0)
-    return (NOLIVE);
-  if (vm->cycle_cpt >= vm->cycle_die)
-    {
-      while (racine->next != tmp)
-	{
-	  if (racine->bool_live == NOLIVE && racine->file_name != NULL)
-	    nb_die++;
-	   racine = racine->next;
-	}
-      if (nb_die >= vm->nb_player && vm->nb_player == 1)
-	  return (1);
-      if (vm->nb_live == NBR_LIVE)
-	{
-	  vm->nb_cycle += 1;
-	  vm->nb_live = 0;
-	  vm->cycle_die = CYCLE_TO_DIE - (CYCLE_DELTA * vm->nb_cycle);
-	}
-      vm->cycle_cpt = 0;
-    }
-  return (LIVE);
-}
 
 void		ft_run_game(t_champion *racine, t_corewar *vm)
 {
@@ -50,7 +20,7 @@ void		ft_run_game(t_champion *racine, t_corewar *vm)
   tmp = racine->next;
   while (ft_end_game(tmp, vm) == LIVE)
     {
-      if (vm->cycle_cpt >= vm->dump_cycle)
+      if (vm->cycle_cpt == vm->dump_cycle)
 	dump_me(vm->memory);
       if (start == 0)
 	tmp = ft_load_action(tmp, vm);
