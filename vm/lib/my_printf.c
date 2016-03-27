@@ -55,7 +55,7 @@ int            	my_printf(char *fmt, ...)
       {
 	 if (fmt[i + 1] == ' ')
 	    my_putchar(' ');
-	while (fmt[i+1] == ' ' && !check_print(fmt[i + 1], ap, flags))
+	while (fmt[i + 1] == ' ' && !check_print(fmt[i + 1], ap, flags))
             i++;
         check_print(fmt[i + 1], ap, flags);
         i++;
