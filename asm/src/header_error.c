@@ -17,8 +17,8 @@ int	check_quotes(int fd, char *to_find, char *file)
   char	buff[1];
   int	offset;
 
-  ((lseek(fd, whereis(to_find, fd, file, 0) + my_strlen(to_find), SEEK_SET)) < 0)
-  ? exit(5): 0;
+  ((lseek(fd, whereis(to_find, fd, file, 0)
+	  + my_strlen(to_find), SEEK_SET)) < 0) ? exit(5): 0;
   while ((read(fd, buff, 1)) > 0)
     {
       if (buff[0] == ' ' || buff[0] == '\t');

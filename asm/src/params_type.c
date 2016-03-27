@@ -26,11 +26,14 @@ int	get_det(char **parse)
 	   !my_strcmp(parse[0], "fork")))
 	return (-1);
       else if (parse[i][0] == '%')
-	(i == 1) ? (det += 200) : (i == 2) ? (det += 20) : (i == 3) ? (det += 2) : 0;
+	(i == 1) ? (det += 200) : (i == 2) ? (det += 20) : (i == 3) ?
+	  (det += 2) : 0;
       else if (parse[i][0] == 'r')
-	(i == 1) ? (det += 100) : (i == 2) ? (det += 10) : (i == 3) ? (det += 1) : 0;
+	(i == 1) ? (det += 100) : (i == 2) ? (det += 10) : (i == 3) ?
+	  (det += 1) : 0;
       else if (!sub_cmp(parse[i][0], LABEL_CHARS))
-	(i == 1) ? (det += 300) : (i == 2) ? (det += 30) : (i == 3) ? (det += 3) : 0;
+	(i == 1) ? (det += 300) : (i == 2) ? (det += 30) : (i == 3) ?
+	  (det += 3) : 0;
       i++;
     }
   return (det);

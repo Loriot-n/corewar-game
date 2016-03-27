@@ -66,13 +66,14 @@ struct header_s		*comment(struct header_s *header, int fd, char *file)
   return (header);
 }
 
-struct header_s		*fill_header(struct header_s *header, char *file, int fd)
+struct header_s		*fill_header(struct header_s *header,
+				     char *file, int fd)
 {
   uint32_t		i;
 
   i = COREWAR_EXEC_MAGIC;
-  i = ((i >> 24) & 0xff) | ((i << 8) & 0xff0000) | ((i >> 8) & 0xff00) |
-    ((i << 24) & 0xff000000);
+  i = ((i >> 24) & 0xff) | ((i << 8) & 0xff0000) | ((i >> 8) & 0xff00)
+      | ((i << 24) & 0xff000000);
   header->magic = i;
   header = name(header, fd, file);
   header->prog_size = 0;
@@ -89,7 +90,8 @@ int			header_main(char *file, int fd, int new_fd)
 {
   struct header_s	*header;
 
-  ((header = malloc(sizeof(struct header_s))) == NULL) ? exit(EXIT_FAILURE) : 0;
+  ((header = malloc(sizeof(struct header_s))) == NULL) ?
+      exit(EXIT_FAILURE) : 0;
   header = fill_header(header, file, fd);
   write_header(header, new_fd);
   return (0);
