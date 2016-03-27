@@ -40,6 +40,7 @@ void	ft_get_forked(t_champion *ch)
   fork->number = ch->number;
   fork->header = ch->header;
   fork->action = ft_init_action();
+  fork->is_root = 0;
   fork->prev = ch->prev;
   fork->next = ch;
   ch->prev->next =fork;
