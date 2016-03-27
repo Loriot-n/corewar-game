@@ -11,6 +11,15 @@
 #include "gab.h"
 #include "nico.h"
 
+int	check_arg(char *str)
+{
+  if (str[my_strlen(str) - 1] != 's')
+    return (1);
+  else if (str[my_strlen(str) - 2] != '.')
+    return (1);
+  return (0);
+}
+
 int	prog_main(int fd, char *file, int line_cmp)
 {
   int		new_fd;
@@ -35,6 +44,8 @@ int	main(int argc, char **argv)
   i = 1;
   while (argc-- > 1)
     {
+      if (check_arg(argv[i]))
+	return (write(STDOUT_FILENO, "Usage : ./asm file_name[.s]\n", 28));
       fd = open(argv[i], O_RDONLY);
       prog_main(fd, argv[i++], 0);
       close(fd);
