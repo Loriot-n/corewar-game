@@ -5,14 +5,13 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Sun Mar 27 20:04:48 2016 CUENAT
+** Last update Sun Mar 27 23:20:43 2016 CUENAT
 */
 
 #ifndef PROTO_H_
 # define PROTO_H_
 # define IS_INSTRUC(nb) (nb >= 0 && nb < 16)
 # define GOT_PARAMS_CHAR(nb) (nb != 0 && nb != 11 && nb != 14 && nb != 8)
-
 
 void    *affect_array(void (*display[15])(va_list ap));
 int     good_display(int i, va_list ap, char *flags,

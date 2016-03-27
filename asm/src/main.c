@@ -48,7 +48,8 @@ int	main(int argc, char **argv)
     {
       if (check_arg(argv[i]))
 	return (write(STDOUT_FILENO, "Usage : ./asm file_name[.s]\n", 28));
-      fd = open(argv[i], O_RDONLY);
+      if ((fd = open(argv[i], O_RDONLY)) == -1)
+	raise_err("File ", argv[i], " not accessible");
       prog_main(fd, argv[i++], 0);
       close(fd);
     }
