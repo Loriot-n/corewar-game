@@ -15,7 +15,6 @@ t_champion	*ft_sti(t_champion *ch,
 			int args[MAX_ARGS_NUMBER],
 			t_corewar *vm)
 {
-  // printf("!!%s\n",info );
   if (args[0] < 0 || args[0] > REG_NUMBER || args[1] + args[2] > MEM_SIZE ||
       args[1] + args[2] < 0)
       return (ch);

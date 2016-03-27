@@ -1,6 +1,5 @@
 /*
 ** and.c for  in /home/stanislas/CPE_2015_corewar/vm/action
-1;4205;0c**
 ** Made by CUENAT
 ** Login   <stanislas@epitech.net>
 **

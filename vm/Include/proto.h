@@ -41,6 +41,7 @@ int	my_getnbr(char *str);
 int	*calloc_int_tab(int *tab, int size);
 void	my_putstr_stderr(char *str);
 void	*xmalloc(int size);
+void	cus_exit(char *str);
 
 /*
 **init_champ.c
