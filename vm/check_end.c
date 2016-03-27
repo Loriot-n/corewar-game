@@ -5,13 +5,13 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Sun Mar 27 16:03:56 2016 CUENAT
+** Last update Sun Mar 27 16:07:11 2016 CUENAT
 */
 
 
 #include "include.h"
 
-t_corewar	ft_end_game_2(t_champion *racine, t_corewar *vm)
+t_corewar	*ft_end_game_2(t_champion *racine, t_corewar *vm)
 {
   t_champion 	*tmp;
   int		nb_die;
@@ -26,7 +26,7 @@ t_corewar	ft_end_game_2(t_champion *racine, t_corewar *vm)
       racine = racine->next;
     }
   if (nb_die >= vm->nb_player && vm->nb_player == 1)
-	  return (1);
+    exit(EXIT_SUCCESS);
   if (vm->nb_live == NBR_LIVE)
     {
       vm->nb_cycle += 1;
@@ -34,7 +34,7 @@ t_corewar	ft_end_game_2(t_champion *racine, t_corewar *vm)
       vm->cycle_die = CYCLE_TO_DIE - (CYCLE_DELTA * vm->nb_cycle);
     }
   vm->cycle_cpt = 0;
-
+  return (vm);
 }
 
 int		ft_end_game(t_champion *racine, t_corewar *vm)
