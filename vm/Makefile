@@ -15,7 +15,9 @@ SRC=	main.c \
 	read_header.c \
 	tools.c \
 	init_vm.c \
+	init_vm2.c \
 	init_champ.c \
+	init_champ2.c \
 	fill_action.c \
 	fill_actions2.c \
 	dump.c \

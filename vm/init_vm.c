@@ -58,6 +58,8 @@ int	ft_get_nb_player(char **av)
   j = 0;
   while (av[i])
     {
+      if (is_option(av[i]) == 1 && is_nbr(av[i + 1]))
+	i += 2;
       if (corename(av[i]) != NULL)
 	j++;
       i++;

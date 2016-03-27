@@ -19,7 +19,7 @@ t_champion	*ft_live(t_champion *ch,
 
   vm->nb_live += 1;
   printf("\"Le joueur %d (%s) est en vie\"\n",
-	 args[0], ch->file_name);
+	 ch->number, ch->file_name);
   if (args[0] == ch->number && ch->file_name != NULL)
     {
       printf("%s\n", ch->file_name);

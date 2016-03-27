@@ -47,8 +47,8 @@ void	cus_exit(char *str);
 **init_champ.c
 */
 void		ft_init_registre_(int registre[16], int ac);
-void		ft_add_end(t_champion *cur_champ, int ac, char *file_name);
-t_action	*ft_init_action();
+void		ft_add_end(t_champion *cur_champ, int i, char *file_name,
+			char **argv);
 t_champion	*ft_create_list_(void);
 t_champion	*ft_init_champ(char **argv);
 t_action	*ft_init_action();
@@ -62,6 +62,13 @@ int		ft_get_nb_player(char **av);
 void		ft_load_player(t_champion *racine, t_corewar *vm);
 void		ft_load_bitecode(int fd, t_champion *tmp, t_corewar *vm,
 				int pos_start);
+
+/*
+** init_vm2
+*/
+int	is_option(char *option);
+int	get_prog_nbr(char *name, char **argv, int nb);
+int	is_nbr(char *c);
 
 /*
 **fill_action
