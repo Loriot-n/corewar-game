@@ -5,8 +5,16 @@
 ## Login   <maire_q@epitech.eu>
 ##
 ## Started on  %cdate maire_q
-## Last update Sun Mar 27 16:06:18 2016 CUENAT
+## Last update Sun Mar 27 20:00:07 2016 CUENAT
 ##
+
+LIBSRC= ./lib/defunctions.c \
+	./lib/functions.c \
+	./lib/formatfunctions.c \
+	./lib/formatfunctions2.c \
+	./lib/formatfunctions3.c \
+	./lib/my_printf.c \
+	./lib/my_strlen.c
 
 SRC=	main.c \
 	check_end.c \
@@ -44,18 +52,26 @@ NAME=	vm
 
 OBJ=	$(SRC:.c=.o)
 
-CFLAGS=	-Wall -I./Include -Wextra -Wno-unused-parameter -g3 \
+NAMELB= libmy.a
+
+LIBFLAGS = -c
+
+LIBOBJ= $(LIBSRC:.c=.o)
+
+CFLAGS=	-L. -lmy -Wall -I./Include -Wextra -Wno-unused-parameter -g3 \
   -Wno-unused-variable
 
 RM= rm -f
 
 all:	$(NAME)
 
-$(NAME):	$(OBJ)
-		$(CC) -o $(NAME) $(OBJ);
+$(NAME):	$(LIBOBJ) $(OBJ)
+		ar rc $(NAMELB) $(LIBOBJ)
+		ranlib $(NAMELB)
+		$(CC) -o $(NAME) $(OBJ) $(CFLAGS);
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(LIBOBJ) $(NAMELB)
 
 fclean : clean
 	$(RM) $(NAME)

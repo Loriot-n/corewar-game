@@ -5,13 +5,44 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Sun Mar 27 16:10:48 2016 CUENAT
+** Last update Sun Mar 27 20:04:48 2016 CUENAT
 */
 
 #ifndef PROTO_H_
 # define PROTO_H_
 # define IS_INSTRUC(nb) (nb >= 0 && nb < 16)
 # define GOT_PARAMS_CHAR(nb) (nb != 0 && nb != 11 && nb != 14 && nb != 8)
+
+
+void    *affect_array(void (*display[15])(va_list ap));
+int     good_display(int i, va_list ap, char *flags,
+void (*display[15])(va_list ap));
+int     bad_display(char format);
+void    my_putchar(char c);
+void    my_putstr(char *str);
+void    my_put_nbr(int nb);
+void    my_put_nbr_binary(int nb);
+void    my_put_nbr_octal(int nb);
+void    my_put_hexa(long long nb);
+void    my_put_hexa_maj(long long nb);
+int     check_print(char format, va_list ap, char *flags);
+void    print_c(va_list ap);
+void    print_str(va_list ap);
+void    print_nbr(va_list ap);
+void    print_long(va_list ap);
+void    print_short(va_list ap);
+void    print_b(va_list ap);
+void    print_S(va_list ap);
+void    print_x(va_list ap);
+void    print_p(va_list ap);
+void    print_f(va_list ap);
+void    print_u(va_list ap);
+void    print_o(va_list ap);
+void    print_X(va_list ap);
+void    print_percent(va_list ap);
+int     my_printf(char *fmt, ...);
+void    print_specials(va_list ap);
+int     my_strlen(char *str);
 
 /*
 ** check_end.c

@@ -5,20 +5,10 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update %udate maire_q
+** Last update Sun Mar 27 20:10:40 2016 CUENAT
 */
 
 #include "include.h"
-
-int	my_strlen(char *str)
-{
-  int	i;
-
-  i = 0;
-  while (str[i])
-    i++;
-  return (i);
-}
 
 int	my_strcmp(char *str1, char *str2)
 {
@@ -51,18 +41,4 @@ char	*my_strdup(char *src)
     }
   str[i] = '\0';
   return (str);
-}
-
-void	my_putchar(char c)
-{
-  write(1, &c, 1);
-}
-
-void	my_putstr(char *str)
-{
-  while (*str)
-    {
-      my_putchar(*str);
-      str++;
-    }
 }
