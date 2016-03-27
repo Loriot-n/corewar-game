@@ -34,6 +34,8 @@ struct header_s		*name(struct header_s *header, int fd, char *file)
 	return (header);
       header->prog_name[i++] = buff[0];
     }
+  (i > PROG_NAME_LENGTH) ? raise_err("Error : ", NAME_CMD_STRING, " too long")
+  : (0);
   return (header);
 }
 
@@ -59,6 +61,8 @@ struct header_s		*comment(struct header_s *header, int fd, char *file)
 	return (header);
       header->comment[i++] = buff[0];
     }
+  (i > COMMENT_LENGTH) ?
+  raise_err("Error : ", COMMENT_CMD_STRING, " too long") : (0);
   return (header);
 }
 

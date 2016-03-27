@@ -35,6 +35,8 @@ SRCS	= src/header.c \
 				src/label_error.c \
 				src/my_put_nbr.c \
 				src/header_error.c \
+				src/args_errors.c \
+				src/check_args.c \
 
 OBJS	= $(SRCS:.c=.o)
 
