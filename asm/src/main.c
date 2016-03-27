@@ -42,6 +42,8 @@ int	main(int argc, char **argv)
   int	i;
 
   i = 1;
+  if (argc == 1)
+    return (write(STDOUT_FILENO, "Usage : ./asm file_name[.s]\n", 28));
   while (argc-- > 1)
     {
       if (check_arg(argv[i]))
