@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Wed Mar 23 18:25:41 2016 CUENAT
-** Last update Sat Mar 26 21:45:51 2016 CUENAT
+** Last update Sun Mar 27 15:29:19 2016 CUENAT
 */
 
 #include "include.h"
@@ -15,27 +15,28 @@ t_champion	*ft_live(t_champion *ch,
 			int *args,
 			t_corewar *vm)
 {
-  t_champion *tmp;
+  t_champion 	*tmp;
 
-  if (vm->memory[args[0]] == ch->number)
+  vm->nb_live += 1;
+  printf("\"Le joueur %d (%s) est en vie\"\n",
+	 args[0], ch->file_name);
+  if (args[0] == ch->number)
     {
-      printf("\"Le joueur %d (%s) est en vie\"\n",
-	     ch->number, ch->file_name);
+      printf("%s\n", ch->file_name);
       ch->bool_live = LIVE;
+      printf("%d\n", ch->bool_live);
     }
   else
     {
-      tmp = ch->next;
-      while (tmp != ch)
+      tmp = ch;
+      while (ch->next != tmp)
 	{
-	  if (tmp->number == vm->memory[args[0]])
+	  if (ch->number == args[0] && ch->file_name != NULL)
 	    {
-	      printf("\"Le joueur %d (%s) est en vie\"\n",
-		     ch->number, ch->file_name);
-	      tmp->bool_live = LIVE;
+	      ch->bool_live = LIVE;
 	      break;
 	    }
-	  tmp = tmp->next;
+	  ch = ch->next;
 	}
     }
   ch->cycle_attente = op_tab[0].nbr_cycles;

@@ -1,4 +1,3 @@
-
 /*
 ** main.c for corewar in /home/qwebify/rendu/CPE/CPE_2015_corewar/vm/
 **
@@ -6,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Sat Mar 26 21:55:45 2016 CUENAT
+** Last update Sun Mar 27 15:31:26 2016 CUENAT
 */
 
 
@@ -18,24 +17,26 @@ int		ft_end_game(t_champion *racine, t_corewar *vm)
   int		nb_die;
 
   nb_die = 0;
-  tmp = racine->next;
+  tmp = racine;
   if (vm->cycle_die == 0)
     return (NOLIVE);
   if (vm->cycle_cpt >= vm->cycle_die)
     {
-      while (tmp != racine)
+      while (racine->next != tmp)
 	{
-	  if (tmp->bool_live == NOLIVE)
+	  if (racine->bool_live == NOLIVE && racine->file_name != NULL)
 	    nb_die++;
-	  tmp = tmp->next;
+	   racine = racine->next;
 	}
-      if (nb_die >= vm->nb_player - 1)
+      if (nb_die >= vm->nb_player && vm->nb_player == 1)
 	  return (1);
-      vm->nb_cycle++;
-      vm->cycle_die =  CYCLE_TO_DIE - (CYCLE_DELTA * vm->nb_cycle);
+      if (vm->nb_live == NBR_LIVE)
+	{
+	  vm->nb_cycle += 1;
+	  vm->nb_live = 0;
+	  vm->cycle_die = CYCLE_TO_DIE - (CYCLE_DELTA * vm->nb_cycle);
+	}
       vm->cycle_cpt = 0;
-      if (vm->cycle_die == 0)
-        return(NOLIVE);
     }
   return (LIVE);
 }
