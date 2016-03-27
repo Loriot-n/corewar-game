@@ -5,10 +5,21 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Thu Mar 24 15:45:02 2016 CUENAT
-** Last update Sun Mar 27 14:34:38 2016 CUENAT
+** Last update Sun Mar 27 16:35:28 2016 CUENAT
 */
 
 #include "include.h"
+
+t_action       	*ft_remove_action(t_action *action)
+{
+  action->action = NULL;
+  action->reg_addr = -1;
+  action->reg_write = -1;
+  action->mem_addr = -1;
+  action->mem_size = 0;
+  action->mem_write = NULL;
+  return (action);
+}
 
 void	ft_new_fork_registre(int registre[REG_NUMBER], t_champion *ch)
 {
@@ -27,7 +38,7 @@ void	ft_get_forked(t_champion *ch)
   t_champion	*fork;
 
   ch->bool_fork = 0;
-  if ((fork = malloc(sizeof(t_champion))) ==  NULL)
+  if ((fork = xmalloc(sizeof(t_champion))) ==  NULL)
     exit(EXIT_FAILURE);
   fork->action = ft_init_action();
   fork->pc = ch->action->mem_addr;
@@ -40,6 +51,7 @@ void	ft_get_forked(t_champion *ch)
   fork->number = ch->number;
   fork->header = ch->header;
   fork->action = ft_init_action();
+  fork->is_root = 0;
   fork->prev = ch->prev;
   fork->next = ch;
   ch->prev->next =fork;
@@ -65,8 +77,7 @@ t_champion	*ft_launch_action(t_champion *ch, t_corewar *vm)
 	  i++;
 	}
     }
-  free(ch->action);
-  ch->action = ft_init_action();
+  ch->action = ft_remove_action(ch->action);
   (ch->pc < MEM_SIZE) ? (ch->pc) : (ch->pc = 0);
   return (ch);
 }

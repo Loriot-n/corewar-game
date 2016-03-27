@@ -31,10 +31,13 @@ t_champion	*ft_live(t_champion *ch,
       tmp = ch;
       while (ch->next != tmp)
 	{
-	  if (ch->number == args[0] && ch->file_name != NULL)
+	  if (ch->is_root == 0)
 	    {
-	      ch->bool_live = LIVE;
-	      break;
+	      if (ch->number == args[0] && ch->file_name != NULL)
+		{
+		  ch->bool_live = LIVE;
+		  break;
+		}
 	    }
 	  ch = ch->next;
 	}

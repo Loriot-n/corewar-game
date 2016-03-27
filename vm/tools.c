@@ -38,3 +38,15 @@ void	my_putstr_stderr(char *str)
 {
   write(2, &str, my_strlen(str));
 }
+
+void	*xmalloc(int size)
+{
+  void	*ptr;
+
+  if ((ptr = malloc(size)) == NULL)
+    {
+      my_putstr("Can’t perform malloc\n");
+      exit(EXIT_FAILURE);
+    }
+  return (ptr);
+}

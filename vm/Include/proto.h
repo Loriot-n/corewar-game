@@ -13,7 +13,6 @@
 # define IS_INSTRUC(nb) (nb >= 0 && nb < 16)
 # define GOT_PARAMS_CHAR(nb) (nb != 0 && nb != 11 && nb != 14 && nb != 8)
 
-
 /*
 ** check_end.c
 */
@@ -41,6 +40,7 @@ header_t	*get_header(char *file_name);
 int	my_getnbr(char *str);
 int	*calloc_int_tab(int *tab, int size);
 void	my_putstr_stderr(char *str);
+void	*xmalloc(int size);
 
 /*
 **init_champ.c

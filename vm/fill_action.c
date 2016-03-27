@@ -43,7 +43,7 @@ char	*do_readable(int *args)
 
   i = 0;
   j = 0;
-  if ((tab = malloc(sizeof(char) * (MAX_ARGS_NUMBER + 1))) == NULL)
+  if ((tab = xmalloc(sizeof(char) * (MAX_ARGS_NUMBER + 1))) == NULL)
     exit(EXIT_FAILURE);
   tab[0] = '\0';
   while (i < MAX_ARGS_NUMBER)
@@ -67,18 +67,11 @@ t_champion	*ft_load_action(t_champion *champion, t_corewar *corewar)
   int		args[MAX_ARGS_NUMBER + 1];
   char		*info;
 
-  // printf("pc : %d\n", champion->pc);
-    int	pc = champion->pc;
-  // printf("pc:%d\n", pc);
   calloc_int_tab(args, MAX_ARGS_NUMBER + 1);
   info = get_info(corewar->memory, champion->pc);
   champion->pc = get_args(corewar->memory, info, champion->pc, args);
-  // if (IS_INSTRUC(corewar->memory[champion->pc - 1]) - 1)
-  // printf(":%d:%d:%d:\n", corewar->memory[pc], corewar->memory[pc + 1], corewar->memory[pc + 2]);
   printf("args:%d, %d ,%d\n", args[0], args[1], args[2]);
   champion = ft_exec_function(champion, info, args, corewar);
-  // champion->pc += 2;
-  printf("pc at _end: %d\n", champion->pc);
   return (champion);
 }
 
