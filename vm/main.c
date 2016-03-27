@@ -1,4 +1,3 @@
-
 /*
 ** main.c for corewar in /home/qwebify/rendu/CPE/CPE_2015_corewar/vm/
 **
@@ -6,39 +5,11 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Sat Mar 26 21:55:45 2016 CUENAT
+** Last update Sun Mar 27 16:02:03 2016 CUENAT
 */
 
 
 #include "include.h"
-
-int		ft_end_game(t_champion *racine, t_corewar *vm)
-{
-  t_champion 	*tmp;
-  int		nb_die;
-
-  nb_die = 0;
-  tmp = racine->next;
-  if (vm->cycle_die == 0)
-    return (NOLIVE);
-  if (vm->cycle_cpt >= vm->cycle_die)
-    {
-      while (tmp != racine)
-	{
-	  if (tmp->bool_live == NOLIVE)
-	    nb_die++;
-	  tmp = tmp->next;
-	}
-      if (nb_die >= vm->nb_player - 1)
-	  return (1);
-      vm->nb_cycle++;
-      vm->cycle_die =  CYCLE_TO_DIE - (CYCLE_DELTA * vm->nb_cycle);
-      vm->cycle_cpt = 0;
-      if (vm->cycle_die == 0)
-        return(NOLIVE);
-    }
-  return (LIVE);
-}
 
 void		ft_run_game(t_champion *racine, t_corewar *vm)
 {
@@ -49,6 +20,8 @@ void		ft_run_game(t_champion *racine, t_corewar *vm)
   tmp = racine->next;
   while (ft_end_game(tmp, vm) == LIVE)
     {
+      if (vm->cycle_cpt == vm->dump_cycle)
+	dump_me(vm->memory);
       if (start == 0)
 	tmp = ft_load_action(tmp, vm);
       if (tmp->cycle_attente == 0)
@@ -165,16 +138,24 @@ int	extract_from_mem(char *str, int len)
   return (result);
 }
 
+void	usage(char *argv)
+{
+  my_putstr("Usage: corewar [-dump nbr_cycle] [[-n prog_number]");
+  my_putstr(" [-a load_address ] prog_name] ...\n");
+  exit(EXIT_FAILURE);
+}
+
 int		main(int ac, char **argv)
 {
   t_champion	*racine;
   t_corewar	*vm;
 
-  // printf("%d\n", IS_INSTRUC(0));
+  if (ac == 1)
+    usage(argv[1]);
   vm = ft_init_vm(argv);
   racine = ft_init_champ(argv);
   ft_load_player(racine, vm);
-  //print_asm(vm->memory);
+  // print_asm(vm->memory);
   // exit(0);
   // printf("############################\n");
   ft_run_game(racine, vm);

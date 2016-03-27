@@ -5,10 +5,11 @@
 ## Login   <maire_q@epitech.eu>
 ##
 ## Started on  %cdate maire_q
-## Last update Thu Mar 24 17:52:35 2016 CUENAT
+## Last update Sun Mar 27 16:06:18 2016 CUENAT
 ##
 
 SRC=	main.c \
+	check_end.c \
 	op.c \
 	utils.c \
 	read_header.c \
@@ -17,6 +18,7 @@ SRC=	main.c \
 	init_champ.c \
 	fill_action.c \
 	fill_actions2.c \
+	dump.c \
 	exec_action.c \
 	action/add.c \
 	action/aff.c \

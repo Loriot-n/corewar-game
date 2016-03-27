@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Tue Mar 22 11:03:51 2016 CUENAT
-** Last update Sat Mar 26 21:03:21 2016 CUENAT
+** Last update Sun Mar 27 14:26:11 2016 CUENAT
 */
 
 #include "include.h"
@@ -14,7 +14,7 @@ t_action	*ft_init_action()
 {
   t_action	*tmp;
 
-  if ((tmp = malloc(sizeof(t_action) * 1)) == NULL)
+  if ((tmp = malloc(sizeof(t_action))) == NULL)
     exit(EXIT_FAILURE);
   tmp->reg_addr = -1;
   tmp->reg_write = -1;
@@ -78,6 +78,14 @@ t_champion      *ft_init_champ(char **argv)
 
   i = 0;
   racine = ft_create_list_();
+  while (argv && argv[i])
+    {
+      if (my_strcmp(argv[i], my_strdup("-dump")) == 0 || my_strcmp(argv[i], my_strdup("-n")) == 0 ||
+	  my_strcmp(argv[i], my_strdup("-a")) == 0)
+	argv = &argv[2];
+      i++;
+    }
+  i = 0;
   tab_cor = prog_tab(&argv[1]);
   if (tab_cor == NULL)
     exit(EXIT_FAILURE);

@@ -14,9 +14,9 @@ char	*corename(char *dir)
 {
   int	i;
 
-  i = 0;
-  while (dir[i] && dir[i] != '.')
-    i++;
+  i = my_strlen(dir);
+  while (i != 0 && dir[i] != '.')
+    i--;
   if (!(dir[i]) || my_strcmp(&(dir[i]), my_strdup(".cor")) != 0)
     {
       my_putstr(dir);
@@ -57,7 +57,12 @@ header_t	*get_header(char *file_name)
   header_t	*cor_header;
 
   if ((fd = open(file_name, O_RDONLY)) == -1)
-    exit(EXIT_FAILURE);
+    {
+      my_putstr("File ");
+      my_putstr(file_name);
+      my_putstr(" not found\n");
+      exit(EXIT_FAILURE);
+    }
   if ((cor_header = malloc(sizeof(header_t))) == NULL)
     exit(EXIT_FAILURE);
   if (read(fd, cor_header, sizeof(header_t)) < (unsigned)sizeof(header_t))
