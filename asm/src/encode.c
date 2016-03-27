@@ -70,7 +70,7 @@ char	*fil_octet(int i, int needed, int value, char *adr)
   return (adr);
 }
 
-char	*get_adr(char *line, char **parse, int i, int y)
+char	*get_adr(char *line, char **parse, t_label *label, int line_cmp)
 {
   int	size;
   int	size_total;
@@ -78,26 +78,30 @@ char	*get_adr(char *line, char **parse, int i, int y)
   int	value;
   int	i_tmp;
   char	*adr;
+  int	i;
+  int	y;
 
+  y = 1;
   size_total = size_to_malloc(line);
-  if ((adr = my_calloc(size_total)) == NULL)
+  if ((adr = my_calloc(size_total)) == NULL && (i = 0))
     raise_err("Can't ", "perform ", "malloc");
   while (parse[y])
     {
-      (size = size_octet(parse[y], parse)) ? (value = putin_int(parse[y])) : 0;
+      size = size_octet(parse[y], parse);
+      value = putin_int(parse[y], line_cmp, label);
       (i_tmp = 1) ? needed = how_many_octet(value) : 0;
       while (i_tmp++ < size)
 	i++;
       adr = fil_octet(i, needed, value, adr);
-      i++;
-      y++;
+      (++i) ? y++ : 0;
     }
   return (adr);
 }
 
-char	*main_adr(char *line, char **parse)
+char	*main_adr(char *line, char **parse, t_label *label, int line_cmp)
 {
   char	*adr;
-  adr = get_adr(line, parse, 0, 1);
+
+  adr = get_adr(line, parse, label, line_cmp);
   return (adr);
 }

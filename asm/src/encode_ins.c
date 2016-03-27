@@ -32,24 +32,25 @@ void	write_core(t_ope *ope, int size, int fd)
   write(fd, ope->adr, size);
 }
 
-void	write_octets(int fd, int new_fd, int line_cmp)
+void	write_octets(int fd, int new_fd, int line_cmp, t_label *label)
 {
-  char	*line;
-  char	**parse;
-  char	*adr;
-  char	ins;
-  char	nb;
-  t_ope	*ope;
+  char		*line;
+  char		**parse;
+  char		*adr;
+  char		ins;
+  char		nb;
+  t_ope		*ope;
 
   if ((ope = malloc(sizeof(t_ope))) == NULL)
     raise_err("Can't ", "perform ", "malloc");
-  while ((line = get_next_line(fd)) != NULL && (line_cmp++ || line_cmp == 0))
+  while ((line = get_next_line(fd)) != NULL && ++line_cmp)
     {
       if (!is_empty(line) && line[0] != '.')
 	{
 	  if (!label_here(line))
 	    line = delete_label(line);
-	  (parse = my_str_to_wordtab(line)) ? adr = main_adr(line, parse) : 0;
+	  parse = my_str_to_wordtab(line);
+	  adr = main_adr(line, parse, label, line_cmp);
 	  ins = encode_ins(parse);
           nb = set_param_byte(get_det(parse));
 	  ope = insert_ope(ins, nb, adr, &ope);
