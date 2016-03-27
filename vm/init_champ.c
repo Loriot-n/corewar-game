@@ -86,7 +86,6 @@ t_champion      *ft_init_champ(char **argv)
       i++;
     }
   i = 0;
-  printf("s%s", argv[1]);
   tab_cor = prog_tab(&argv[1]);
   if (tab_cor == NULL)
     exit(EXIT_FAILURE);
