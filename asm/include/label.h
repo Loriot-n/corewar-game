@@ -22,4 +22,10 @@ int		check_ldi(char **params, t_label *label, int line);
 int		check_sti(char **params, t_label *label, int line);
 int		check_ld(char **params, t_label *label, int line);
 int		check_st(char **params, t_label *label, int line);
+void		my_putchar(char c);
+int		check_quotes(int fd, char *to_find, char *file);
+void		check_null(int fd, char *to_find, char *file);
+int		send_arg_check(int code, char **params,
+        	t_label *label, int line);
+
 #endif /* !LABEL_H_ */
