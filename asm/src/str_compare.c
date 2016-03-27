@@ -63,6 +63,8 @@ int	sub_cmp(char c, char *str)
 
 int	my_strcmp(char *s1, char *s2)
 {
+  if (s1 == NULL || s2 == NULL)
+    return (42);
   while ((*s1 != '\0') && (*s2 != '\0'))
     {
       if (*s1 != *s2)

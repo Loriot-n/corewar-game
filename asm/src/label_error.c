@@ -78,3 +78,16 @@ void		check_label_chars(char *label)
       i++;
     }
 }
+
+int	ommited_cmd(char **parse)
+{
+  int	y;
+
+  while (op_tab[y].mnemonique)
+    {
+      if (!my_strcmp(parse[0], op_tab[y].mnemonique))
+	return (0);
+      y++;
+    }
+  return (1);
+}

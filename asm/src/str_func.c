@@ -32,9 +32,7 @@ int	whereis(char *to_find, int fd, char *file_name, int yolo)
 	      if (buff[0] != to_find[i])
 		break ;
 	      else if ((i == my_strlen(to_find) - 1))
-		{
-		  return (ishere - 1);
-		}
+		return (ishere - 1);
 	    }
 	}
       if ((lseek(fd, ishere + yolo, SEEK_SET)) < 0)
