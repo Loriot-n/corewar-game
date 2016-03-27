@@ -62,7 +62,7 @@ t_label	*parse_label(int fd, t_label *label)
 
   octet = 0;
   if ((name = malloc(sizeof(char) * T_LAB + 1)) == NULL)
-  raise_err("Can't", " perform", " malloc\n");
+    raise_err("Can't", " perform", " malloc\n");
   while ((line = get_next_line(fd)) != NULL)
     {
       if (line[0] != '.')
@@ -70,7 +70,7 @@ t_label	*parse_label(int fd, t_label *label)
 	  if (!label_here(line))
 	    {
 	      name = label_name(line, name);
-	      label = insert_label(name, octet, &label);
+	      label = insert_label(name, octet, label);
 	      line = delete_label(line);
 	    }
 	  if (!is_empty(line))
@@ -87,6 +87,10 @@ t_label		*fill_label_declaration(char *file)
 
   label = NULL;
   fd = open(file, O_RDONLY);
+  if ((label = malloc(sizeof(t_label) * 1)) == NULL)
+      exit(EXIT_FAILURE);
+  label->prev = label;
+  label->next = label;
   label = parse_label(fd, label);
   close(fd);
   return (label);

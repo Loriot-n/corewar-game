@@ -85,8 +85,7 @@ t_corewar	*ft_init_vm(char **argv)
   int		i;
 
   i = 0;
-  if ((vm = xmalloc(sizeof(t_corewar) * 1)) ==  NULL)
-    exit(EXIT_FAILURE);
+  vm = xmalloc(sizeof(t_corewar) * 1);
   ft_init_memory(vm->memory);
   vm->nb_cycle = 0;
   vm->nb_live = 0;

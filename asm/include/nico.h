@@ -50,7 +50,7 @@ int		my_strcmp(char *s1, char *s2);
 char		*my_strcpy(char *dest, char *src);
 void		free_label(t_label **head);
 t_label		*insert_label(char *name, unsigned int pos_lbl,
-			    t_label **head);
+			    t_label *head);
 t_ope		*insert_ope(char ins, char nb, char *adr, t_ope **head);
 void		free_ope(t_ope **head);
 int	putin_int(char *str, int line, t_label *label);

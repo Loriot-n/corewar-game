@@ -8,7 +8,6 @@
 ** Last update Sun Mar 27 17:00:37 2016 CUENAT
 */
 
-
 #include "include.h"
 
 t_corewar	*ft_end_game_2(t_champion *racine, t_corewar *vm)
