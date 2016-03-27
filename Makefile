@@ -21,5 +21,7 @@ clean:
 	(cd vm; make clean)
 
 fclean:
-		(cd asm; make fclean)
-		(cd vm; make fclean)
+	(cd asm; make fclean)
+	(cd vm; make fclean)
+
+.PHONY: all clean fclean re
