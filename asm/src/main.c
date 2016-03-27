@@ -13,15 +13,17 @@
 
 int	prog_main(int fd, char *file, int line_cmp)
 {
-  int	new_fd;
-  char	*new_name;
+  int		new_fd;
+  char		*new_name;
+  t_label	*label;
 
   new_name = get_new_name(file);
   if ((new_fd = open(new_name, O_CREAT | O_WRONLY,
 		     S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
     raise_err("File ", new_name, " not accessible\n");
+  label = fill_label_declaration(file);
   header_main(file, fd, new_fd);
-  write_octets(fd, new_fd, line_cmp);
+  write_octets(fd, new_fd, line_cmp, label);
   return (0);
 }
 

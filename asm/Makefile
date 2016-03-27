@@ -32,7 +32,9 @@ SRCS	= src/header.c \
 				src/encode_ins.c \
 				src/params_type.c \
 				src/main.c \
-
+				src/label_error.c \
+				src/my_put_nbr.c \
+				
 OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)

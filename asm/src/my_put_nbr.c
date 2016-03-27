@@ -7,6 +7,8 @@
 ** Started on  Thu Oct 15 15:35:15 2015 nicolas loriot
 ** Last update Wed Nov  4 21:37:41 2015 Nicolas Loriot
 */
+
+#include "gab.h"
 #include "nico.h"
 #include "gab.h"
 #include "label.h"
