@@ -5,7 +5,7 @@
 ** Login   <loriot_n@epitech.net>
 **
 ** Started on  Fri Oct  9 11:43:20 2015 nicolas loriot
-** Last update Sat Jan 23 14:38:51 2016 Nicolas Loriot
+** Last update Sun Mar 27 21:38:48 2016 CUENAT
 */
 
 #include "gab.h"
@@ -73,8 +73,6 @@ char	**tab_creator(char **tab, char *str, int words, int k)
 	  j = 0;
 	  while (my_char_isalphanum(str[i]) == 1)
 	    {
-	      if (str[i] == '#')
-		tab[k] = NULL;
 	      tab[k][j] = str[i];
 	      (j = j + 1) ? (i = i + 1) : 0;
 	    }
