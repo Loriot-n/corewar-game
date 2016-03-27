@@ -72,3 +72,25 @@ int	check_params(char **argv)
     }
   return (1);
 }
+
+int	get_load_addr(char *name, char **argv, int nb)
+{
+  int	i;
+
+  i = 0;
+  while (argv[i])
+    {
+      if (my_strcmp(argv[i], my_strdup("-a")) == 0)
+	{
+	  if (argv[i + 1] && argv[i + 2] && is_nbr(argv[i + 1]) == 1)
+	    {
+	      if (my_strcmp(my_strdup(argv[i + 2]), name) == 0)
+		return (my_getnbr(argv[i + 1]));
+	    }
+	  else
+	    cus_exit("Bad -a parameter\n");
+	}
+      i++;
+    }
+  return (nb * (MEM_SIZE / 4));
+}
