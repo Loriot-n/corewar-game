@@ -46,7 +46,6 @@ char	*do_readable(int *args)
   if ((tab = malloc(sizeof(char) * (MAX_ARGS_NUMBER + 1))) == NULL)
     exit(EXIT_FAILURE);
   tab[0] = '\0';
-  // printf("args:%d %d %d %d\n", args[0], args[1], args[2], args[3]);
   while (i < MAX_ARGS_NUMBER)
     {
       if (args[i] == 1)
