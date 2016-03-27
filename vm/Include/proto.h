@@ -100,6 +100,8 @@ void		ft_load_bitecode(int fd, t_champion *tmp, t_corewar *vm,
 int	is_option(char *option);
 int	get_prog_nbr(char *name, char **argv, int nb);
 int	is_nbr(char *c);
+int	get_load_addr(char *name, char **argv, int nb);
+int	check_params(char **argv);
 
 /*
 **fill_action

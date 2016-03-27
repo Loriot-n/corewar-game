@@ -51,7 +51,7 @@ void		ft_add_end(t_champion *cur_champ, int i, char *file_name,
   new_champ->cycle_attente = 0;
   ft_init_registre_(new_champ->registre, i);
   new_champ->carry = 0;
-  new_champ->pc = i * (MEM_SIZE / 4);
+  new_champ->pc = get_load_addr(new_champ->file_name, argv, i);
   new_champ->bool_live = NOLIVE;
   new_champ->prev = cur_champ;
   new_champ->number = get_prog_nbr(new_champ->file_name, argv, i);
