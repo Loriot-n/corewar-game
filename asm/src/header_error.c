@@ -17,7 +17,7 @@ int	check_quotes(int fd, char *to_find, char *file)
   char	buff[1];
   int	offset;
 
-  ((lseek(fd, whereis(to_find, fd, file, 1) + my_strlen(to_find), SEEK_SET)) < 0)
+  ((lseek(fd, whereis(to_find, fd, file, 0) + my_strlen(to_find), SEEK_SET)) < 0)
   ? exit(5): 0;
   while ((read(fd, buff, 1)) > 0)
     {
@@ -43,7 +43,7 @@ void	check_null(int fd, char *to_find, char *file)
 {
   char	buff[1];
 
-  ((lseek(fd, whereis(to_find, fd, file, 1), SEEK_SET)) < 0) ?
+  ((lseek(fd, whereis(to_find, fd, file, 0), SEEK_SET)) < 0) ?
   raise_err("Error : No ", to_find, " specified") : 0;
   while (read(fd, buff, 1) > 0)
     {
@@ -59,6 +59,10 @@ void	check_null(int fd, char *to_find, char *file)
 
 void	check_double_def(int fd, char *to_find, char *file)
 {
-  if (whereis(to_find, fd, file, 2) == -2)
+  int	yolo;
+
+  yolo = 0;
+  yolo = whereis(to_find, fd, file, 0) + my_strlen(to_find);
+  if (whereis(to_find, fd, file, yolo) != -1)
     raise_err("Error : Multiple definition of ", to_find, " command");
 }
