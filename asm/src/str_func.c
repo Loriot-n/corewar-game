@@ -20,7 +20,7 @@ int	whereis(char *to_find, int fd, char *file_name, int yolo)
 
   ishere = 0;
   if ((lseek(fd, yolo, SEEK_SET)) < 0)
-    raise_err("File ", file_name, " not accessible\n");
+    raise_err("File ", file_name, " not accessible");
   while ((read(fd, buff, 1) > 0 && ++ishere))
     {
       if (buff[0] == to_find[0])
@@ -36,7 +36,7 @@ int	whereis(char *to_find, int fd, char *file_name, int yolo)
 	    }
 	}
       if ((lseek(fd, ishere + yolo, SEEK_SET)) < 0)
-       raise_err("File ", file_name, " not accessible\n");
+       raise_err("File ", file_name, " not accessible");
     }
   return (-1);
 }
@@ -86,7 +86,7 @@ char	*my_calloc(int size)
 
   i = 0;
   if (!(str = malloc(sizeof(char) * size)))
-    raise_err("Can't perform malloc\n", NULL, NULL);
+    raise_err("Can't perform malloc", NULL, NULL);
   while (str[i])
     str[i++] = 0;
   return (str);

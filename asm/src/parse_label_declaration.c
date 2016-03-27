@@ -62,7 +62,7 @@ t_label	*parse_label(int fd, t_label *label)
 
   octet = 0;
   if ((name = malloc(sizeof(char) * T_LAB + 1)) == NULL)
-  raise_err("Can't", " perform", " malloc\n");
+  raise_err("Can't", " perform", " malloc");
   while ((line = get_next_line(fd)) != NULL)
     {
       if (line[0] != '.')

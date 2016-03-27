@@ -86,6 +86,8 @@ void	ommited_cmd(char **parse)
 
   y = 0;
   lol = 1;
+  for (int i = 0 ; parse[i] ; i++)
+    printf("%s\n", parse[i]);
   while (op_tab[y].mnemonique)
     {
       if (!my_strcmp(parse[0], op_tab[y].mnemonique))
