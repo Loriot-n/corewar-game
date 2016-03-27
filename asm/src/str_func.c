@@ -12,14 +12,14 @@
 #include "nico.h"
 #include "label.h"
 
-int	whereis(char *to_find, int fd, char *file_name, int to_check)
+int	whereis(char *to_find, int fd, char *file_name, int yolo)
 {
   int	i;
   int	ishere;
   char	buff[my_strlen(to_find)];
 
   ishere = 0;
-  if ((lseek(fd, 0, SEEK_SET)) < 0)
+  if ((lseek(fd, yolo, SEEK_SET)) < 0)
     raise_err("File ", file_name, " not accessible\n");
   while ((read(fd, buff, 1) > 0 && ++ishere))
     {
@@ -32,10 +32,12 @@ int	whereis(char *to_find, int fd, char *file_name, int to_check)
 	      if (buff[0] != to_find[i])
 		break ;
 	      else if ((i == my_strlen(to_find) - 1))
-		return ((--to_check) ? (-2) : (ishere - 1));
+		{
+		  return (ishere - 1);
+		}
 	    }
 	}
-      if ((lseek(fd, ishere, SEEK_SET)) < 0)
+      if ((lseek(fd, ishere + yolo, SEEK_SET)) < 0)
        raise_err("File ", file_name, " not accessible\n");
     }
   return (-1);
