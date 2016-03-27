@@ -29,13 +29,13 @@ int	check_add(char **params)
 
 int	check_ldi(char **params)
 {
-  if (params[0][0] == DIRECT_CHAR && params[0][1] == LABEL_CHAR);
+  if (params[0][0] == DIRECT_CHAR);
   else if (params[0][0] == LABEL_CHAR);
   else if (params[0][0] == 'r' && is_good_reg(&params[0][1]));
   else if (is_num(&params[0][0]));
   else
     return (0);
-  if (params[1][0] == DIRECT_CHAR && params[1][1] == LABEL_CHAR);
+  if (params[1][0] == DIRECT_CHAR);
   else if (params[1][0] == LABEL_CHAR);
   else if (params[1][0] == 'r' && is_good_reg(&params[1][1]));
   else
@@ -66,7 +66,7 @@ int	check_sti(char **params)
 
 int	check_ld(char **params)
 {
-  if (params[0][0] == DIRECT_CHAR && params[0][1] == LABEL_CHAR);
+  if (params[0][0] == DIRECT_CHAR);
   else if (params[0][0] == LABEL_CHAR);
   else if (is_num(&params[0][0]));
   else

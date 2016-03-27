@@ -66,3 +66,15 @@ int	is_good_reg(char *str)
   else
     return (1);
 }
+
+void	free_tab(char **tab)
+{
+  int	i;
+
+  i = 0;
+  while (tab[i])
+    {
+      free(tab[i]);
+      i++;
+    }
+}

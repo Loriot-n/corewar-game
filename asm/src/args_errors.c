@@ -23,6 +23,7 @@ int	check_aff(char **params)
 int	check_live(char **params)
 {
   if (params[0][0] == DIRECT_CHAR && params[0][1] == LABEL_CHAR);
+  else if (params[0][0] == DIRECT_CHAR);
   else if ((params[0][0] == DIRECT_CHAR) && (is_num(&params[0][1])))
     return (1);
   else

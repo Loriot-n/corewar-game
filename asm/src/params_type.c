@@ -10,6 +10,7 @@
 
 #include "nico.h"
 #include "gab.h"
+#include "label.h"
 
 int	get_det(char **parse)
 {
@@ -36,6 +37,7 @@ int	get_det(char **parse)
 	  (det += 3) : 0;
       i++;
     }
+  free_tab(parse);
   return (det);
 }
 
