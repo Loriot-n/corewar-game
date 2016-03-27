@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Sat Mar 26 17:02:13 2016 CUENAT
+** Last update Sun Mar 27 16:10:48 2016 CUENAT
 */
 
 #ifndef PROTO_H_
@@ -13,6 +13,12 @@
 # define IS_INSTRUC(nb) (nb >= 0 && nb < 16)
 # define GOT_PARAMS_CHAR(nb) (nb != 0 && nb != 11 && nb != 14 && nb != 8)
 
+
+/*
+** check_end.c
+*/
+t_corewar	*ft_end_game_2(t_champion *racine, t_corewar *vm);
+int		ft_end_game(t_champion *racine, t_corewar *vm);
 /*
 **utils
 */
