@@ -79,15 +79,19 @@ void		check_label_chars(char *label)
     }
 }
 
-int	ommited_cmd(char **parse)
+void	ommited_cmd(char **parse)
 {
   int	y;
+  int	lol;
 
+  y = 0;
+  lol = 1;
   while (op_tab[y].mnemonique)
     {
       if (!my_strcmp(parse[0], op_tab[y].mnemonique))
-	return (0);
+	lol = 2;
       y++;
     }
-  return (1);
+  if (lol == 1)
+    raise_err("Error : ommited command", NULL, NULL);
 }

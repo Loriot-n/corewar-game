@@ -73,13 +73,13 @@ char	**tab_creator(char **tab, char *str, int words, int k)
 	  j = 0;
 	  while (my_char_isalphanum(str[i]) == 1)
 	    {
+	      if (str[i] == '#')
+		tab[k] = NULL;
 	      tab[k][j] = str[i];
-	      j = j + 1;
-	      i = i + 1;
+	      (j = j + 1) ? (i = i + 1) : 0;
 	    }
 	  tab[k][j] = '\0';
-	  words = words - 1;
-	  k = k + 1;
+	  (k = k + 1) ? (words = words - 1) : 0;
 	}
       i = i + 1;
     }
