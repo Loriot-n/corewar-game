@@ -19,7 +19,6 @@ char	*cut_args(char args)
 
   i = 0;
   calloc_int_tab(info, MAX_ARGS_NUMBER);
-  printf("gogo;%d\n", args);
   while (bit < (signed int)sizeof(args) * 8)
     {
       temp = ((args & (1 << bit)) == 0) ? 0 : 1;

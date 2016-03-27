@@ -50,3 +50,9 @@ void	*xmalloc(int size)
     }
   return (ptr);
 }
+
+void	cus_exit(char *str)
+{
+  my_putstr(str);
+  exit(EXIT_FAILURE);
+}

@@ -90,6 +90,7 @@ t_corewar	*ft_init_vm(char **argv)
   vm->nb_live = 0;
   vm->cycle_cpt = 0;
   vm->cycle_die = CYCLE_TO_DIE - (CYCLE_DELTA * vm->nb_cycle);
+  vm->dump_cycle = -1;
   while (argv[i])
     {
       if (my_strcmp(argv[i], my_strdup("-dump")) == 0)
@@ -97,15 +98,11 @@ t_corewar	*ft_init_vm(char **argv)
 	  if (argv[i + 1] && my_getnbr(argv[i + 1]) > 0)
 	    vm->dump_cycle = my_getnbr(argv[i + 1]);
 	  else
-	    {
-	      my_putstr("Dump must have a positive number.\n");
-	      exit(EXIT_FAILURE);
-	    }
+	    cus_exit("Dump must have a positive number.\n");
 	  argv = &argv[2];
 	}
       i++;
     }
   vm->nb_player = ft_get_nb_player(argv);
-  vm->dump_cycle = -1;
   return (vm);
 }
