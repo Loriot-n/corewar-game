@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Sun Mar 27 16:07:11 2016 CUENAT
+** Last update Sun Mar 27 16:09:43 2016 CUENAT
 */
 
 
@@ -26,6 +26,8 @@ t_corewar	*ft_end_game_2(t_champion *racine, t_corewar *vm)
       racine = racine->next;
     }
   if (nb_die >= vm->nb_player && vm->nb_player == 1)
+    exit(EXIT_SUCCESS);
+  if (nb_die == vm->nb_player - 1 && vm->nb_player > 1)
     exit(EXIT_SUCCESS);
   if (vm->nb_live == NBR_LIVE)
     {

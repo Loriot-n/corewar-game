@@ -12,7 +12,7 @@
 #include "nico.h"
 #include "label.h"
 
-int	whereis(char *to_find, int fd, char *file_name)
+int	whereis(char *to_find, int fd, char *file_name, int to_check)
 {
   int	i;
   int	ishere;
@@ -31,8 +31,8 @@ int	whereis(char *to_find, int fd, char *file_name)
 	      i++;
 	      if (buff[0] != to_find[i])
 		break ;
-	      else if (i == my_strlen(to_find) - 1)
-		return (ishere - 1);
+	      else if ((i == my_strlen(to_find) - 1))
+		return ((--to_check) ? (-2) : (ishere - 1));
 	    }
 	}
       if ((lseek(fd, ishere, SEEK_SET)) < 0)

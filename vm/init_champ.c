@@ -55,6 +55,7 @@ void		ft_add_end(t_champion *cur_champ, int i, char *file_name)
   new_champ->prev = cur_champ;
   new_champ->number = i + 1;
   new_champ->bool_fork = 0;
+  new_champ->is_root = 0;
   new_champ->next = cur_champ->next;
   cur_champ->next->prev = new_champ;
   cur_champ->next = new_champ;
@@ -68,6 +69,7 @@ t_champion	*ft_create_list_(void)
     exit(EXIT_FAILURE);
   racine->prev = racine;
   racine->next = racine;
+  racine->is_root = 1;
   return (racine);
 }
 t_champion      *ft_init_champ(char **argv)
