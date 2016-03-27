@@ -60,10 +60,10 @@ header_t	*get_header(char *file_name)
     {
       my_putstr("File ");
       my_putstr(file_name);
-      my_putstr(" not found\n");
+      my_putstr(" not accessible\n");
       exit(EXIT_FAILURE);
     }
-  if ((cor_header = malloc(sizeof(header_t))) == NULL)
+  if ((cor_header = xmalloc(sizeof(header_t))) == NULL)
     exit(EXIT_FAILURE);
   if (read(fd, cor_header, sizeof(header_t)) < (unsigned)sizeof(header_t))
     exit(EXIT_FAILURE);

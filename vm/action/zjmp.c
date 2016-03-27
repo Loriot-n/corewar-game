@@ -48,7 +48,5 @@ t_champion	*ft_zjmp(t_champion *ch,
       ch = ft_zjmp_2(ch);
       ch->cycle_attente = op_tab[8].nbr_cycles;
     }
-  else
-    printf("useless\n");
   return (ch);
 }

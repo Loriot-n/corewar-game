@@ -14,7 +14,7 @@ t_action	*ft_init_action()
 {
   t_action	*tmp;
 
-  if ((tmp = malloc(sizeof(t_action))) == NULL)
+  if ((tmp = xmalloc(sizeof(t_action))) == NULL)
     exit(EXIT_FAILURE);
   tmp->reg_addr = -1;
   tmp->reg_write = -1;
@@ -42,7 +42,7 @@ void		ft_add_end(t_champion *cur_champ, int i, char *file_name)
 {
   t_champion	*new_champ;
 
-  if ((new_champ = malloc(sizeof(t_champion) * 1)) == NULL)
+  if ((new_champ = xmalloc(sizeof(t_champion) * 1)) == NULL)
     exit(EXIT_FAILURE);
   new_champ->header = get_header(file_name);
   new_champ->action = ft_init_action();
@@ -65,7 +65,7 @@ t_champion	*ft_create_list_(void)
 {
   t_champion	*racine;
 
-  if ((racine = malloc(sizeof(t_champion) * 1)) == NULL)
+  if ((racine = xmalloc(sizeof(t_champion) * 1)) == NULL)
     exit(EXIT_FAILURE);
   racine->prev = racine;
   racine->next = racine;

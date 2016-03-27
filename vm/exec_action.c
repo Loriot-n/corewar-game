@@ -38,7 +38,7 @@ void	ft_get_forked(t_champion *ch)
   t_champion	*fork;
 
   ch->bool_fork = 0;
-  if ((fork = malloc(sizeof(t_champion))) ==  NULL)
+  if ((fork = xmalloc(sizeof(t_champion))) ==  NULL)
     exit(EXIT_FAILURE);
   fork->action = ft_init_action();
   fork->pc = ch->action->mem_addr;

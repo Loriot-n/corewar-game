@@ -42,7 +42,7 @@ char	*my_strdup(char *src)
   int	i;
 
   i = 0;
-  if ((str = malloc(my_strlen(src) + 1)) == NULL)
+  if ((str = xmalloc(my_strlen(src) + 1)) == NULL)
     exit(EXIT_FAILURE);
   while (src[i])
     {

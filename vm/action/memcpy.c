@@ -14,7 +14,7 @@ char	*ft_reg_to_mem(int reg_val, t_corewar *vm, t_champion *ch)
 {
   char	*tmp;
 
-  if ((tmp = malloc(sizeof(char) * REG_SIZE)) == NULL)
+  if ((tmp = xmalloc(sizeof(char) * REG_SIZE)) == NULL)
     exit(EXIT_FAILURE);
   ch->action->mem_size = 1;
   tmp[0] = reg_val;
@@ -40,7 +40,7 @@ char	*ft_memcpy(int start, int end, t_corewar *vm, t_champion *ch)
   char	*tmp;
   int	i;
 
-  if ((tmp = malloc(sizeof(char) * (end - start + 1))) == NULL)
+  if ((tmp = xmalloc(sizeof(char) * (end - start + 1))) == NULL)
     exit(EXIT_FAILURE);
   while (start != end)
     {

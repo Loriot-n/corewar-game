@@ -43,7 +43,7 @@ char	*do_readable(int *args)
 
   i = 0;
   j = 0;
-  if ((tab = malloc(sizeof(char) * (MAX_ARGS_NUMBER + 1))) == NULL)
+  if ((tab = xmalloc(sizeof(char) * (MAX_ARGS_NUMBER + 1))) == NULL)
     exit(EXIT_FAILURE);
   tab[0] = '\0';
   while (i < MAX_ARGS_NUMBER)
