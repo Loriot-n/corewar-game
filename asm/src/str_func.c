@@ -9,6 +9,8 @@
 */
 
 #include "gab.h"
+#include "nico.h"
+#include "label.h"
 
 int	whereis(char *to_find, int fd, char *file_name)
 {
@@ -73,7 +75,8 @@ void	raise_err(char *err, char *name, char *err2)
   my_putstr(err, STDERR_FILENO);
   my_putstr(name, STDERR_FILENO);
   my_putstr(err2, STDERR_FILENO);
-  exit(1);
+  my_putchar('\n');
+  exit(EXIT_FAILURE);
 }
 
 char	*my_calloc(int size)
