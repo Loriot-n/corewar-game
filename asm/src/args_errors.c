@@ -20,74 +20,54 @@ int	check_aff(char **params)
     return (1);
 }
 
-int	check_live(char **params, t_label *label, int line)
+int	check_live(char **params)
 {
-  for (int i = 0 ; params[i] ; i++)
-    printf("%s\n", params[i]);
-  if (params[0][0] == DIRECT_CHAR &&
-      params[0][1] == LABEL_CHAR)
-    label_exist(&params[0][2], label, line);
-  else if ((params[0][0] == DIRECT_CHAR) && (is_num(&params[0][1])));
-  else
+  if (params[0][0] == DIRECT_CHAR && params[0][1] == LABEL_CHAR);
+  else if ((params[0][0] == DIRECT_CHAR) && (is_num(&params[0][1])))
     return (1);
-  return (0);
+  else
+    return (0);
+  return (1);
 }
 
-int	check_xor(char **params, t_label *label, int line)
+int	check_xor(char **params)
 {
   int	j;
 
   j = 0;
   while (j < 2)
     {
-      if (params[j][0] == DIRECT_CHAR &&
-	  params[j][1] == LABEL_CHAR)
-	label_exist(&params[j][2], label, line);
-      else if (params[j][0] == LABEL_CHAR)
-	label_exist(&params[j][1], label, line);
+      if (params[j][0] == DIRECT_CHAR);
+      else if (params[j][0] == LABEL_CHAR);
       else if (params[j][0] == 'r' && is_good_reg(&params[j][1]));
       else if (is_num(&params[j][0]));
       else
-	return (1);
+	return (0);
       j++;
     }
   if (params[2][0] == 'r' && is_good_reg(&params[2][1]));
   else
-    return (1);
-  return (0);
+    return (0);
+  return (1);
 }
 
-int	send_arg_check(int code, char **params, t_label *label, int line)
+int	send_arg_check(int code, char **params)
 {
   if (code == 1 || code == 9 || code == 12 || code == 15)
-    return (check_live(params, label, line));
+    return (check_live(params));
   else if (code == 6 || code == 7 || code == 8)
-    return (check_xor(params, label, line));
+    return (check_xor(params));
   else if (code == 4 || code == 5)
     return (check_add(params));
   else if (code == 10 || code == 14)
-    return (check_ldi(params, label, line));
+    return (check_ldi(params));
   else if (code == 11)
-    return (check_sti(params, label, line));
+    return (check_sti(params));
   else if (code == 2 || code == 13)
-    return (check_ld(params, label, line));
+    return (check_ld(params));
   else if (code == 16)
     return (check_aff(params));
   else if (code == 3)
-    return (check_st(params, label, line));
-  return (0);
-}
-
-int	check_args(char *name, char **params, t_label *label, int line)
-{
-  int	i;
-
-  i = 0;
-  while (i < 16)
-    {
-      if (my_strcmp(op_tab[i].mnemonique, name) == 0)
-	send_arg_check(op_tab[i].code, params, label, line);
-      i++;
-    }
+    return (check_st(params));
   return (0);
 }

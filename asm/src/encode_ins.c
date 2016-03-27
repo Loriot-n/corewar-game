@@ -17,10 +17,10 @@ void	invalid_syntax(int line)
   my_putstr("Syntax error line : ", STDOUT_FILENO);
   my_put_nbr(line);
   my_putchar('\n');
-  // exit(EXIT_FAILURE);
+  exit(EXIT_FAILURE);
 }
 
-char	encode_ins(char **parse, t_label *label, int line)
+char	encode_ins(char **parse, int line)
 {
   int	y;
 
@@ -29,7 +29,7 @@ char	encode_ins(char **parse, t_label *label, int line)
     {
       if (!my_strcmp(parse[0], op_tab[y].mnemonique))
 	{
-	  if (send_arg_check(op_tab[y].code, &parse[1], label, line) == 0)
+	  if (send_arg_check(op_tab[y].code, &parse[1]) == 0)
 	    invalid_syntax(line);
 	  return (op_tab[y].code);
 	}
@@ -65,7 +65,7 @@ void	write_octets(int fd, int new_fd, int line_cmp, t_label *label)
 	    line = delete_label(line);
 	  parse = my_str_to_wordtab(line);
 	  adr = main_adr(line, parse, label, line_cmp);
-	  ins = encode_ins(parse, label, line_cmp);
+	  ins = encode_ins(parse, line_cmp);
           nb = set_param_byte(get_det(parse));
 	  ope = insert_ope(ins, nb, adr, &ope);
 	  write_core(ope, size_to_malloc(line), new_fd);

@@ -49,7 +49,8 @@ int	is_num(char *str)
     {
       if (str[i] <= '0' || str[i] >= '9')
 	{
-	  if (str[i] != 'x')
+	  if (str[i] == 'x' || str[i] == '-');
+	  else
 	    return (0);
 	}
       else
