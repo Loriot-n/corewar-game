@@ -48,5 +48,6 @@ unsigned char	set_param_byte(int det);
 int		size_to_malloc(char *line);
 int		header_main(char *file, int fd, int new_fd);
 void	check_double_def(int fd, char *to_find, char *file);
+void	ommited_cmd(char **parse);
 
 #endif /* GAB_H_ */

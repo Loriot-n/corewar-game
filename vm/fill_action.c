@@ -5,7 +5,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Thu Mar 24 18:13:30 2016 CUENAT
+** Last update Sun Mar 27 20:13:55 2016 CUENAT
 */
 
 #include "include.h"
@@ -69,7 +69,6 @@ t_champion	*ft_load_action(t_champion *champion, t_corewar *corewar)
   calloc_int_tab(args, MAX_ARGS_NUMBER + 1);
   info = get_info(corewar->memory, champion->pc);
   champion->pc = get_args(corewar->memory, info, champion->pc, args);
-  printf("args:%d, %d ,%d\n", args[0], args[1], args[2]);
   champion = ft_exec_function(champion, info, args, corewar);
   return (champion);
 }
@@ -98,7 +97,7 @@ int	get_args(char	*memory, char *readable, int pc, int *args)
   instruction = memory[pc++] - 1;
   args[4] = instruction;
   if (IS_INSTRUC(instruction))
-    printf("\n%s(%d arguments)  ", op_tab[instruction].mnemonique, op_tab[instruction].nbr_args);
+    pc = pc;
   else
     return (pc + 1);
   if (GOT_PARAMS_CHAR(instruction))

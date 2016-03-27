@@ -5,12 +5,15 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Thu Mar 24 17:06:41 2016 CUENAT
+** Last update Sun Mar 27 20:09:31 2016 CUENAT
 */
 
 #ifndef INCLUDE_H_
 # define INCLUDE_H_
 
+int	compteur;
+
+# include <stdarg.h>
 # include "op.h"
 # include "action.h"
 # include "champion.h"

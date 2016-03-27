@@ -85,8 +85,9 @@ int		main(int ac, char **argv)
 
   if (ac == 1)
     usage(argv[1]);
-  vm = ft_init_vm(argv);
+  check_params(&argv[1]);
   racine = ft_init_champ(argv);
+  vm = ft_init_vm(argv);
   ft_load_player(racine, vm);
   ft_run_game(racine, vm);
   return (0);

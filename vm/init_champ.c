@@ -38,7 +38,8 @@ void	ft_init_registre_(int registre[16], int nb_prog)
     }
 }
 
-void		ft_add_end(t_champion *cur_champ, int i, char *file_name)
+void		ft_add_end(t_champion *cur_champ, int i, char *file_name,
+			char **argv)
 {
   t_champion	*new_champ;
 
@@ -50,10 +51,10 @@ void		ft_add_end(t_champion *cur_champ, int i, char *file_name)
   new_champ->cycle_attente = 0;
   ft_init_registre_(new_champ->registre, i);
   new_champ->carry = 0;
-  new_champ->pc = i * (MEM_SIZE / 4);
+  new_champ->pc = get_load_addr(new_champ->file_name, argv, i);
   new_champ->bool_live = NOLIVE;
   new_champ->prev = cur_champ;
-  new_champ->number = i + 1;
+  new_champ->number = get_prog_nbr(new_champ->file_name, argv, i);
   new_champ->bool_fork = 0;
   new_champ->is_root = 0;
   new_champ->next = cur_champ->next;
@@ -81,21 +82,12 @@ t_champion      *ft_init_champ(char **argv)
 
   i = 0;
   racine = ft_create_list_();
-  while (argv && argv[i])
-    {
-      if (my_strcmp(argv[i], my_strdup("-dump")) == 0 ||
-	  my_strcmp(argv[i], my_strdup("-n")) == 0 ||
-	  my_strcmp(argv[i], my_strdup("-a")) == 0)
-	argv = &argv[2];
-      i++;
-    }
-  i = 0;
   tab_cor = prog_tab(&argv[1]);
   if (tab_cor == NULL)
     exit(EXIT_FAILURE);
   while (tab_cor[i] != NULL)
     {
-      ft_add_end(racine, i, tab_cor[i]);
+      ft_add_end(racine, i, tab_cor[i], argv);
       i++;
     }
   return (racine);

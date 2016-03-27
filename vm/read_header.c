@@ -14,6 +14,8 @@ char	*corename(char *dir)
 {
   int	i;
 
+  if (!dir)
+    return (NULL);
   i = my_strlen(dir);
   while (i != 0 && dir[i] != '.')
     i--;
@@ -36,7 +38,9 @@ char	**prog_tab(char	**argv)
   if (*argv == NULL)
     return (tab);
   while (*argv != NULL)
-       {
+    {
+      if (is_option(*argv))
+	argv += 2;
       if (corename(*argv) != NULL)
 	{
 	  if ((tab = realloc(tab, (sizeof(char*) * ++size))) == NULL)

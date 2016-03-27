@@ -5,13 +5,44 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Sun Mar 27 16:10:48 2016 CUENAT
+** Last update Sun Mar 27 20:04:48 2016 CUENAT
 */
 
 #ifndef PROTO_H_
 # define PROTO_H_
 # define IS_INSTRUC(nb) (nb >= 0 && nb < 16)
 # define GOT_PARAMS_CHAR(nb) (nb != 0 && nb != 11 && nb != 14 && nb != 8)
+
+
+void    *affect_array(void (*display[15])(va_list ap));
+int     good_display(int i, va_list ap, char *flags,
+void (*display[15])(va_list ap));
+int     bad_display(char format);
+void    my_putchar(char c);
+void    my_putstr(char *str);
+void    my_put_nbr(int nb);
+void    my_put_nbr_binary(int nb);
+void    my_put_nbr_octal(int nb);
+void    my_put_hexa(long long nb);
+void    my_put_hexa_maj(long long nb);
+int     check_print(char format, va_list ap, char *flags);
+void    print_c(va_list ap);
+void    print_str(va_list ap);
+void    print_nbr(va_list ap);
+void    print_long(va_list ap);
+void    print_short(va_list ap);
+void    print_b(va_list ap);
+void    print_S(va_list ap);
+void    print_x(va_list ap);
+void    print_p(va_list ap);
+void    print_f(va_list ap);
+void    print_u(va_list ap);
+void    print_o(va_list ap);
+void    print_X(va_list ap);
+void    print_percent(va_list ap);
+int     my_printf(char *fmt, ...);
+void    print_specials(va_list ap);
+int     my_strlen(char *str);
 
 /*
 ** check_end.c
@@ -47,8 +78,8 @@ void	cus_exit(char *str);
 **init_champ.c
 */
 void		ft_init_registre_(int registre[16], int ac);
-void		ft_add_end(t_champion *cur_champ, int ac, char *file_name);
-t_action	*ft_init_action();
+void		ft_add_end(t_champion *cur_champ, int i, char *file_name,
+			char **argv);
 t_champion	*ft_create_list_(void);
 t_champion	*ft_init_champ(char **argv);
 t_action	*ft_init_action();
@@ -62,6 +93,15 @@ int		ft_get_nb_player(char **av);
 void		ft_load_player(t_champion *racine, t_corewar *vm);
 void		ft_load_bitecode(int fd, t_champion *tmp, t_corewar *vm,
 				int pos_start);
+
+/*
+** init_vm2
+*/
+int	is_option(char *option);
+int	get_prog_nbr(char *name, char **argv, int nb);
+int	is_nbr(char *c);
+int	get_load_addr(char *name, char **argv, int nb);
+int	check_params(char **argv);
 
 /*
 **fill_action
