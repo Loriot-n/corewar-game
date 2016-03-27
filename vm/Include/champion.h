@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Tue Mar 22 10:30:24 2016 CUENAT
-** Last update Sat Mar 26 20:51:15 2016 CUENAT
+** Last update Sat Mar 26 15:14:55 2016 CUENAT
 */
 
 #ifndef CHAMPION_H_
@@ -26,6 +26,7 @@ typedef struct 		s_champion
   int			bool_live;
   int			number;
   int			bool_fork;
+  int			is_root;
   struct s_champion	*next;
   struct s_champion	*prev;
 }			t_champion;

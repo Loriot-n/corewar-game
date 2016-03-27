@@ -26,6 +26,7 @@ typedef struct		s_label
 {
   char			*name;
   unsigned int		pos_lbl;
+  struct s_label	*tail;
   struct s_label	*next;
   struct s_label	*prev;
 }			t_label;
