@@ -54,5 +54,12 @@ t_label		*insert_label(char *name, unsigned int pos_lbl,
 			    t_label **head);
 t_ope		*insert_ope(char ins, char nb, char *adr, t_ope **head);
 void		free_ope(t_ope **head);
+int	putin_int(char *str, int line, t_label *label);
+char		*main_adr(char *file, char **parse, t_label *label, int line);
+unsigned int	label_exist(char *name, t_label *label, int line);
+void		write_octets(int fd, int new_fd, int line_cmp, t_label *label);
+t_label		*fill_label_declaration(char *file);
+void	my_putstr(char *str, int out);
+void	my_put_nbr(int nb);
 
 #endif /* !NICO_H_ */

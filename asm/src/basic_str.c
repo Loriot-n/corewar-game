@@ -9,6 +9,7 @@
 */
 
 #include "gab.h"
+#include "nico.h"
 
 char	*get_str(char *line, int i)
 {
@@ -78,10 +79,12 @@ int	how_many_octet(int yolo)
   return (octet);
 }
 
-int	putin_int(char *str)
+int	putin_int(char *str, int line, t_label *label)
 {
   if (str[0] == 'r')
     return (my_getnbr(str, 1));
+  else if (str[0] == DIRECT_CHAR && str[1] == LABEL_CHAR)
+    return (label_exist(get_str(str, 2), label, line));
   else if (str[0] == DIRECT_CHAR && str[1] != LABEL_CHAR && str[2] == 'x')
     return (my_getnbr_base(str, "0123456789abcdef", 3));
   else if (str[0] == DIRECT_CHAR && str[1] != LABEL_CHAR && str[2] == 'X')
