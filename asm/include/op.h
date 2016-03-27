@@ -5,7 +5,7 @@
 ** Login   <loriot_n@epitech.net>
 **
 ** Started on  Fri Mar 25 16:53:44 2016 Nicolas Loriot
-** Last update Fri Mar 25 16:53:44 2016 Nicolas Loriot
+** Last update Sat Mar 26 13:51:18 2016 Nicolas Loriot
 */
 
 #ifndef _OP_H_
@@ -33,7 +33,7 @@ typedef char    args_type_t;
 # define T_IND           4
 # define T_LAB           8       /* LABEL */
 
-struct  op_s
+typedef struct	op_s
 {
    char         *mnemonique;
    char         nbr_args;
@@ -41,9 +41,7 @@ struct  op_s
    char         code;
    int          nbr_cycles;
    char         *comment;
-};
-
-typedef struct op_s     op_t;
+}		op_t;
 
 /*
  ** size
@@ -66,15 +64,13 @@ extern  op_t    op_tab[];
 # define COMMENT_LENGTH          2048
 # define COREWAR_EXEC_MAGIC      0xea83f3        /* why not */
 
-struct header_s
+typedef struct header_s
 {
-   int  magic;
-   char prog_name[PROG_NAME_LENGTH + 1];
-   int  prog_size;
-   char comment[COMMENT_LENGTH + 1];
-};
-
-typedef struct header_s header_t;
+   int  	magic;
+   char 	prog_name[PROG_NAME_LENGTH + 1];
+   int  	prog_size;
+   char 	comment[COMMENT_LENGTH + 1];
+}		header_t;
 
 /*
  ** live

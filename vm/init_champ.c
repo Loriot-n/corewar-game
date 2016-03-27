@@ -5,7 +5,7 @@
 ** Login   <stanislas@epitech.net>
 **
 ** Started on  Tue Mar 22 11:03:51 2016 CUENAT
-** Last update Fri Mar 25 13:26:25 2016 CUENAT
+** Last update Sat Mar 26 21:03:21 2016 CUENAT
 */
 
 #include "include.h"
@@ -20,6 +20,7 @@ t_action	*ft_init_action()
   tmp->reg_write = -1;
   tmp->mem_addr = -1;
   tmp->mem_write = NULL;
+  tmp->mem_size = 0;
   return(tmp);
 }
 
@@ -49,10 +50,11 @@ void		ft_add_end(t_champion *cur_champ, int i, char *file_name)
   new_champ->cycle_attente = 0;
   ft_init_registre_(new_champ->registre, i);
   new_champ->carry = 0;
-  new_champ->pc = 0;
+  new_champ->pc = i * (MEM_SIZE / 4);
   new_champ->bool_live = NOLIVE;
   new_champ->prev = cur_champ;
-  new_champ->number = i;
+  new_champ->number = i + 1;
+  new_champ->bool_fork = 0;
   new_champ->next = cur_champ->next;
   cur_champ->next->prev = new_champ;
   cur_champ->next = new_champ;

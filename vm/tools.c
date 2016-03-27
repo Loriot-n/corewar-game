@@ -33,3 +33,8 @@ int	*calloc_int_tab(int *tab, int size)
     }
   return (tab);
 }
+
+void	my_putstr_stderr(char *str)
+{
+  write(2, &str, my_strlen(str));
+}

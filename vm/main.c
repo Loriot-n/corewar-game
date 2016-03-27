@@ -1,3 +1,4 @@
+
 /*
 ** main.c for corewar in /home/qwebify/rendu/CPE/CPE_2015_corewar/vm/
 **
@@ -5,7 +6,7 @@
 ** Login   <maire_q@epitech.eu>
 **
 ** Started on  %cdate maire_q
-** Last update Thu Mar 24 18:09:15 2016 CUENAT
+** Last update Sat Mar 26 21:55:45 2016 CUENAT
 */
 
 
@@ -20,7 +21,7 @@ int		ft_end_game(t_champion *racine, t_corewar *vm)
   tmp = racine->next;
   if (vm->cycle_die == 0)
     return (NOLIVE);
-  if (vm->cycle_cpt == vm->cycle_die)
+  if (vm->cycle_cpt >= vm->cycle_die)
     {
       while (tmp != racine)
 	{
@@ -29,9 +30,12 @@ int		ft_end_game(t_champion *racine, t_corewar *vm)
 	  tmp = tmp->next;
 	}
       if (nb_die >= vm->nb_player - 1)
-	return (1);
+	  return (1);
       vm->nb_cycle++;
       vm->cycle_die =  CYCLE_TO_DIE - (CYCLE_DELTA * vm->nb_cycle);
+      vm->cycle_cpt = 0;
+      if (vm->cycle_die == 0)
+        return(NOLIVE);
     }
   return (LIVE);
 }
@@ -52,10 +56,15 @@ void		ft_run_game(t_champion *racine, t_corewar *vm)
 	  tmp = ft_launch_action(tmp, vm);
 	  tmp = ft_load_action(tmp, vm);
 	}
-      tmp->cycle_attente--;
-      tmp = racine->next;
+      if (tmp->cycle_attente > 0)
+	tmp->cycle_attente--;
+      tmp = tmp->next;
       start = 1;
-      (tmp == racine) ? (tmp = tmp->next) : 0;
+      if (tmp == racine)
+	{
+	  tmp = tmp->next;
+	  vm->cycle_cpt++;
+	}
     }
 }
 

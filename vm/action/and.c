@@ -15,8 +15,8 @@ t_champion	*ft_and(t_champion *ch,
 			int args[MAX_ARGS_NUMBER],
 			t_corewar *vm)
 {
-  char	a;
-  char	b;
+  char		a;
+  char		b;
 
   ch->action->reg_addr = args[2];
   if (info[0] == 'i')
@@ -32,5 +32,6 @@ t_champion	*ft_and(t_champion *ch,
   else
     a = ch->registre[args[1] - 1];
   ch->action->reg_write = a & b;
+  ch->carry = (ch->carry == 1) ? 0 : 1;
   return (ch);
 }
