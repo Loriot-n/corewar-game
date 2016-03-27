@@ -49,7 +49,7 @@ void		ft_run_game(t_champion *racine, t_corewar *vm)
   tmp = racine->next;
   while (ft_end_game(tmp, vm) == LIVE)
     {
-      if (vm->cycle_cpt >= vm->dump_cycle)
+      if (vm->cycle_cpt == vm->dump_cycle)
 	dump_me(vm->memory);
       if (start == 0)
 	tmp = ft_load_action(tmp, vm);
@@ -167,11 +167,20 @@ int	extract_from_mem(char *str, int len)
   return (result);
 }
 
+void	usage(char *argv)
+{
+  my_putstr("Usage: corewar [-dump nbr_cycle] [[-n prog_number]");
+  my_putstr(" [-a load_address ] prog_name] ...\n");
+  exit(EXIT_FAILURE);
+}
+
 int		main(int ac, char **argv)
 {
   t_champion	*racine;
   t_corewar	*vm;
 
+  if (ac == 1)
+    usage(argv[1]);
   vm = ft_init_vm(argv);
   racine = ft_init_champ(argv);
   ft_load_player(racine, vm);

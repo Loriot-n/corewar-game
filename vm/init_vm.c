@@ -94,8 +94,13 @@ t_corewar	*ft_init_vm(char **argv)
     {
       if (my_strcmp(argv[i], my_strdup("-dump")) == 0)
 	{
-	  if (argv[i + 1])
+	  if (argv[i + 1] && my_getnbr(argv[i + 1]) > 0)
 	    vm->dump_cycle = my_getnbr(argv[i + 1]);
+	  else
+	    {
+	      my_putstr("Dump must have a positive number.\n");
+	      exit(EXIT_FAILURE);
+	    }
 	  argv = &argv[2];
 	}
       i++;
